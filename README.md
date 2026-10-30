@@ -29,16 +29,21 @@ python main.py models             # lists Gemini models your key can use; copy n
 python main.py research           # sends docs/gemini_research_prompt.md to Gemini with Google Search grounding
 ```
 
-What `research` does, step by step:
+What `research` does, step by step (free route, no paid Google features):
 
-1. Splits the prompt into 10 smaller calls (scholarships, co-op, jobs, six source groups, traps) so each answer fits
-   the output limit and the free-tier quota.
-2. Saves each raw answer under `data/research/<timestamp>/` so a stopped run resumes without re-spending quota
-   (`--force` to redo, `--only A,B` to run some tasks, `--dry-run` to only collect answers).
-3. Converts answers to structured rows with a second, cheaper call.
-4. **Checks every URL over HTTP.** Dead links and live pages that do not mention the program are dropped;
-   LLM output is never trusted blindly.
+1. For each task (scholarships, co-op, jobs, source groups) it runs the search queries in `src/research/queries.py`
+   on DuckDuckGo and downloads the top pages (`--pages N`, default 24 per task).
+2. Saves the downloaded text under `data/research/<timestamp>/` so a stopped run resumes without redoing work
+   (`--force` to redo, `--only A,B` to run some tasks, `--dry-run` to only collect pages).
+3. Gemini reads the pages in small batches and extracts structured rows. URLs come from pages that were really
+   downloaded, not from the model's memory.
+4. **Checks every URL over HTTP.** Dead links and live pages that do not mention the program are dropped.
 5. Stores survivors in SQLite and `config/sources_discovered.yaml`. X accounts and login-only sources start disabled.
+
+`python main.py research --grounded` uses Gemini's built-in Google Search instead. That feature returned
+quota errors on a free key, so it is optional and needs a paid plan.
+
+`python main.py probe` tests which Gemini models work with your key (old ones close to new accounts).
 
 ## Tests
 

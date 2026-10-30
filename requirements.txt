@@ -3,6 +3,8 @@ python-dotenv>=1.0
 pyyaml>=6.0
 pydantic>=2.6
 httpx>=0.27
+ddgs>=9.0
+beautifulsoup4>=4.12
 # LLM providers (any one is enough; Gemini free tier is the default)
 google-genai>=1.0
 anthropic>=0.40

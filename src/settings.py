@@ -18,9 +18,9 @@ def _split(value: str) -> list[str]:
 class Settings:
     llm_provider: str = "gemini"
     gemini_keys: list[str] = field(default_factory=list)
-    gemini_model_fast: str = "gemini-2.5-flash"
-    gemini_model_smart: str = "gemini-2.5-pro"
-    gemini_model_research: str = "gemini-2.5-flash"
+    gemini_model_fast: str = "gemini-3.8-flash"
+    gemini_model_smart: str = "gemini-3.8-flash"
+    gemini_model_research: str = "gemini-3.8-flash"
     anthropic_key: str = ""
     anthropic_model_fast: str = "claude-haiku-5-5"
     anthropic_model_smart: str = "claude-sonnet-5-5"

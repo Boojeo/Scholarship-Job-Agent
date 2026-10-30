@@ -53,7 +53,8 @@ def test_pipeline_end_to_end(tmp_path, monkeypatch):
     (tmp_path / "config").mkdir()
     settings = Settings(db_path=tmp_path / "t.sqlite3", data_dir=tmp_path, research_delay_seconds=0)
     run = bs.ResearchBootstrap(FakeLLM(), settings, sleep=lambda s: None,
-                               url_transport=httpx.MockTransport(handler), run_dir=tmp_path / "run")
+                               url_transport=httpx.MockTransport(handler), run_dir=tmp_path / "run",
+                               mode="grounded")
     stats = run.run()
     assert stats["opportunities_new"] == 1          # only the verified, matching one survives
     assert stats["dropped_dead"] >= 1               # 404 link rejected
@@ -81,3 +82,64 @@ def test_resume_reuses_saved_answers(tmp_path):
     (run_dir / "A.md").write_text("saved")
     run = bs.ResearchBootstrap(Boom(), settings, run_dir=run_dir, sleep=lambda s: None)
     assert run.research(only={"A"}) == {"A": "saved"}
+
+
+# ---- free web route ---------------------------------------------------------------------------
+from src.research import web  # noqa: E402
+
+
+def test_html_to_text_keeps_links_and_drops_scripts():
+    html = ("<html><script>evil()</script><body><h1>MSc AI Scholarship</h1>"
+            "<p>" + "Fully funded for international students. " * 20 + "</p>"
+            "<a href='/apply'>Apply now online</a></body></html>")
+    text = web.html_to_text(html, "https://u.edu/page")
+    assert "evil" not in text and "MSc AI Scholarship" in text
+    assert "Apply now online -> https://u.edu/apply" in text
+
+
+def test_collect_hits_dedupes_and_skips_social():
+    def fake_search(q, n):
+        return [web.SearchHit("t", "https://a.edu/x?utm_source=z", "s"), web.SearchHit("t", "https://A.edu/x/", "s"),
+                web.SearchHit("t", "https://x.com/someone", "tweet")]
+    hits = web.collect_hits(["q1", "q2"], fake_search, sleep=lambda s: None)
+    assert [h.url for h in hits] == ["https://a.edu/x?utm_source=z", "https://x.com/someone"]
+    assert web.is_fetchable("https://a.edu/x") and not web.is_fetchable("https://x.com/someone")
+
+
+def test_web_mode_pipeline(tmp_path, monkeypatch):
+    monkeypatch.setattr(bs, "ROOT", tmp_path)
+    (tmp_path / "config").mkdir()
+    page = "<html><body><h1>Real MSc AI Program at Uni</h1><p>" + "Funded places for applicants. " * 30 + "</p></body></html>"
+
+    def search(q, n):
+        return [web.SearchHit("Real MSc AI Program", "https://good.example/msc", "snippet")]
+
+    def pages(request):
+        return httpx.Response(200, text=page, headers={"content-type": "text/html"})
+
+    class WebLLM(FakeLLM):
+        def generate(self, prompt, **kw):
+            assert "### PAGE https://good.example/msc" in prompt or "name, type" in prompt or "CATEGORY" in prompt
+            return super().generate(prompt, **kw)
+
+    settings = Settings(db_path=tmp_path / "t.sqlite3", data_dir=tmp_path, research_delay_seconds=0)
+    run = bs.ResearchBootstrap(WebLLM(), settings, sleep=lambda s: None, url_transport=httpx.MockTransport(pages),
+                               run_dir=tmp_path / "run", mode="web", search_fn=search)
+    answers = run.research(only={"A"})
+    assert "### PAGE https://good.example/msc" in answers["A"]
+    assert not (tmp_path / "run" / "E.md").exists()
+
+
+def test_chunks_split_on_page_markers():
+    notes = "".join(f"### PAGE https://x/{i}\n" + "a" * 20_000 + "\n" for i in range(5))
+    chunks = bs._chunks(notes, max_chars=45_000)
+    assert len(chunks) >= 2 and all(len(c) < 90_000 for c in chunks)
+    assert "".join(chunks) == notes
+
+
+def test_gemini_switches_to_suggested_model():
+    from tests.test_llm import make_gemini, _client_error
+    msg = "This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest"
+    llm, used, _ = make_gemini({"k1": [_client_error(404, msg), "hello"], "k2": []})
+    assert llm.generate("hi").text == "hello"
+    assert llm._models["fast"] == "gemini-3.8-flash"

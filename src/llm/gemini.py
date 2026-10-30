@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import logging
+import re
 import time
 from typing import Callable
 
@@ -99,6 +100,10 @@ class GeminiLLM(LLM):
                 elif code in (400, 401, 403) and "key" in str(exc).lower():
                     log.warning("Gemini key #%d rejected; dropping it", self._active + 1)
                     self._drop_active_key()
+                elif code == 404 and (hint := _replacement_model(exc)) and hint != model:
+                    log.warning("Gemini model %s is retired for this account; switching to %s", model, hint)
+                    self._models = {t: (hint if m == model else m) for t, m in self._models.items()}
+                    model = hint
                 elif code == 404:
                     raise LLMError(
                         f"Gemini returned 404 for model '{model}': {str(exc)[:300]}\n"
@@ -133,6 +138,12 @@ class GeminiLLM(LLM):
             if not actions or "generateContent" in actions:
                 names.append((m.name or "").removeprefix("models/"))
         return sorted(names)
+
+
+def _replacement_model(exc) -> str | None:
+    """Google's 404 for retired models says 'Please update your code to use models/<name>'."""
+    m = re.search(r"use models/([\w.\-]+)", str(exc))
+    return m.group(1) if m else None
 
 
 def _genai_modules():

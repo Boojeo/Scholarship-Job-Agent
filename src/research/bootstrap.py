@@ -9,6 +9,7 @@ from __future__ import annotations
 import asyncio
 import datetime as dt
 import logging
+import re
 import time
 from pathlib import Path
 from typing import Callable
@@ -18,11 +19,16 @@ import yaml
 from src.database import db
 from src.llm.base import LLM, LLMError
 from src.research.prompt import ResearchTask, build_tasks
+from src.research import web
+from src.research.queries import QUERIES
 from src.research.schemas import OpportunityItem, SourceItem
 from src.research.verify import UrlCheck, check_urls
 from src.settings import ROOT, Settings
 
 log = logging.getLogger(__name__)
+PROFILE_BRIEF = ("Candidate: Somali national resident in Saudi Arabia and the UAE, B.Sc. Computer Science "
+                 "(GPA 4.99/5.0, graduating July 2027), has an English Medium-of-Instruction letter, no IELTS yet, "
+                 "no GRE; wants fully funded MS/PhD in AI from 2027, AI/CS internships/co-op, and entry-level AI/CS jobs.")
 SYSTEM = ("You are a careful research analyst. Use web search. Only report pages you actually opened. "
           "Mark anything you could not verify as UNVERIFIED. Never invent URLs, deadlines or programs.")
 PROMPT_FILE = ROOT / "docs" / "gemini_research_prompt.md"
@@ -36,21 +42,47 @@ def _structure_prompt(task: ResearchTask, notes: str) -> str:
         fields = ("name, type (portal|job_board|telegram|x_account|youtube|rss|api|other), url, region, category, "
                   "update_frequency, access_method (rss|api|static_html|js_required|login_required), "
                   "scraping_notes, language, quality (1-5 integer)")
-    return ("Convert the research notes below into a JSON array. Each element has these fields: "
-            f"{fields}.\nRules: include only items that have a real http(s) URL in the notes; copy facts "
-            "exactly, use \"\" or \"unknown\" when the notes do not say; add nothing that is not in the notes; "
-            "drop items marked UNVERIFIED or expired.\n\nNOTES:\n" + notes)
+    today = dt.date.today().isoformat()
+    return (f"Today is {today}. {PROFILE_BRIEF}\n"
+            "Convert the research material below into a JSON array. Each element has these fields: "
+            f"{fields}.\nRules: include only items that have a real http(s) URL in the material (the page URL "
+            "after '### PAGE' or a link shown in it); copy facts exactly, use \"\" or \"unknown\" when the "
+            "material does not say; add nothing that is not in the material; drop expired items, pages that are "
+            "only generic news, and anything clearly irrelevant to this candidate. If a page lists many "
+            "programs, return each as its own item with its own link when one is shown. "
+            "Return [] if nothing qualifies.\n\nMATERIAL:\n" + notes)
+
+
+def _chunks(notes: str, max_chars: int = 45_000) -> list[str]:
+    """Split page bundles on the '### PAGE' markers so each model call stays small."""
+    parts = re.split(r"(?=^### (?:PAGE|SNIPPET) )", notes, flags=re.MULTILINE)
+    chunks, cur = [], ""
+    for part in parts:
+        if cur and len(cur) + len(part) > max_chars:
+            chunks.append(cur)
+            cur = ""
+        cur += part
+        while len(cur) > max_chars * 2:  # a single enormous page / unmarked text
+            chunks.append(cur[:max_chars])
+            cur = cur[max_chars:]
+    if cur.strip():
+        chunks.append(cur)
+    return chunks
 
 
 class ResearchBootstrap:
     def __init__(self, llm: LLM, settings: Settings, *, run_dir: Path | None = None,
                  prompt_file: Path = PROMPT_FILE, sleep: Callable[[float], None] = time.sleep,
-                 url_transport=None):
+                 url_transport=None, mode: str = "web", search_fn: web.SearchFn = web.ddg_search,
+                 pages_per_task: int = 24):
         self.llm = llm
         self.settings = settings
         self.prompt_file = prompt_file
         self.sleep = sleep
         self.url_transport = url_transport
+        self.mode = mode                  # "web" = free DuckDuckGo + page download; "grounded" = Gemini Google Search
+        self.search_fn = search_fn
+        self.pages_per_task = pages_per_task
         stamp = dt.datetime.now().strftime("%Y-%m-%d_%H%M")
         self.run_dir = run_dir or settings.data_dir / "research" / stamp
         self.run_dir.mkdir(parents=True, exist_ok=True)
@@ -66,17 +98,40 @@ class ResearchBootstrap:
                 answers[task.key] = raw.read_text(encoding="utf-8")
                 log.info("task %s: reusing saved answer", task.key)
                 continue
-            log.info("task %s: researching (web-grounded)...", task.key)
-            try:
-                resp = self.llm.generate(task.prompt, system=SYSTEM, tier="research", search=True,
-                                         max_tokens=32768, temperature=0.2)
-            except LLMError as exc:
-                log.error("task %s failed: %s", task.key, exc)
-                continue
-            raw.write_text(resp.text, encoding="utf-8")
-            answers[task.key] = resp.text
-            self.sleep(self.settings.research_delay_seconds)
+            if self.mode == "web":
+                if task.kind == "notes":
+                    continue  # the 'traps' checklist is covered by the matcher rules, not by web pages
+                log.info("task %s: searching the web...", task.key)
+                text = self._web_bundle(task)
+                if not text:
+                    log.error("task %s: no pages found (search blocked or offline?)", task.key)
+                    continue
+            else:
+                log.info("task %s: researching (Gemini web-grounded)...", task.key)
+                try:
+                    text = self.llm.generate(task.prompt, system=SYSTEM, tier="research", search=True,
+                                             max_tokens=32768, temperature=0.2).text
+                except LLMError as exc:
+                    log.error("task %s failed: %s", task.key, exc)
+                    continue
+                self.sleep(self.settings.research_delay_seconds)
+            raw.write_text(text, encoding="utf-8")
+            answers[task.key] = text
         return answers
+
+    def _web_bundle(self, task: ResearchTask) -> str:
+        hits = web.collect_hits(QUERIES.get(task.key, []), self.search_fn, sleep=self.sleep)
+        fetchable = [h for h in hits if web.is_fetchable(h.url)][: self.pages_per_task]
+        pages = asyncio.run(web.fetch_pages([h.url for h in fetchable], transport=self.url_transport))
+        blocks = []
+        for h in fetchable:
+            if h.url in pages:
+                blocks.append(f"### PAGE {h.url}\nTITLE: {h.title}\nSNIPPET: {h.snippet}\n{pages[h.url]}\n")
+        # login-walled / social results: keep the snippet only (useful for finding accounts and channels)
+        for h in hits:
+            if not web.is_fetchable(h.url):
+                blocks.append(f"### SNIPPET {h.url}\nTITLE: {h.title}\nSNIPPET: {h.snippet}\n")
+        return "\n".join(blocks)
 
     # -- step 2: free text -> validated rows -----------------------------------------------------------
     def structure(self, answers: dict[str, str]):
@@ -88,13 +143,14 @@ class ResearchBootstrap:
             if task.kind == "notes":
                 continue
             item_type = OpportunityItem if task.kind == "opportunities" else SourceItem
-            try:
-                rows = self.llm.generate_json(_structure_prompt(task, notes), item_type, tier="fast")
-            except LLMError as exc:
-                log.error("task %s: could not structure answer: %s", key, exc)
-                continue
-            (opportunities if task.kind == "opportunities" else sources).extend(rows)
-            self.sleep(self.settings.research_delay_seconds / 2)
+            for i, chunk in enumerate(_chunks(notes), 1):
+                try:
+                    rows = self.llm.generate_json(_structure_prompt(task, chunk), item_type, tier="fast")
+                except LLMError as exc:
+                    log.error("task %s part %d: could not structure answer: %s", key, i, exc)
+                    continue
+                (opportunities if task.kind == "opportunities" else sources).extend(rows)
+                self.sleep(self.settings.research_delay_seconds / 2)
         return opportunities, sources
 
     # -- step 3: never trust LLM URLs -----------------------------------------------------------------

@@ -22,6 +22,9 @@ def main(argv: list[str] | None = None) -> int:
     r = sub.add_parser("research", help="run the web-grounded research bootstrap with your Gemini key")
     r.add_argument("--only", help="comma list of tasks, e.g. A,B,D1")
     r.add_argument("--force", action="store_true", help="ignore saved answers and ask again")
+    r.add_argument("--grounded", action="store_true",
+                   help="use Gemini's built-in Google Search instead of the free web route (needs a paid plan)")
+    r.add_argument("--pages", type=int, default=24, help="max pages downloaded per task (default 24)")
     r.add_argument("--dry-run", action="store_true", help="only collect raw answers, store nothing")
     args = parser.parse_args(argv)
     logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO, format="%(levelname)s %(message)s")
@@ -54,7 +57,9 @@ def main(argv: list[str] | None = None) -> int:
             from src.research.bootstrap import ResearchBootstrap
 
             only = {k.strip().upper() for k in args.only.split(",")} if args.only else None
-            stats = ResearchBootstrap(build_llm(settings, "gemini"), settings).run(only, args.force, args.dry_run)
+            boot = ResearchBootstrap(build_llm(settings, "gemini"), settings,
+                                     mode="grounded" if args.grounded else "web", pages_per_task=args.pages)
+            stats = boot.run(only, args.force, args.dry_run)
             print(stats)
     except LLMError as exc:
         print(f"error: {exc}", file=sys.stderr)
