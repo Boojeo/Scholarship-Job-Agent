@@ -101,7 +101,8 @@ class GeminiLLM(LLM):
                     self._drop_active_key()
                 elif code == 404:
                     raise LLMError(
-                        f"Gemini model '{model}' not found. Run `python main.py models` and update GEMINI_MODEL_* in .env"
+                        f"Gemini returned 404 for model '{model}': {str(exc)[:300]}\n"
+                        "Run `python main.py probe` to see which models work with your key, then update GEMINI_MODEL_* in .env"
                     ) from exc
                 else:
                     raise LLMError(f"Gemini request rejected ({code}): {exc}") from exc
@@ -109,6 +110,20 @@ class GeminiLLM(LLM):
                 log.warning("Gemini server error (attempt %d): %s", attempt, exc)
                 self._sleep(min(5.0 * attempt, 30))
         raise LLMError(f"Gemini failed after {self._max_attempts} attempts (model={model})")
+
+    def probe(self, model: str, search: bool) -> str:
+        """One cheap test call (no retries). Returns 'ok' or the API's own error text."""
+        errors, types = _genai_modules()
+        config = types.GenerateContentConfig(
+            max_output_tokens=512,
+            tools=[types.Tool(google_search=types.GoogleSearch())] if search else None,
+        )
+        try:
+            r = self._client().models.generate_content(
+                model=model, contents="Reply with the single word OK.", config=config)
+        except errors.APIError as exc:
+            return f"{getattr(exc, 'code', '?')}: {str(exc)[:200]}"
+        return "ok" if (r.text or "").strip() else "reachable, empty text"
 
     def list_models(self) -> list[str]:
         """Names of models the active key can use for generateContent."""

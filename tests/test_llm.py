@@ -100,3 +100,15 @@ def test_gemini_unknown_model_message():
 def test_gemini_requires_key():
     with pytest.raises(LLMError):
         GeminiLLM([], {"fast": "m", "smart": "m", "research": "m"})
+
+
+def test_probe_reports_api_error_text():
+    llm, _, _ = make_gemini({"k1": [_client_error(404, "model is no longer available to new users")], "k2": []})
+    out = llm.probe("old-model", search=False)
+    assert out.startswith("404") and "no longer available" in out
+
+
+def test_404_message_keeps_google_error():
+    llm, *_ = make_gemini({"k1": [_client_error(404, "tool not supported")], "k2": []})
+    with pytest.raises(LLMError, match="tool not supported"):
+        llm.generate("hi")

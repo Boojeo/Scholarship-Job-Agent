@@ -17,6 +17,8 @@ def main(argv: list[str] | None = None) -> int:
     sub = parser.add_subparsers(dest="cmd", required=True)
     sub.add_parser("init-db", help="create the SQLite database")
     sub.add_parser("models", help="list models your Gemini key can use")
+    pr = sub.add_parser("probe", help="test which Gemini models really work (plain and with web search)")
+    pr.add_argument("names", nargs="*", help="model names; default: your .env models plus common candidates")
     r = sub.add_parser("research", help="run the web-grounded research bootstrap with your Gemini key")
     r.add_argument("--only", help="comma list of tasks, e.g. A,B,D1")
     r.add_argument("--force", action="store_true", help="ignore saved answers and ask again")
@@ -38,6 +40,16 @@ def main(argv: list[str] | None = None) -> int:
         elif args.cmd == "models":
             llm = build_llm(settings, "gemini")
             print("\n".join(llm.list_models()))
+        elif args.cmd == "probe":
+            llm = build_llm(settings, "gemini")
+            names = args.names or list(dict.fromkeys([
+                settings.gemini_model_fast, settings.gemini_model_smart, settings.gemini_model_research,
+                "gemini-flash-latest", "gemini-flash-lite-latest", "gemini-pro-latest", "gemini-3.8-flash",
+                "gemini-3.7-flash", "gemini-3.6-flash", "gemini-3.5-flash", "gemini-3.1-flash-lite",
+                "gemini-2.5-flash-lite"]))
+            for name in names:
+                print(f"{name:34} plain: {llm.probe(name, False)}")
+                print(f"{'':34} search: {llm.probe(name, True)}")
         elif args.cmd == "research":
             from src.research.bootstrap import ResearchBootstrap
 
