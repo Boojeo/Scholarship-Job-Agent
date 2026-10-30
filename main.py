@@ -23,6 +23,8 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--dry-run", action="store_true", help="only collect raw answers, store nothing")
     args = parser.parse_args(argv)
     logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO, format="%(levelname)s %(message)s")
+    for noisy in ("httpx", "httpx2", "httpcore", "google_genai"):
+        logging.getLogger(noisy).setLevel(logging.WARNING)  # hide per-request lines unless something fails
     settings = Settings.from_env()
 
     try:
