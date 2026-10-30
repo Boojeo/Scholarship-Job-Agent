@@ -1,0 +1,72 @@
+# Facts below come from the candidate's CVs. The agent must never claim anything that is not here
+# or in vault/master_cv*.md. Contact details live in .env, not in git.
+candidate:
+  name: "Abdallah Mohamud"
+  base_location: "Najran, Saudi Arabia"
+  nationality: "Somali"
+  residencies: ["Saudi Arabia", "United Arab Emirates"]
+  timezone: "Asia/Riyadh"
+  education:
+    degree: "B.Sc. in Computer Science"
+    university: "Najran University, College of Computer Science and Information Systems"
+    expected_graduation: "2027-07"
+    gpa: "4.99 / 5.00"
+    class_standing: "First Class Honors standard by GPA (degree not yet conferred; say 'expected' until it is)"
+    awards: ["Annual Academic Excellence Award, three consecutive years"]
+    coursework: ["Artificial Intelligence", "Linear Algebra", "Calculus", "Probability & Statistics",
+                 "Data Structures and Algorithms", "Discrete Mathematics", "Software Engineering"]
+  research:
+    - title: "Periscope: Extending Frozen Language Models Beyond Their Context Window"
+      status: "Submitted to ICML, under review"
+      arxiv: "2610.04047"
+      role: "Co-author (equal contribution is marked with * on the paper; check the paper before claiming it)"
+      topics: ["long-context LLM inference", "retrieval", "efficient inference"]
+  training:
+    - "KAUST Academy AI Specializations Summer Program (KASP), 28 Jun - 20 Aug 2026"
+  projects: ["Lahja (Arabic dialect NLP)", "HydroPulse (MiyahThon finalist)",
+             "Handwritten digit recognition with custom VGG16", "Linear regression from scratch"]
+  leadership: ["AI Club Technical Committee Lead (15 members), Jan 2026 - present",
+               "Competitive Programming Lead, 3Cs Hackathon, April 2025"]
+  honors: ["Top 10 Finalist, 6th National Programming Competition", "Finalist, MiyahThon Water Innovation Hackathon"]
+  skills: ["Python", "Java", "TensorFlow", "Keras", "Computer Vision", "LLMs and retrieval", "LoRA/QLoRA", "GRPO",
+           "NumPy", "Pandas", "Scikit-Learn"]
+
+  language_and_tests:
+    english_proficiency:
+      has_moi_certificate: true
+      moi_details: "Medium of Instruction letter: Bachelor's taught in English"
+      ielts_toefl_status: "Not taken yet; plans IELTS later. Apply with MOI / English waiver where accepted."
+    standardized_tests:
+      gre_gmat: "None. Deprioritise programs that strictly require GRE/GMAT without waiver."
+    referees: "None secured yet. Plan: KAUST research supervisors plus 1-2 Najran faculty."
+
+  intake_target: "Fall 2027 (MS or direct PhD / integrated MS-PhD); internships and co-op from now; full-time from mid-2027"
+
+  target_categories:
+    scholarships:
+      priority_1: "Fully funded MS/MSc in AI, ML, Data Science, CV, NLP, Robotics or CS"
+      priority_2: "Fully funded direct PhD or integrated MS-PhD accepting Bachelor's holders"
+      funding_requirement: "Tuition waiver plus living stipend, or government/university/lab fellowship"
+      special_tracks:
+        - "KSA/UAE/GCC university fellowships (KAUST, MBZUAI, KFUPM, KSU, KAU, HBKU, Khalifa University)"
+        - "International / developing-country / African / OIC / IsDB scholarships open to Somali nationals"
+        - "English-taught programs accepting MOI (Europe, UK, North America, China CSC, Japan MEXT, Korea GKS, Turkey, Hungary, Malaysia)"
+    coop_and_part_time:
+      roles: ["AI/ML Co-op or Intern", "Software Engineering Intern/Co-op", "Data Science/Analytics Intern",
+              "Part-Time AI Developer / Research Assistant"]
+    full_time_jobs:
+      roles: ["AI Engineer", "Machine Learning Engineer", "Data Scientist / NLP / CV Engineer",
+              "Software Engineer (Backend, Full-Stack, Python)", "Graduate Trainee / Junior Developer"]
+
+  cv_variants:
+    research: "Use for CATEGORY_1 (scholarships, PhD, research assistant roles)"
+    industry: "Use for CATEGORY_2 and CATEGORY_3"
+
+# Hard rules enforced by matcher, tailoring and the pre-submit gate.
+rules:
+  never_fabricate: true
+  tailoring_allowed: ["reorder", "reword", "emphasise", "match keywords from the posting", "translate", "shorten"]
+  tailoring_forbidden: ["invented skills, employers, projects, publications, dates or grades"]
+  require_final_verification_before_submit: true
+  never_automate: ["account creation", "payments", "legal declarations", "visa or criminal-record questions"]
+  first_application_requires_user_approval: true

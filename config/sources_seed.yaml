@@ -1,0 +1,40 @@
+# Starter sources. `python main.py research` adds many more, verified over HTTP.
+# access: rss | api | static_html | js_required | login_required. All start unverified.
+sources:
+  # --- Category 1: scholarships ---
+  - {name: "KAUST Admissions", type: portal, url: "https://admissions.kaust.edu.sa", category: CATEGORY_1_SCHOLARSHIP, region: KSA}
+  - {name: "MBZUAI Admissions", type: portal, url: "https://mbzuai.ac.ae/study/admissions/", category: CATEGORY_1_SCHOLARSHIP, region: UAE}
+  - {name: "KFUPM Graduate Studies", type: portal, url: "https://www.kfupm.edu.sa", category: CATEGORY_1_SCHOLARSHIP, region: KSA}
+  - {name: "HBKU Admissions", type: portal, url: "https://www.hbku.edu.qa", category: CATEGORY_1_SCHOLARSHIP, region: Qatar}
+  - {name: "Khalifa University Graduate", type: portal, url: "https://www.ku.ac.ae", category: CATEGORY_1_SCHOLARSHIP, region: UAE}
+  - {name: "EURAXESS Jobs and Funding", type: portal, url: "https://euraxess.ec.europa.eu/jobs/search", category: CATEGORY_1_SCHOLARSHIP, region: Europe}
+  - {name: "FindAPhD", type: portal, url: "https://www.findaphd.com", category: CATEGORY_1_SCHOLARSHIP, region: Global}
+  - {name: "FindAMasters", type: portal, url: "https://www.findamasters.com", category: CATEGORY_1_SCHOLARSHIP, region: Global}
+  - {name: "DAAD Scholarship Database", type: portal, url: "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/", category: CATEGORY_1_SCHOLARSHIP, region: Germany}
+  - {name: "Chevening", type: portal, url: "https://www.chevening.org/scholarships/", category: CATEGORY_1_SCHOLARSHIP, region: UK}
+  - {name: "Stipendium Hungaricum", type: portal, url: "https://stipendiumhungaricum.hu", category: CATEGORY_1_SCHOLARSHIP, region: Hungary}
+  - {name: "Chinese Government Scholarship (CSC)", type: portal, url: "https://www.campuschina.org", category: CATEGORY_1_SCHOLARSHIP, region: China}
+  - {name: "Global Korea Scholarship (GKS)", type: portal, url: "https://www.studyinkorea.go.kr", category: CATEGORY_1_SCHOLARSHIP, region: Korea}
+  - {name: "Turkiye Burslari", type: portal, url: "https://turkiyeburslari.gov.tr", category: CATEGORY_1_SCHOLARSHIP, region: Turkey}
+  - {name: "Erasmus Mundus Joint Masters", type: portal, url: "https://erasmus-plus.ec.europa.eu/opportunities/opportunities-for-individuals/students/erasmus-mundus-joint-masters", category: CATEGORY_1_SCHOLARSHIP, region: Europe}
+  # --- Category 2/3: jobs and co-op ---
+  - {name: "Bayt", type: job_board, url: "https://www.bayt.com", category: CATEGORY_3_FULLTIME, region: GCC, access: js_required}
+  - {name: "GulfTalent", type: job_board, url: "https://www.gulftalent.com", category: CATEGORY_3_FULLTIME, region: GCC}
+  - {name: "Naukrigulf", type: job_board, url: "https://www.naukrigulf.com", category: CATEGORY_3_FULLTIME, region: GCC}
+  - {name: "Jadarat (Saudi jobs and co-op)", type: job_board, url: "https://jadarat.sa", category: CATEGORY_2_COOP_PARTTIME, region: KSA, access: login_required}
+  - {name: "Wellfound", type: job_board, url: "https://wellfound.com", category: CATEGORY_3_FULLTIME, region: Global}
+  - {name: "Hugging Face careers", type: job_board, url: "https://apply.workable.com/huggingface/", category: CATEGORY_3_FULLTIME, region: Global}
+  - {name: "RemoteOK API", type: api, url: "https://remoteok.com/api", category: CATEGORY_3_FULLTIME, region: Remote, access: api}
+  - {name: "Arbeitnow API", type: api, url: "https://www.arbeitnow.com/api/job-board-api", category: CATEGORY_3_FULLTIME, region: Europe, access: api}
+
+# Opt-in channels (disabled by default: terms-of-service and account-ban risk).
+opt_in:
+  x_queries:
+    - '("PhD position" OR "MS position" OR "Master scholarship") ("Machine Learning" OR "AI" OR "Computer Vision" OR "NLP") -filter:retweets'
+    - '("تدريب تعاوني" OR "حديث التخرج") ("حاسب" OR "ذكاء اصطناعي" OR "برمجة")'
+    - '("AI Engineer" OR "ML Engineer" OR "Software Engineer") ("Riyadh" OR "Saudi" OR "Dubai" OR "UAE" OR "Remote") hiring'
+  youtube_queries:
+    - "fully funded scholarship without IELTS"
+    - "MOI accepted scholarships"
+    - "AI internships scholarships"
+  telegram_channels: []   # filled by research / discovery; public t.me/s/<handle> previews only

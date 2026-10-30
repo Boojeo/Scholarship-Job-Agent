@@ -1,0 +1,17 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+data/
+ready_to_apply/
+browser_profile/
+*.session
+*.sqlite3
+*.db
+# personal documents never go to git
+vault/attachments/*
+!vault/attachments/.gitkeep
+vault/*.pdf
+vault/*.docx
+vault/*.local.*
