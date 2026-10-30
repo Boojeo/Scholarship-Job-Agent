@@ -36,6 +36,7 @@ class GeminiLLM(LLM):
 
     @staticmethod
     def _default_factory(key: str):
+        _genai_modules()
         from google import genai
 
         return genai.Client(api_key=key)
@@ -69,8 +70,7 @@ class GeminiLLM(LLM):
         max_tokens: int = 8192,
         temperature: float | None = None,
     ) -> LLMResponse:
-        from google.genai import errors, types
-
+        errors, types = _genai_modules()
         model = self._models[tier]
         config = types.GenerateContentConfig(
             system_instruction=system,
@@ -118,6 +118,16 @@ class GeminiLLM(LLM):
             if not actions or "generateContent" in actions:
                 names.append((m.name or "").removeprefix("models/"))
         return sorted(names)
+
+
+def _genai_modules():
+    try:
+        from google.genai import errors, types
+    except ImportError as exc:
+        raise LLMError(
+            "The 'google-genai' package is not installed for this Python. Run: python -m pip install -r requirements.txt"
+        ) from exc
+    return errors, types
 
 
 def _grounding_urls(resp) -> list[str]:
