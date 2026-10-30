@@ -27,9 +27,9 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--pages", type=int, default=24, help="max pages downloaded per task (default 24)")
     r.add_argument("--dry-run", action="store_true", help="only collect raw answers, store nothing")
     args = parser.parse_args(argv)
-    logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO, format="%(levelname)s %(message)s")
-    for noisy in ("httpx", "httpx2", "httpcore", "google_genai"):
-        logging.getLogger(noisy).setLevel(logging.WARNING)  # hide per-request lines unless something fails
+    # Only our own messages at INFO; third-party libraries (search engines, HTTP) stay quiet unless they warn.
+    logging.basicConfig(level=logging.WARNING, format="%(levelname)s %(message)s")
+    logging.getLogger("src").setLevel(logging.DEBUG if args.verbose else logging.INFO)
     settings = Settings.from_env()
 
     try:
