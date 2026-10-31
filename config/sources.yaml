@@ -21,6 +21,11 @@ sources:
   - {name: "PhDFinder (TG)", type: telegram, url: "https://t.me/s/phdfinder", category: CATEGORY_1_SCHOLARSHIP, region: Global, access: telegram, notes: "2.5K subs, daily"}
   - {name: "Position Club (TG)", type: telegram, url: "https://t.me/s/PositionClub", category: CATEGORY_1_SCHOLARSHIP, region: Global, access: telegram, notes: "15.4K subs; last post 2026-09-30"}
 
+  # Arabic / Gulf (added 2026-10-31)
+  - {name: "تروسكو منح دراسية (TG)", type: telegram, url: "https://t.me/s/truescho", category: CATEGORY_1_SCHOLARSHIP, region: "Global, Arabic", access: telegram, notes: "91.2K subs, daily"}
+  - {name: "Dirasa Abroad (TG)", type: telegram, url: "https://t.me/s/dirasaabroad", category: CATEGORY_1_SCHOLARSHIP, region: "Global, Arabic", access: telegram, notes: "10.8K subs, daily; channel of dirasaabroad.com"}
+  - {name: "StudyShoot", type: rss, url: "https://studyshoot.com/feed/", category: CATEGORY_1_SCHOLARSHIP, region: "Global, Arabic", access: rss}
+
   # ============ CATEGORY 2: internships, co-op, research internships ============
   - {name: "SimplifyJobs Summer 2027 internships (JSON)", type: json_api, url: "https://raw.githubusercontent.com/SimplifyJobs/Summer2027-Internships/dev/.github/scripts/listings.json", category: CATEGORY_2_COOP_PARTTIME, region: "US/Canada mostly; has sponsorship field", access: json_api, notes: "17.5K listings, updated daily"}
   - {name: "IAESTE paid technical internships", type: html, url: "https://iaeste.org/internships", category: CATEGORY_2_COOP_PARTTIME, region: Global, access: html, notes: "applied through national committee"}
@@ -35,6 +40,8 @@ sources:
   - {name: "TECH HUB (TG)", type: telegram, url: "https://t.me/s/TechHub30", category: CATEGORY_2_COOP_PARTTIME, region: Global, access: telegram, notes: "small, daily; tech internships/hackathons"}
   - {name: "قناة وظائف | فرص العمل (TG)", type: telegram, url: "https://t.me/s/fu1sa", category: CATEGORY_2_COOP_PARTTIME, region: KSA, access: telegram, notes: "106K subs; jobs + training (تدريب)"}
 
+  - {name: "ايجينكس فرص تدريب (TG)", type: telegram, url: "https://t.me/s/egyterns", category: CATEGORY_2_COOP_PARTTIME, region: "MENA, Arabic", access: telegram, notes: "27.3K subs, daily internships"}
+
   # ============ CATEGORY 3: full-time / graduate jobs ============
   - {name: "SimplifyJobs New Grad positions (JSON)", type: json_api, url: "https://raw.githubusercontent.com/SimplifyJobs/New-Grad-Positions/dev/.github/scripts/listings.json", category: CATEGORY_3_FULLTIME, region: "US mostly; has sponsorship field", access: json_api}
   - {name: "Himalayas remote jobs", type: rss, url: "https://himalayas.app/jobs/rss", category: CATEGORY_3_FULLTIME, region: Remote, access: rss}
@@ -47,6 +54,7 @@ sources:
   - {name: "Dev Jobs abroad (TG)", type: telegram, url: "https://t.me/s/opento_dev", category: CATEGORY_3_FULLTIME, region: "Global relocation/remote", access: telegram, notes: "10.7K subs, daily; Russian/English"}
   - {name: "IT Jobs وظائف تقنية (TG)", type: telegram, url: "https://t.me/s/technomajed", category: CATEGORY_3_FULLTIME, region: KSA/GCC, access: telegram, notes: "18.6K subs, daily, IT only"}
   - {name: "وظيفتك علينا (TG)", type: telegram, url: "https://t.me/s/cd4cd", category: CATEGORY_3_FULLTIME, region: KSA, access: telegram, notes: "796K subs; all fields, filter hard"}
+  - {name: "جوبذاتي JobZaty (TG)", type: telegram, url: "https://t.me/s/jobzaty", category: CATEGORY_3_FULLTIME, region: KSA, access: telegram, notes: "227K subs, daily; jobs + training"}
   - {name: "Jobs in Dubai, UAE (TG)", type: telegram, url: "https://t.me/s/jobs_in_dubai", category: CATEGORY_3_FULLTIME, region: UAE, access: telegram, notes: "95.7K subs"}
   - {name: "Jobzei remote jobs (TG)", type: telegram, url: "https://t.me/s/remotejbs", category: CATEGORY_3_FULLTIME, region: Remote, access: telegram, notes: "9.2K subs; last post 2026-09-21"}
 
@@ -56,11 +64,3 @@ sources:
   - {name: "Naukrigulf", type: html, url: "https://www.naukrigulf.com", category: CATEGORY_3_FULLTIME, region: GCC, access: browser_needed}
   - {name: "Wuzzuf", type: html, url: "https://wuzzuf.net/jobs", category: CATEGORY_3_FULLTIME, region: "Egypt/MENA", access: browser_needed}
   - {name: "Jadarat", type: html, url: "https://jadarat.sa", category: CATEGORY_2_COOP_PARTTIME, region: KSA, access: login_required}
-
-# X (Twitter) cannot be checked without logging in, so nothing here is verified. Off by default.
-x_accounts_unverified:
-  - {handle: "opportunitydesk", category: CATEGORY_1_SCHOLARSHIP, evidence: "handle listed on opportunitydesk.org"}
-  - {handle: "FulbrightPrgrm", category: CATEGORY_1_SCHOLARSHIP, evidence: "Fulbright social media guide"}
-  - {handle: "DAAD_Germany", category: CATEGORY_1_SCHOLARSHIP, evidence: "widely cited, not confirmed"}
-  - {handle: "EURAXESS", category: CATEGORY_1_SCHOLARSHIP, evidence: "profile endpoint responded; activity unknown"}
-  - {handle: "PositionClub", category: CATEGORY_1_SCHOLARSHIP, evidence: "its Telegram reposts a #TwitterDigest"}
