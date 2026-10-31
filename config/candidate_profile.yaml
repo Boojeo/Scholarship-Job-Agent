@@ -17,9 +17,9 @@ candidate:
                  "Data Structures and Algorithms", "Discrete Mathematics", "Software Engineering"]
   research:
     - title: "Periscope: Extending Frozen Language Models Beyond Their Context Window"
-      status: "Submitted to ICML, under review"
+      status: "Submitted to ICLR, under review"
       arxiv: "2610.04047"
-      role: "Co-author (equal contribution is marked with * on the paper; check the paper before claiming it)"
+      role: "Co-author, listed on arXiv as Abdallah Ahmed (6th of 8 authors)"
       topics: ["long-context LLM inference", "retrieval", "efficient inference"]
   training:
     - "KAUST Academy AI Specializations Summer Program (KASP), 28 Jun - 20 Aug 2026"
@@ -28,6 +28,7 @@ candidate:
   leadership: ["AI Club Technical Committee Lead (15 members), Jan 2026 - present",
                "Competitive Programming Lead, 3Cs Hackathon, April 2025"]
   honors: ["Top 10 Finalist, 6th National Programming Competition", "Finalist, MiyahThon Water Innovation Hackathon"]
+  languages: ["English (degree taught in English, MOI letter)", "Arabic", "Somali"]
   skills: ["Python", "Java", "TensorFlow", "Keras", "Computer Vision", "LLMs and retrieval", "LoRA/QLoRA", "GRPO",
            "NumPy", "Pandas", "Scikit-Learn"]
 

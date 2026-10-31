@@ -112,3 +112,40 @@ def test_404_message_keeps_google_error():
     llm, *_ = make_gemini({"k1": [_client_error(404, "tool not supported")], "k2": []})
     with pytest.raises(LLMError, match="tool not supported"):
         llm.generate("hi")
+
+
+# ---- Claude Code (Pro plan) provider -----------------------------------------------------------
+import json as _json  # noqa: E402
+import subprocess  # noqa: E402
+
+from src.llm.claude_code import ClaudeCodeLLM  # noqa: E402
+
+
+def _cc(outputs):
+    calls = []
+
+    def runner(cmd, **kw):
+        calls.append((cmd, kw["input"]))
+        code, payload = outputs.pop(0)
+        return subprocess.CompletedProcess(cmd, code, stdout=_json.dumps(payload), stderr="")
+    llm = ClaudeCodeLLM({"fast": "haiku", "smart": "sonnet", "research": "sonnet"}, executable="claude",
+                        runner=runner, sleep=lambda s: None)
+    return llm, calls
+
+
+def test_claude_code_sends_prompt_on_stdin_with_tools_off():
+    llm, calls = _cc([(0, {"is_error": False, "result": "hello"})])
+    assert llm.generate("hi", tier="smart").text == "hello"
+    cmd, stdin = calls[0]
+    assert stdin == "hi" and cmd[cmd.index("--tools") + 1] == "" and cmd[cmd.index("--model") + 1] == "sonnet"
+
+
+def test_claude_code_usage_limit_is_clear():
+    llm, _ = _cc([(1, {"is_error": True, "result": "Claude AI usage limit reached|1793500000"})])
+    with pytest.raises(LLMError, match="usage limit"):
+        llm.generate("hi")
+
+
+def test_claude_code_retries_transient_failure():
+    llm, calls = _cc([(1, {"is_error": True, "result": "overloaded"}), (0, {"result": "[1]"})])
+    assert llm.generate_json("p", int) == [1] and len(calls) == 2

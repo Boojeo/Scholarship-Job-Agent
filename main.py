@@ -51,6 +51,10 @@ def main(argv: list[str] | None = None) -> int:
             with db.session(settings.db_path) as conn:
                 added = sum(load_seed(conn, ROOT / "config" / f) for f in ("sources.yaml", "sources_seed.yaml"))
             print(f"database ready at {settings.db_path} ({added} seed sources added)")
+            from src.applicator.kit import ensure_paper
+
+            paper = ensure_paper(settings)
+            print(f"writing sample: {paper}" if paper else "could not download the arXiv paper (try again later)")
         elif args.cmd == "models":
             llm = build_llm(settings, "gemini")
             print("\n".join(llm.list_models()))
@@ -126,7 +130,7 @@ def main(argv: list[str] | None = None) -> int:
                 runs = sorted(p for p in (settings.data_dir / "research").glob("*") if p.is_dir())
                 run_dir = runs[-1] if runs else None
                 print(f"resuming from {run_dir}" if run_dir else "no saved run found; starting fresh")
-            boot = ResearchBootstrap(build_llm(settings, "gemini"), settings, run_dir=run_dir,
+            boot = ResearchBootstrap(build_llm(settings, "gemini" if args.grounded else None), settings, run_dir=run_dir,
                                      mode="grounded" if args.grounded else "web", pages_per_task=args.pages)
             stats = boot.run(only, args.force, args.dry_run)
             print(stats)

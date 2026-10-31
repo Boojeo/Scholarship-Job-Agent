@@ -7,6 +7,11 @@ from .base import LLM, LLMError
 
 def build_llm(settings: Settings, provider: str | None = None) -> LLM:
     provider = (provider or settings.llm_provider).lower()
+    if provider in ("claude_code", "claude"):
+        from .claude_code import ClaudeCodeLLM
+
+        return ClaudeCodeLLM({"fast": settings.claude_code_model_fast, "smart": settings.claude_code_model_smart,
+                              "research": settings.claude_code_model_smart})
     if provider == "gemini":
         from .gemini import GeminiLLM
 
@@ -27,4 +32,4 @@ def build_llm(settings: Settings, provider: str | None = None) -> LLM:
         from .ollama import OllamaLLM
 
         return OllamaLLM(settings.ollama_host, settings.ollama_model)
-    raise LLMError(f"Unknown LLM_PROVIDER '{provider}' (use gemini, anthropic or ollama)")
+    raise LLMError(f"Unknown LLM_PROVIDER '{provider}' (use claude_code, gemini, anthropic or ollama)")

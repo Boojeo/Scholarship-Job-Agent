@@ -2,17 +2,17 @@
 {{EMAIL}} | {{PHONE}} | Najran, Saudi Arabia | linkedin.com/in/booje | github.com/Boojeo | arXiv:2610.04047
 
 ## Research Summary
-Computer Science undergraduate (GPA 4.99/5.0) working on long-context language models and retrieval. Co-author of Periscope, a training-free inference method that extends frozen language models beyond their context window, submitted to ICML. Background in deep learning, computer vision, and competitive programming; selected for the KAUST Academy AI Specializations Summer Program (2026). Seeking an MS/PhD to continue research on efficient, reliable LLM inference.
+Computer Science undergraduate (GPA 4.99/5.0) working on long-context language models and retrieval. Co-author of Periscope, a training-free inference method that extends frozen language models beyond their context window, submitted to ICLR. Background in deep learning, computer vision, and competitive programming; selected for the KAUST Academy AI Specializations Summer Program (2026). Seeking an MS/PhD to continue research on efficient, reliable LLM inference.
 
 ## Education
 **Najran University, College of Computer Science and Information Systems** — Najran, Saudi Arabia
 B.Sc. in Computer Science, expected July 2027
-- GPA: 4.99/5.0; Annual Academic Excellence Award, three consecutive years.
+- GPA: 4.99/5.0 (First Class Honors standing, expected); Annual Academic Excellence Award, three consecutive years.
 - Coursework: Artificial Intelligence, Linear Algebra, Calculus, Probability & Statistics, Data Structures and Algorithms, Discrete Mathematics, Software Engineering.
 
 ## Research & Publications
-**Periscope: Extending Frozen Language Models Beyond Their Context Window** — Submitted to ICML, under review
-M. Eltahir*, A. Obayd*, R. Rashid, A. Alghamdi, A. Mousa, A. Mahmoud, T. Hussain, N. Khan. KAUST. *Equal contribution. arXiv:2610.04047
+**Periscope: Extending Frozen Language Models Beyond Their Context Window** — Submitted to ICLR, under review
+M. Eltahir*, A. Obayd*, R. Rashid, A. Alghamdi, A. Mousa, **A. Ahmed**, T. Hussain, N. Khan. KAUST. *Equal contribution. arXiv:2610.04047
 - Co-developed a training-free inference method that factorizes a long read into small probes: the N chunks of a text are arranged on a K×K grid (K = ⌈√N⌉), and a frozen model answers the same question over K local spans and K strided spans, scoring each answer by its log-odds at a single token.
 - Scoring every chunk by its two spans yields an evidence map at no extra cost; its peak locates the chunk behind the answer.
 - LongBench v2: reading only the 9k tokens of the top-ranked chunks matches the same model's best full-window read across windows from 32k to 1M tokens.
@@ -49,7 +49,7 @@ M. Eltahir*, A. Obayd*, R. Rashid, A. Alghamdi, A. Mousa, A. Mahmoud, T. Hussain
 - Annual Academic Excellence Award, University of Najran, three consecutive years.
 
 ## Skills
-- Languages: Python (advanced), Java (competitive programming). English (degree taught entirely in English).
+- Languages: Python (advanced), Java (competitive programming). English (degree taught entirely in English), Arabic, Somali.
 - LLMs & Retrieval: long-context inference, document and passage retrieval, Arabic dialect NLP, benchmark evaluation (LongBench v2, InfiniteBench, BRIGHT; NDCG@10), LoRA/QLoRA fine-tuning, GRPO.
 - Deep Learning: TensorFlow, Keras, CNNs, computer vision, YOLO.
 - Data Science: NumPy, Pandas, Scikit-Learn, data preprocessing, feature engineering, Matplotlib.

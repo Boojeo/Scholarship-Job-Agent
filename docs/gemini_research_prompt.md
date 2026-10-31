@@ -12,7 +12,7 @@ You are a meticulous research analyst. Today's date is **30 October 2026**. Find
 - GPA **4.99 / 5.0**; Annual Academic Excellence Award three years in a row.
 - Nationality: **Somali**. Resident in **Saudi Arabia**.
 - Language of instruction: 100% English. Has a Medium-of-Instruction (MOI) letter. **No IELTS/TOEFL yet** (will take IELTS later). **No GRE/GMAT.**
-- Research: co-author of a long-context LLM inference paper (arXiv:2610.04047, submitted to ICML, under review), developed at KAUST. Completed the KAUST Academy AI Specializations Summer Program (June-Aug 2026).
+- Research: co-author of a long-context LLM inference paper (arXiv:2610.04047, submitted to ICLR, under review), developed at KAUST. Completed the KAUST Academy AI Specializations Summer Program (June-Aug 2026).
 - Skills: Python, TensorFlow/Keras, deep learning, computer vision, LLMs/retrieval, Arabic dialect NLP, competitive programming (national top-10 finalist).
 - Leadership: AI Club technical committee lead (15 members).
 - Wants: **(1)** fully funded MS/MSc or direct PhD / integrated MS-PhD in AI/ML/NLP/CV/Data Science/CS starting **2027** (tuition waiver + stipend). **(2)** Internships, co-op training and part-time roles in AI/CS (Saudi, UAE, GCC, remote, global). **(3)** Full-time graduate / entry-level AI/ML/Data/Software roles starting mid-2027 or later.

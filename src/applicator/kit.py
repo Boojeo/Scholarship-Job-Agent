@@ -18,8 +18,30 @@ VAULT_KINDS = {
     "transcript": "Transcript", "moi": "MOI_Certificate", "passport": "Passport", "iqama": "Residence_Permit",
     "residence": "Residence_Permit", "recommendation": "Recommendation", "reference": "Recommendation",
     "degree": "Enrollment_or_Degree_Certificate", "enrollment": "Enrollment_or_Degree_Certificate",
-    "ielts": "IELTS",
+    "ielts": "IELTS", "writing_sample": "Writing_Sample_Paper", "certificates": "Certificates",
+    "class_rank": "Class_Rank_or_Honors_Letter", "honors": "Class_Rank_or_Honors_Letter",
 }
+PAPER_URL = "https://arxiv.org/pdf/2610.04047"
+PAPER_FILE = "writing_sample_periscope_arxiv.pdf"
+
+
+def ensure_paper(settings: Settings) -> Path | None:
+    """Download the Periscope paper once into the vault as a writing sample. Returns its path or None."""
+    import httpx
+
+    target = settings.vault_dir / "attachments" / PAPER_FILE
+    if target.exists():
+        return target
+    try:
+        r = httpx.get(PAPER_URL, follow_redirects=True, timeout=60)
+        r.raise_for_status()
+        if not r.content.startswith(b"%PDF"):
+            return None
+    except httpx.HTTPError:
+        return None
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_bytes(r.content)
+    return target
 CAT_SHORT = {"CATEGORY_1_SCHOLARSHIP": "Scholarship", "CATEGORY_2_COOP_PARTTIME": "Coop",
              "CATEGORY_3_FULLTIME": "Job"}
 
@@ -54,6 +76,8 @@ def missing_documents(settings: Settings, required: list[str]) -> list[str]:
 
 def build_kit(settings: Settings, opp: dict, result: TailorResult) -> Path:
     pkg = result.package
+    if opp["category"] == "CATEGORY_1_SCHOLARSHIP":
+        ensure_paper(settings)
     folder = settings.kits_dir / (f"{dt.date.today()}_{CAT_SHORT.get(opp['category'], 'Item')}_"
                                   f"{_slug(opp.get('organization') or 'Org', 30)}_{_slug(opp['title'], 40)}")
     folder.mkdir(parents=True, exist_ok=True)

@@ -22,7 +22,7 @@ def profile_brief() -> str:
         f"Candidate: {c['name']}, {c['nationality']} national, resident in {' and '.join(c['residencies'])}. "
         f"{e['degree']} at {e['university']}, GPA {e['gpa']}, graduating {e['expected_graduation']}. "
         "Has an English Medium-of-Instruction letter, no IELTS/TOEFL yet, no GRE/GMAT. "
-        "Co-author of an LLM long-context paper (arXiv 2610.04047, under review at ICML); KAUST Academy summer program 2026. "
+        "Co-author of an LLM long-context paper (arXiv 2610.04047, under review at ICLR); KAUST Academy summer program 2026. "
         "Wants: (1) fully funded MS or direct PhD in AI/ML/CS starting 2027, (2) AI/CS internships, co-op or "
         "part-time roles, (3) entry-level AI/ML/data/software jobs from mid-2027 (or remote/part-time now)."
     )

@@ -7,7 +7,7 @@ form; **you always press the final submit yourself.**
 
 ```
 sources.yaml ──> monitor (Telegram previews, RSS, JSON feeds, pages) ──> new posts only
-   ──> free keyword filter ──> Gemini screening + 0-100 score ──> SQLite
+   ──> free keyword filter ──> Claude screening + 0-100 score ──> SQLite
    ──> Telegram digest (3 categories) ──> 🚀 Tailor & Apply ──> CV/SOP/letter (fabrication-checked)
    ──> ready_to_apply/<date>_<Category>_<Org>_<Role>/ ──> optional browser autofill ──> you submit
 ```
@@ -27,10 +27,10 @@ Fill in `.env`:
 
 | Setting | Where to get it |
 |---|---|
-| `GEMINI_API_KEYS` | https://aistudio.google.com/apikey (several keys allowed, comma separated) |
+| `LLM_PROVIDER` | keep `claude_code`: uses your Claude Pro plan through Claude Code, no API key. Install Claude Code, run `claude` once and log in. (`gemini` still works with `GEMINI_API_KEYS`.) |
 | `TELEGRAM_BOT_TOKEN` | Telegram → @BotFather → `/newbot` → copy the token |
 | `CANDIDATE_PHONE` | your phone number (stays on your PC) |
-| `GEMINI_MODEL_*` | keep `gemini-3.8-flash`, or run `python main.py probe` |
+| `CLAUDE_CODE_MODEL_FAST/SMART` | keep `haiku` (screening, light on your plan limits) and `sonnet` (documents) |
 
 Then:
 
@@ -80,13 +80,19 @@ python main.py research --only A  # optional weekly web search for new sources (
 - **Sources:** `config/sources.yaml`, checked 2026-10-31 (Telegram channels, RSS feeds, SimplifyJobs/RemoteOK/
   Arbeitnow feeds, program pages). Add or remove lines freely, then run `init-db` again.
 - **New only:** every post is remembered (`seen_items`), so the model never sees the same post twice.
-- **Screening:** a free keyword filter (drops senior roles, spam), then Gemini scores batches of 20 posts against
+- **Screening:** a free keyword filter (drops senior roles, spam), then Claude (Haiku, via Claude Code) scores batches of 20 posts against
   `config/candidate_profile.yaml`: funded, open to Somali nationals, MOI accepted / IELTS upfront, GRE, deadline
   not passed, work authorization. Only items scoring `MATCH_THRESHOLD` (default 60) reach the digest.
 - **Never empty:** if a category gets fewer than 3 matches, a small free web search fills it.
 - **Documents:** written only from `vault/master_cv_research.md` (scholarships) or `master_cv_industry.md`
-  (jobs). A second model call lists any claim not supported by your CV; the draft is regenerated once and any
+  (jobs). Claude Sonnet writes them; a second call lists any claim not supported by your CV; the draft is regenerated once and any
   remaining flag is shown to you. Edit the master CVs whenever something changes.
+
+## Claude plan usage
+
+Every model call counts toward your Claude Pro limits (they reset every few hours). The first `/search_now`
+screens ~500 posts in ~25 Haiku calls; daily runs only see new posts. One tailored application is 2-4 Sonnet
+calls. If a limit is hit, the bot tells you and the next run continues where it stopped.
 
 ## Limits (on purpose)
 

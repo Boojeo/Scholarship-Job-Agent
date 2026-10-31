@@ -16,7 +16,9 @@ def _split(value: str) -> list[str]:
 
 @dataclass(frozen=True)
 class Settings:
-    llm_provider: str = "gemini"
+    llm_provider: str = "claude_code"
+    claude_code_model_fast: str = "haiku"
+    claude_code_model_smart: str = "sonnet"
     gemini_keys: list[str] = field(default_factory=list)
     gemini_model_fast: str = "gemini-3.8-flash"
     gemini_model_smart: str = "gemini-3.8-flash"
@@ -46,7 +48,9 @@ class Settings:
         keys = _split(e("GEMINI_API_KEYS", "") or e("GEMINI_API_KEY", ""))
         data_dir = ROOT / e("DATA_DIR", "data")
         return cls(
-            llm_provider=e("LLM_PROVIDER", "gemini").lower(),
+            llm_provider=e("LLM_PROVIDER", "claude_code").lower(),
+            claude_code_model_fast=e("CLAUDE_CODE_MODEL_FAST", "haiku"),
+            claude_code_model_smart=e("CLAUDE_CODE_MODEL_SMART", "sonnet"),
             gemini_keys=keys,
             gemini_model_fast=e("GEMINI_MODEL_FAST", cls.gemini_model_fast),
             gemini_model_smart=e("GEMINI_MODEL_SMART", cls.gemini_model_smart),

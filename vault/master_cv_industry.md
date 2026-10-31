@@ -7,13 +7,13 @@ High-achieving Computer Science student (GPA 4.99/5.0) with a strong foundation 
 ## Education
 **Najran University, College of Computer Science and Information Systems** — Najran, Saudi Arabia
 Bachelor's in Computer Science, expected July 2027
-- GPA: 4.99/5.0; Academic Excellence Award winner (3 consecutive years).
+- GPA: 4.99/5.0 (First Class Honors standing, expected); Academic Excellence Award winner (3 consecutive years).
 - Coursework: Artificial Intelligence, Linear Algebra, Calculus, Probability & Statistics, Data Structures and Algorithms, Discrete Mathematics, Software Engineering.
 
 ## Experience & Training
 **KAUST Academy AI Specializations Summer Program** — KAUST, Thuwal, 28 Jun – 20 Aug 2026
 - Eight-week intensive in computer vision, generative models, reinforcement learning, LLM fine-tuning (LoRA/QLoRA), quantization, and agentic AI.
-- Final project: Periscope, a training-free method that lets frozen LLMs read contexts far beyond their window (arXiv:2610.04047, under review at ICML).
+- Final project: Periscope, a training-free method that lets frozen LLMs read contexts far beyond their window (arXiv:2610.04047, under review at ICLR).
 
 **AI Club | Technical Committee Lead** — Najran University, Jan 2026 – Present
 - Directed a 15-member technical committee, overseeing project delegation and the club's technology initiatives.
@@ -42,7 +42,7 @@ Bachelor's in Computer Science, expected July 2027
 - Annual Academic Excellence Award, University of Najran (perfect 5.0/5.0 GPA in three academic years).
 
 ## Skills
-- Languages: Python (advanced), Java. English (degree taught entirely in English).
+- Languages: Python (advanced), Java. English (degree taught entirely in English), Arabic, Somali.
 - AI/ML: TensorFlow, Keras, CNNs, YOLO, computer vision, LLMs and retrieval, LoRA/QLoRA, GRPO.
 - Data Science: NumPy, Pandas, Scikit-Learn, data preprocessing, feature engineering, Matplotlib.
 
