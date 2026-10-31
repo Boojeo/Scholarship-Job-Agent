@@ -32,6 +32,12 @@ class Settings:
     db_path: Path = ROOT / "data" / "autopilot.sqlite3"
     data_dir: Path = ROOT / "data"
     research_delay_seconds: float = 8.0
+    telegram_token: str = ""
+    telegram_owner_id: int | None = None
+    digest_time: str = "09:00"
+    match_threshold: int = 60
+    vault_dir: Path = ROOT / "vault"
+    kits_dir: Path = ROOT / "ready_to_apply"
 
     @classmethod
     def from_env(cls, env_file: Path | None = None) -> "Settings":
@@ -56,4 +62,8 @@ class Settings:
             db_path=ROOT / e("DB_PATH", "data/autopilot.sqlite3"),
             data_dir=data_dir,
             research_delay_seconds=float(e("RESEARCH_DELAY_SECONDS", "8")),
+            telegram_token=e("TELEGRAM_BOT_TOKEN", ""),
+            telegram_owner_id=int(e("TELEGRAM_OWNER_ID")) if (e("TELEGRAM_OWNER_ID") or "").strip().isdigit() else None,
+            digest_time=e("DIGEST_TIME", "09:00"),
+            match_threshold=int(e("MATCH_THRESHOLD", "60")),
         )

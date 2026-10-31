@@ -16,6 +16,14 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("-v", "--verbose", action="store_true")
     sub = parser.add_subparsers(dest="cmd", required=True)
     sub.add_parser("init-db", help="create the SQLite database")
+    sub.add_parser("run", help="start the Telegram bot with the daily digest (keep this running)")
+    m = sub.add_parser("monitor", help="check all sources once and store new opportunities")
+    m.add_argument("--category", choices=["scholarship", "coop", "fulltime"])
+    m.add_argument("--no-fallback", action="store_true", help="do not run web search when a category is thin")
+    sub.add_parser("list", help="show the best opportunities waiting in the database")
+    k = sub.add_parser("kit", help="tailor documents and build the PC kit for one opportunity id")
+    k.add_argument("id", type=int)
+    sub.add_parser("check-sources", help="test every enabled source and report how many posts each returns")
     sub.add_parser("purge-research", help="delete opportunities and sources that research added (keeps seed sources)")
     sub.add_parser("models", help="list models your Gemini key can use")
     pr = sub.add_parser("probe", help="test which Gemini models really work (plain and with web search)")
@@ -46,6 +54,54 @@ def main(argv: list[str] | None = None) -> int:
         elif args.cmd == "models":
             llm = build_llm(settings, "gemini")
             print("\n".join(llm.list_models()))
+        elif args.cmd == "run":
+            from src.bot.telegram_bot import build_app
+
+            print("Bot running. Open Telegram and send /start to your bot. Press Ctrl+C to stop.")
+            build_app(settings).run_polling()
+        elif args.cmd == "monitor":
+            from src.monitor.run import Monitor
+
+            cats = {"scholarship": "CATEGORY_1_SCHOLARSHIP", "coop": "CATEGORY_2_COOP_PARTTIME",
+                    "fulltime": "CATEGORY_3_FULLTIME"}
+            rep = Monitor(build_llm(settings), settings, fallback=not args.no_fallback).run(cats.get(args.category))
+            print(rep.summary())
+        elif args.cmd == "list":
+            with db.session(settings.db_path) as conn:
+                rows = conn.execute("SELECT id, category, match_score, title, organization, deadline FROM opportunities "
+                                    "WHERE status IN ('new','sent') ORDER BY match_score DESC LIMIT 30").fetchall()
+            for r in rows:
+                print(f"#{r['id']:<4} {r['match_score'] or '-':>3}  {r['category'][9:21]:<12} {r['title'][:70]} "
+                      f"| {r['organization'] or '-'} | {r['deadline'] or '-'}")
+        elif args.cmd == "kit":
+            from src.applicator.kit import build_kit, open_folder
+            from src.tailor.tailor import tailor
+
+            with db.session(settings.db_path) as conn:
+                row = conn.execute("SELECT * FROM opportunities WHERE id = ?", (args.id,)).fetchone()
+            if not row:
+                print("no opportunity with that id (see `python main.py list`)")
+                return 1
+            result = tailor(build_llm(settings), settings, dict(row))
+            folder = build_kit(settings, dict(row), result)
+            print(f"kit ready: {folder}")
+            if result.unsupported:
+                print("fabrication check flagged:", *result.unsupported, sep="\n - ")
+            open_folder(folder)
+        elif args.cmd == "check-sources":
+            import asyncio
+
+            from src.monitor.readers import new_client, read_source
+            from src.monitor.run import load_sources
+
+            async def _check(sources):
+                async with new_client() as client:
+                    return await asyncio.gather(*(read_source(client, s) for s in sources))
+
+            with db.session(settings.db_path) as conn:
+                sources = load_sources(conn)
+            for src, items in zip(sources, asyncio.run(_check(sources))):
+                print(f"{'OK ' if items else 'XX '} {len(items):>3} posts  {src.type:<9} {src.name}")
         elif args.cmd == "purge-research":
             with db.session(settings.db_path) as conn:
                 a = conn.execute("DELETE FROM opportunities WHERE source LIKE 'research:%'").rowcount

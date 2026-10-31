@@ -17,7 +17,20 @@ def connect(path: Path | str) -> sqlite3.Connection:
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     conn.executescript(SCHEMA)
+    _migrate(conn)
     return conn
+
+
+# Columns added after the first release; older databases get them on open.
+_ADDED_COLUMNS = {"opportunities": {"missing_documents": "TEXT", "ielts_upfront": "INTEGER DEFAULT 0"}}
+
+
+def _migrate(conn: sqlite3.Connection) -> None:
+    for table, cols in _ADDED_COLUMNS.items():
+        have = {r[1] for r in conn.execute(f"PRAGMA table_info({table})")}
+        for name, ddl in cols.items():
+            if name not in have:
+                conn.execute(f"ALTER TABLE {table} ADD COLUMN {name} {ddl}")
 
 
 @contextmanager
@@ -74,3 +87,28 @@ def upsert_opportunity(conn: sqlite3.Connection, *, category: str, title: str, d
 
 def count(conn: sqlite3.Connection, table: str, where: str = "1=1", params: tuple = ()) -> int:
     return conn.execute(f"SELECT COUNT(*) FROM {table} WHERE {where}", params).fetchone()[0]  # noqa: S608
+
+
+def set_fields(conn: sqlite3.Connection, direct_url: str, **fields) -> None:
+    """Update extra columns of an opportunity identified by its URL (score, why, status...)."""
+    if not fields:
+        return
+    cols = ", ".join(f"{k} = ?" for k in fields)
+    conn.execute(f"UPDATE opportunities SET {cols} WHERE url_hash = ?",  # noqa: S608 - keys are code-defined
+                 (*fields.values(), url_hash(direct_url)))
+
+
+def mark_seen(conn: sqlite3.Connection, key: str, source: str) -> bool:
+    """Returns True if the key was new."""
+    cur = conn.execute("INSERT OR IGNORE INTO seen_items(item_key, source) VALUES (?, ?)", (key, source))
+    return cur.rowcount == 1
+
+
+def get_kv(conn: sqlite3.Connection, key: str, default: str | None = None) -> str | None:
+    row = conn.execute("SELECT value FROM settings_kv WHERE key = ?", (key,)).fetchone()
+    return row[0] if row else default
+
+
+def set_kv(conn: sqlite3.Connection, key: str, value: str) -> None:
+    conn.execute("INSERT INTO settings_kv(key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value",
+                 (key, value))

@@ -14,6 +14,8 @@ CREATE TABLE IF NOT EXISTS opportunities (
     match_score   INTEGER,
     why_it_matches TEXT,
     notes         TEXT,
+    missing_documents TEXT,
+    ielts_upfront INTEGER DEFAULT 0,
     source        TEXT,                    -- where we found it (scraper name, 'research:gemini', ...)
     verification  TEXT DEFAULT 'unchecked',-- verified | blocked | dead | unchecked
     status        TEXT DEFAULT 'new',      -- new | sent | ignored | tailoring | applied | closed
@@ -57,6 +59,17 @@ CREATE TABLE IF NOT EXISTS tailored_docs (
     kind           TEXT NOT NULL,           -- cv | sop | cover_letter | cold_email
     path           TEXT NOT NULL,
     created_at     TEXT DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS seen_items (
+    item_key   TEXT PRIMARY KEY,             -- source url + item id/link, hashed
+    source     TEXT,
+    seen_at    TEXT DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS settings_kv (
+    key   TEXT PRIMARY KEY,
+    value TEXT
 );
 
 CREATE TABLE IF NOT EXISTS research_runs (

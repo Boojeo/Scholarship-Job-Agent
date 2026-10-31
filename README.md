@@ -1,61 +1,101 @@
 # career-autopilot-agent
 
-Personal agent that finds fully funded MS/PhD programs, co-op/internships and graduate jobs, scores them against
-the candidate profile, and (in later phases) tailors documents and applies with a mandatory pre-submit check.
+A personal agent that watches ~55 trusted scholarship, internship and job sources every day, keeps only what fits
+the candidate profile, sends a Telegram digest with buttons, and on request writes a tailored CV + SOP/cover
+letter + email and builds a ready-to-apply folder on your PC. It can open the application page and pre-fill the
+form; **you always press the final submit yourself.**
 
-**Status: Phase 1 in progress.** Done: project skeleton, config, SQLite, provider-neutral LLM layer
-(Gemini / Claude / Ollama, multi-key failover), and the **automated research bootstrap**.
-Next: scrapers + matcher + Telegram digest, then document tailoring, then the browser agent.
+```
+sources.yaml ──> monitor (Telegram previews, RSS, JSON feeds, pages) ──> new posts only
+   ──> free keyword filter ──> Gemini screening + 0-100 score ──> SQLite
+   ──> Telegram digest (3 categories) ──> 🚀 Tailor & Apply ──> CV/SOP/letter (fabrication-checked)
+   ──> ready_to_apply/<date>_<Category>_<Org>_<Role>/ ──> optional browser autofill ──> you submit
+```
 
-## Setup on Windows (PowerShell)
+## 1. Install (Windows, once)
 
 ```powershell
-git clone https://github.com/Boojeo/Scholarship-Job-Agent.git
+git clone -b claude/great-babbage-0sktyw https://github.com/Boojeo/Scholarship-Job-Agent.git
 cd Scholarship-Job-Agent
-py -3.12 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
+python -m playwright install chromium
 copy .env.example .env
-notepad .env        # paste your Gemini key(s) into GEMINI_API_KEYS=key1,key2
+notepad .env
 ```
 
-Keys go only in `.env` (git-ignored). Never paste them into chat or commit them.
+Fill in `.env`:
 
-## First run: let Gemini do the research for you
+| Setting | Where to get it |
+|---|---|
+| `GEMINI_API_KEYS` | https://aistudio.google.com/apikey (several keys allowed, comma separated) |
+| `TELEGRAM_BOT_TOKEN` | Telegram → @BotFather → `/newbot` → copy the token |
+| `CANDIDATE_PHONE` | your phone number (stays on your PC) |
+| `GEMINI_MODEL_*` | keep `gemini-3.8-flash`, or run `python main.py probe` |
+
+Then:
 
 ```powershell
-python main.py init-db            # creates the database and loads config/sources_seed.yaml
-python main.py models             # lists Gemini models your key can use; copy names into .env if needed
-python main.py research           # sends docs/gemini_research_prompt.md to Gemini with Google Search grounding
+python main.py init-db        # loads config/sources.yaml (and older seed list)
+python main.py check-sources  # optional: shows which sources answer from your PC
 ```
 
-What `research` does, step by step (free route, no paid Google features):
+Put your documents in `vault/attachments/` (see `vault/README_VAULT.md` for names: transcript, moi, passport…),
+or send them to the bot later.
 
-1. For each task (scholarships, co-op, jobs, source groups) it runs the search queries in `src/research/queries.py`
-   on DuckDuckGo and downloads the top pages (`--pages N`, default 24 per task).
-2. Saves the downloaded text under `data/research/<timestamp>/` so a stopped run resumes without redoing work
-   (`--force` to redo, `--only A,B` to run some tasks, `--dry-run` to only collect pages).
-3. Gemini reads the pages in small batches and extracts structured rows. URLs come from pages that were really
-   downloaded, not from the model's memory.
-4. **Checks every URL over HTTP.** Dead links and live pages that do not mention the program are dropped.
-5. Stores survivors in SQLite and `config/sources_discovered.yaml`. X accounts and login-only sources start disabled.
+## 2. Run
 
-`python main.py research --grounded` uses Gemini's built-in Google Search instead. That feature returned
-quota errors on a free key, so it is optional and needs a paid plan.
+```powershell
+python main.py run
+```
 
-`python main.py probe` tests which Gemini models work with your key (old ones close to new accounts).
+Open your bot in Telegram and send `/start` (the first person to do this becomes the only allowed user).
+Keep the window open; the digest arrives every day at `DIGEST_TIME`. To start it automatically at login:
+press `Win+R`, type `shell:startup`, and put a shortcut to `start_agent.bat` there.
+
+### Telegram commands
+- `/search_now` (or `/search_now scholarship|coop|fulltime`): check every source now and send the digest
+- `/digest`: resend waiting opportunities · `/status`: last run, stats, vault checklist · `/vault`: documents
+- Send any PDF to the bot to save it in the vault.
+
+### Buttons on each opportunity
+- **🚀 Tailor & Apply**: writes the CV + SOP/cover letter + email, checks every claim against your master CV,
+  sends you the PDFs, builds the PC folder. Then **✅ Looks good – open & autofill** opens the page in a browser on
+  your PC, fills name/email/phone/education/links and uploads the CV, and sends you a screenshot. You check the
+  form, handle logins/CAPTCHAs, and submit. Tap **🎉 I submitted it** afterwards.
+- **💻 PC Kit only**: same documents and folder, no browser.
+- **✏️ Regenerate with feedback**: reply with what to change.
+- **❌ Ignore**: never show it again.
+
+## 3. Command line (without Telegram)
+
+```powershell
+python main.py monitor            # check all sources once
+python main.py list               # best waiting opportunities with their ids
+python main.py kit 12             # build the ready-to-apply folder for id 12 and open it
+python main.py research --only A  # optional weekly web search for new sources (DuckDuckGo, free)
+```
+
+## How it decides
+
+- **Sources:** `config/sources.yaml`, checked 2026-10-31 (Telegram channels, RSS feeds, SimplifyJobs/RemoteOK/
+  Arbeitnow feeds, program pages). Add or remove lines freely, then run `init-db` again.
+- **New only:** every post is remembered (`seen_items`), so the model never sees the same post twice.
+- **Screening:** a free keyword filter (drops senior roles, spam), then Gemini scores batches of 20 posts against
+  `config/candidate_profile.yaml`: funded, open to Somali nationals, MOI accepted / IELTS upfront, GRE, deadline
+  not passed, work authorization. Only items scoring `MATCH_THRESHOLD` (default 60) reach the digest.
+- **Never empty:** if a category gets fewer than 3 matches, a small free web search fills it.
+- **Documents:** written only from `vault/master_cv_research.md` (scholarships) or `master_cv_industry.md`
+  (jobs). A second model call lists any claim not supported by your CV; the draft is regenerated once and any
+  remaining flag is shown to you. Edit the master CVs whenever something changes.
+
+## Limits (on purpose)
+
+- The agent never creates accounts, pays fees, answers legal/visa declarations, sends emails, or presses submit.
+- Bayt, GulfTalent, Naukrigulf, Wuzzuf, Indeed and Jadarat block automated reading; they are listed but disabled.
+- Third-party channels repost other people's listings: always check the official page before applying.
 
 ## Tests
 
 ```powershell
-pytest
+python -m pytest
 ```
-
-Tests use mocks only; no API key or network is needed.
-
-## Rules built into the design
-
-- Documents may be reordered, reworded and keyword-matched, but never contain invented skills, jobs, papers or grades.
-- Every submit passes a pre-submit gate (field read-back, fabrication check, document check, review-page check).
-- The first application always waits for the user's approval of the documents.
-- Account creation, payments and legal declarations are never automated.
