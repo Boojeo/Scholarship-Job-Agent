@@ -98,6 +98,7 @@ class Monitor:
         with db.session(self.settings.db_path) as conn:
             sources = [s for s in load_sources(conn) if not only_category or s.category == only_category]
             rep.sources_read = len(sources)
+            log.info("reading %d sources...", len(sources))
             items = asyncio.run(_read_all(sources, self.transport))
             rep.items_seen = len(items)
             fresh = [it for it in items if db.mark_seen(conn, _key(it), it.source)]

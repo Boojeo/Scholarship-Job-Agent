@@ -91,16 +91,35 @@ POSTS:
 {posts}"""
 
 
-def screen(llm: LLM, items: list[RawItem]) -> list[tuple[RawItem, Screened]]:
+PARALLEL = 3  # model calls in flight at once
+
+
+def screen(llm: LLM, items: list[RawItem], progress=None) -> list[tuple[RawItem, Screened]]:
+    """Screen in batches, PARALLEL at a time. `progress(done, total)` is called after each batch."""
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+    batches = [items[i:i + BATCH] for i in range(0, len(items), BATCH)]
     kept: list[tuple[RawItem, Screened]] = []
-    for start in range(0, len(items), BATCH):
-        batch = items[start:start + BATCH]
-        try:
-            results = llm.generate_json(screen_prompt(batch), Screened, system=SYSTEM, tier="fast")
-        except LLMError as exc:
-            log.error("screening batch %d failed: %s", start // BATCH + 1, exc)
-            continue
-        for r in results:
-            if 0 <= r.index < len(batch) and r.keep:
-                kept.append((batch[r.index], r))
+    if not batches:
+        return kept
+    log.info("screening %d posts in %d batches...", len(items), len(batches))
+
+    def one(batch):
+        return batch, llm.generate_json(screen_prompt(batch), Screened, system=SYSTEM, tier="fast")
+
+    done = 0
+    with ThreadPoolExecutor(max_workers=PARALLEL) as pool:
+        for fut in as_completed([pool.submit(one, b) for b in batches]):
+            done += 1
+            try:
+                batch, results = fut.result()
+            except LLMError as exc:
+                log.error("screening batch failed: %s", exc)
+                continue
+            for r in results:
+                if 0 <= r.index < len(batch) and r.keep:
+                    kept.append((batch[r.index], r))
+            log.info("screened batch %d/%d (%d matches so far)", done, len(batches), len(kept))
+            if progress:
+                progress(done, len(batches))
     return kept

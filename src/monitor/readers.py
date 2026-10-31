@@ -8,11 +8,14 @@ import re
 from dataclasses import dataclass, field
 from urllib.parse import urljoin, urlsplit
 
+import warnings
+
 import feedparser
 import httpx
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, MarkupResemblesLocatorWarning
 
 log = logging.getLogger(__name__)
+warnings.filterwarnings("ignore", category=MarkupResemblesLocatorWarning)
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"
 MAX_ITEMS_PER_SOURCE = 25
 
