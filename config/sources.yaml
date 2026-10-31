@@ -24,6 +24,7 @@ sources:
   # Arabic / Gulf (added 2026-10-31)
   - {name: "تروسكو منح دراسية (TG)", type: telegram, url: "https://t.me/s/truescho", category: CATEGORY_1_SCHOLARSHIP, region: "Global, Arabic", access: telegram, notes: "91.2K subs, daily"}
   - {name: "Dirasa Abroad (TG)", type: telegram, url: "https://t.me/s/dirasaabroad", category: CATEGORY_1_SCHOLARSHIP, region: "Global, Arabic", access: telegram, notes: "10.8K subs, daily; channel of dirasaabroad.com"}
+  - {name: "ProFellow (fully funded MS/PhD)", type: rss, url: "https://www.profellow.com/feed/", category: CATEGORY_1_SCHOLARSHIP, region: Global, access: rss}
   - {name: "StudyShoot", type: rss, url: "https://studyshoot.com/feed/", category: CATEGORY_1_SCHOLARSHIP, region: "Global, Arabic", access: rss}
 
   # ============ CATEGORY 2: internships, co-op, research internships ============
@@ -62,5 +63,6 @@ sources:
   - {name: "Bayt", type: html, url: "https://www.bayt.com", category: CATEGORY_3_FULLTIME, region: GCC, access: browser_needed}
   - {name: "GulfTalent", type: html, url: "https://www.gulftalent.com", category: CATEGORY_3_FULLTIME, region: GCC, access: browser_needed}
   - {name: "Naukrigulf", type: html, url: "https://www.naukrigulf.com", category: CATEGORY_3_FULLTIME, region: GCC, access: browser_needed}
+  - {name: "Indeed", type: html, url: "https://www.indeed.com/jobs?q=machine+learning+entry+level", category: CATEGORY_3_FULLTIME, region: Global, access: browser_needed, notes: "401 bot wall on plain requests"}
   - {name: "Wuzzuf", type: html, url: "https://wuzzuf.net/jobs", category: CATEGORY_3_FULLTIME, region: "Egypt/MENA", access: browser_needed}
   - {name: "Jadarat", type: html, url: "https://jadarat.sa", category: CATEGORY_2_COOP_PARTTIME, region: KSA, access: login_required}
