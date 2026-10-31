@@ -1,4 +1,4 @@
-# Abdallah Mohamud
+# Abdallah Ahmed Mohamud
 {{EMAIL}} | {{PHONE}} | Najran, Saudi Arabia | linkedin.com/in/booje | github.com/Boojeo | leetcode.com/u/AbdullaMohamud
 
 ## Professional Summary
@@ -7,7 +7,7 @@ High-achieving Computer Science student (GPA 4.99/5.0) with a strong foundation 
 ## Education
 **Najran University, College of Computer Science and Information Systems** — Najran, Saudi Arabia
 Bachelor's in Computer Science, expected July 2027
-- GPA: 4.99/5.0 (First Class Honors standing, expected); Academic Excellence Award winner (3 consecutive years).
+- GPA: 4.99/5.0 (First Class Honors standing); Academic Excellence Award winner (3 consecutive years).
 - Coursework: Artificial Intelligence, Linear Algebra, Calculus, Probability & Statistics, Data Structures and Algorithms, Discrete Mathematics, Software Engineering.
 
 ## Experience & Training
@@ -24,7 +24,7 @@ Bachelor's in Computer Science, expected July 2027
 - Mentored junior students on problem-solving strategies.
 
 ## Projects
-**Periscope (LLM long-context inference)**
+**Periscope (LLM long-context inference)** — github.com/mohammad2012191/Periscope
 - Matched the best full-window read on LongBench v2 while reading only 9k tokens; +5 points on InfiniteBench; let a 27B model read 4.5M-token contexts on one 80GB GPU.
 
 **Lahja (Arabic Dialect NLP)** — team project

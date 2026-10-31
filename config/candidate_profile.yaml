@@ -1,7 +1,10 @@
 # Facts below come from the candidate's CVs. The agent must never claim anything that is not here
 # or in vault/master_cv*.md. Contact details live in .env, not in git.
 candidate:
-  name: "Abdallah Mohamud"
+  name: "Abdallah Ahmed Mohamud"   # passport name; published as "Abdallah Ahmed"
+  given_name: "Abdallah"
+  middle_name: "Ahmed"
+  family_name: "Mohamud"
   base_location: "Najran, Saudi Arabia"
   nationality: "Somali"
   residencies: ["Saudi Arabia", "United Arab Emirates"]
@@ -11,7 +14,7 @@ candidate:
     university: "Najran University, College of Computer Science and Information Systems"
     expected_graduation: "2027-07"
     gpa: "4.99 / 5.00"
-    class_standing: "First Class Honors standard by GPA (degree not yet conferred; say 'expected' until it is)"
+    class_standing: "First Class Honors standing (GPA 4.99/5.00). The degree itself is expected July 2027."
     awards: ["Annual Academic Excellence Award, three consecutive years"]
     coursework: ["Artificial Intelligence", "Linear Algebra", "Calculus", "Probability & Statistics",
                  "Data Structures and Algorithms", "Discrete Mathematics", "Software Engineering"]
@@ -20,6 +23,7 @@ candidate:
       status: "Submitted to ICLR, under review"
       arxiv: "2610.04047"
       role: "Co-author, listed on arXiv as Abdallah Ahmed (6th of 8 authors)"
+      code: "https://github.com/mohammad2012191/Periscope"
       topics: ["long-context LLM inference", "retrieval", "efficient inference"]
   training:
     - "KAUST Academy AI Specializations Summer Program (KASP), 28 Jun - 20 Aug 2026"

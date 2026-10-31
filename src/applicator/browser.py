@@ -18,10 +18,10 @@ PROFILE_DIR = ROOT / "browser_profile"
 
 def field_values(settings: Settings) -> list[tuple[re.Pattern, str]]:
     c = load_profile()["candidate"]
-    first, _, last = c["name"].partition(" ")
     pairs = [
-        (r"first.?name|given.?name|fname", first),
-        (r"last.?name|family.?name|surname|lname", last),
+        (r"first.?name|given.?name|fname", c.get("given_name", c["name"].split()[0])),
+        (r"middle.?name", c.get("middle_name", "")),
+        (r"last.?name|family.?name|surname|lname", c.get("family_name", c["name"].split()[-1])),
         (r"full.?name|^name$|your.?name", c["name"]),
         (r"e-?mail", settings.candidate_email),
         (r"phone|mobile|tel", settings.candidate_phone),

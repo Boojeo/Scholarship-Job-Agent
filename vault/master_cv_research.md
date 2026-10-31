@@ -1,4 +1,4 @@
-# Abdallah Mohamud
+# Abdallah Ahmed Mohamud
 {{EMAIL}} | {{PHONE}} | Najran, Saudi Arabia | linkedin.com/in/booje | github.com/Boojeo | arXiv:2610.04047
 
 ## Research Summary
@@ -7,12 +7,13 @@ Computer Science undergraduate (GPA 4.99/5.0) working on long-context language m
 ## Education
 **Najran University, College of Computer Science and Information Systems** — Najran, Saudi Arabia
 B.Sc. in Computer Science, expected July 2027
-- GPA: 4.99/5.0 (First Class Honors standing, expected); Annual Academic Excellence Award, three consecutive years.
+- GPA: 4.99/5.0 (First Class Honors standing); Annual Academic Excellence Award, three consecutive years.
 - Coursework: Artificial Intelligence, Linear Algebra, Calculus, Probability & Statistics, Data Structures and Algorithms, Discrete Mathematics, Software Engineering.
 
 ## Research & Publications
 **Periscope: Extending Frozen Language Models Beyond Their Context Window** — Submitted to ICLR, under review
-M. Eltahir*, A. Obayd*, R. Rashid, A. Alghamdi, A. Mousa, **A. Ahmed**, T. Hussain, N. Khan. KAUST. *Equal contribution. arXiv:2610.04047
+M. Eltahir*, A. Obayd*, R. Rashid, A. Alghamdi, A. Mousa, **A. Ahmed**, T. Hussain, N. Khan. KAUST. *Equal contribution. arXiv:2610.04047 · Code: github.com/mohammad2012191/Periscope
+(Published as Abdallah Ahmed.)
 - Co-developed a training-free inference method that factorizes a long read into small probes: the N chunks of a text are arranged on a K×K grid (K = ⌈√N⌉), and a frozen model answers the same question over K local spans and K strided spans, scoring each answer by its log-odds at a single token.
 - Scoring every chunk by its two spans yields an evidence map at no extra cost; its peak locates the chunk behind the answer.
 - LongBench v2: reading only the 9k tokens of the top-ranked chunks matches the same model's best full-window read across windows from 32k to 1M tokens.

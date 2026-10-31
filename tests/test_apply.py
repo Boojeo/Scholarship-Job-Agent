@@ -92,3 +92,10 @@ def test_db_migration_adds_columns(tmp_path):
     conn = db.connect(path)
     cols = {r[1] for r in conn.execute("PRAGMA table_info(opportunities)")}
     assert {"missing_documents", "ielts_upfront"} <= cols
+
+
+def test_browser_uses_passport_name_parts():
+    from src.applicator.browser import field_values
+    vals = field_values(Settings(candidate_email="me@x.com"))
+    pick = lambda h: next(v for p, v in vals if p.search(h))  # noqa: E731
+    assert (pick("middleName"), pick("lastName"), pick("full_name")) == ("Ahmed", "Mohamud", "Abdallah Ahmed Mohamud")
