@@ -149,3 +149,15 @@ def test_claude_code_usage_limit_is_clear():
 def test_claude_code_retries_transient_failure():
     llm, calls = _cc([(1, {"is_error": True, "result": "overloaded"}), (0, {"result": "[1]"})])
     assert llm.generate_json("p", int) == [1] and len(calls) == 2
+
+
+def test_find_claude_uses_configured_path(tmp_path, monkeypatch):
+    from src.llm.claude_code import find_claude
+    exe = tmp_path / "claude.exe"
+    exe.write_text("")
+    assert find_claude(str(exe)) == str(exe)
+    monkeypatch.setattr("shutil.which", lambda name: None)
+    monkeypatch.setenv("HOME", str(tmp_path / "nohome"))
+    monkeypatch.setenv("USERPROFILE", str(tmp_path / "nohome"))
+    monkeypatch.setenv("APPDATA", str(tmp_path / "noappdata"))
+    assert find_claude(None) is None
