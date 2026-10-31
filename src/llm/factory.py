@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from src.settings import Settings
 
-from .base import LLM, LLMError
+from .base import LLM, FallbackLLM, LLMError
 
 
 def build_llm(settings: Settings, provider: str | None = None) -> LLM:
@@ -34,3 +34,19 @@ def build_llm(settings: Settings, provider: str | None = None) -> LLM:
 
         return OllamaLLM(settings.ollama_host, settings.ollama_model)
     raise LLMError(f"Unknown LLM_PROVIDER '{provider}' (use claude_code, gemini, anthropic or ollama)")
+
+
+def build_role_llm(settings: Settings, role: str) -> LLM:
+    """role 'screen' = daily filtering (many cheap calls), 'write' = CV/letters (few, quality matters).
+    Each role has its own provider; when the two differ, the other one is the automatic backup."""
+    main = settings.screen_provider if role == "screen" else settings.write_provider
+    other = settings.write_provider if role == "screen" else settings.screen_provider
+    primary = build_llm(settings, main)
+    if other == main:
+        return primary
+    if hasattr(primary, "_max_attempts"):
+        primary._max_attempts = 3  # give up sooner on quota errors: the backup takes over
+    try:
+        return FallbackLLM(primary, build_llm(settings, other))
+    except LLMError:
+        return primary

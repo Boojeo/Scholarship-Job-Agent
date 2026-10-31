@@ -7,7 +7,7 @@ import sys
 
 from src.database import db
 from src.llm.base import LLMError
-from src.llm.factory import build_llm
+from src.llm.factory import build_llm, build_role_llm
 from src.settings import Settings
 
 
@@ -69,7 +69,7 @@ def main(argv: list[str] | None = None) -> int:
 
             cats = {"scholarship": "CATEGORY_1_SCHOLARSHIP", "coop": "CATEGORY_2_COOP_PARTTIME",
                     "fulltime": "CATEGORY_3_FULLTIME"}
-            rep = Monitor(build_llm(settings), settings, fallback=not args.no_fallback).run(cats.get(args.category))
+            rep = Monitor(build_role_llm(settings, "screen"), settings, fallback=not args.no_fallback).run(cats.get(args.category))
             print(rep.summary())
         elif args.cmd == "list":
             with db.session(settings.db_path) as conn:
@@ -87,7 +87,7 @@ def main(argv: list[str] | None = None) -> int:
             if not row:
                 print("no opportunity with that id (see `python main.py list`)")
                 return 1
-            result = tailor(build_llm(settings), settings, dict(row))
+            result = tailor(build_role_llm(settings, "write"), settings, dict(row))
             folder = build_kit(settings, dict(row), result)
             print(f"kit ready: {folder}")
             if result.unsupported:
@@ -131,7 +131,7 @@ def main(argv: list[str] | None = None) -> int:
                 runs = sorted(p for p in (settings.data_dir / "research").glob("*") if p.is_dir())
                 run_dir = runs[-1] if runs else None
                 print(f"resuming from {run_dir}" if run_dir else "no saved run found; starting fresh")
-            boot = ResearchBootstrap(build_llm(settings, "gemini" if args.grounded else None), settings, run_dir=run_dir,
+            boot = ResearchBootstrap(build_llm(settings, "gemini") if args.grounded else build_role_llm(settings, "screen"), settings, run_dir=run_dir,
                                      mode="grounded" if args.grounded else "web", pages_per_task=args.pages)
             stats = boot.run(only, args.force, args.dry_run)
             print(stats)

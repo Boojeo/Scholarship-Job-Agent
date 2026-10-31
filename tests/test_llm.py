@@ -161,3 +161,26 @@ def test_find_claude_uses_configured_path(tmp_path, monkeypatch):
     monkeypatch.setenv("USERPROFILE", str(tmp_path / "nohome"))
     monkeypatch.setenv("APPDATA", str(tmp_path / "noappdata"))
     assert find_claude(None) is None
+
+
+def test_fallback_llm_uses_backup_on_error():
+    from src.llm.base import FallbackLLM
+
+    class Boom(LLM):
+        name = "gemini"
+
+        def generate(self, prompt, **kw):
+            raise LLMError("429 quota")
+
+    backup = Scripted(['[{"name": "ok"}]'])
+    llm = FallbackLLM(Boom(), backup)
+    assert llm.generate_json("p", Item) == [Item(name="ok")] and backup.calls == 1
+
+
+def test_role_providers_from_env(monkeypatch, tmp_path):
+    from src.settings import Settings
+    monkeypatch.setenv("LLM_PROVIDER", "claude_code")
+    monkeypatch.setenv("SCREEN_PROVIDER", "gemini")
+    monkeypatch.delenv("WRITE_PROVIDER", raising=False)
+    s = Settings.from_env(tmp_path / "none.env")
+    assert (s.screen_provider, s.write_provider) == ("gemini", "claude_code")

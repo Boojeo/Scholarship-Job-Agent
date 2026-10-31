@@ -90,6 +90,10 @@ python main.py research --only A  # optional weekly web search for new sources (
 
 ## Claude plan usage
 
+Recommended `.env`: `SCREEN_PROVIDER=gemini` (free Gemini keys do the daily screening) and
+`WRITE_PROVIDER=claude_code` (Claude writes your documents). If one fails (quota, outage), the other takes over
+for that call automatically. `/status` shows which is used for what.
+
 Every model call counts toward your Claude Pro limits (they reset every few hours). The first `/search_now`
 screens ~500 posts in ~25 Haiku calls; daily runs only see new posts. One tailored application is 2-4 Sonnet
 calls. If a limit is hit, the bot tells you and the next run continues where it stopped.

@@ -16,7 +16,7 @@ from src.applicator.kit import build_kit, open_folder, vault_files
 from src.bot.digest import HEADERS, card, pending_for_digest
 from src.database import db
 from src.llm.base import LLMError
-from src.llm.factory import build_llm
+from src.llm.factory import build_role_llm
 from src.monitor.run import Monitor
 from src.settings import Settings
 from src.tailor.tailor import tailor
@@ -30,7 +30,8 @@ VAULT_EXPECTED = ["Transcript", "MOI_Certificate", "Passport", "Residence_Permit
 class Bot:
     def __init__(self, settings: Settings):
         self.s = settings
-        self.llm = build_llm(settings)
+        self.screen_llm = build_role_llm(settings, "screen")
+        self.write_llm = build_role_llm(settings, "write")
         self.busy = asyncio.Lock()
 
     # ------------------------------------------------------------------ access control
@@ -95,7 +96,7 @@ class Bot:
         vault = "\n".join(f"{'✅' if k in have else '❌'} {k}" for k in VAULT_EXPECTED)
         await update.message.reply_text(
             f"🩺 Last check: {last}\n{summary}\n\n📡 Enabled sources: {n_src}\n📬 Waiting for digest: {n_new}\n"
-            f"✅ Marked applied: {n_applied}\n🤖 AI provider: {self.llm.name}\n\n🗂 Vault:\n{vault}")
+            f"✅ Marked applied: {n_applied}\n🤖 Screening: {self.screen_llm.name}\n✍️ Writing: {self.write_llm.name}\n\n🗂 Vault:\n{vault}")
 
     async def vault(self, update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
         if not await self._guard(update):
@@ -136,7 +137,7 @@ class Bot:
             return
         async with self.busy:
             try:
-                rep = await asyncio.to_thread(Monitor(self.llm, self.s).run, category)
+                rep = await asyncio.to_thread(Monitor(self.screen_llm, self.s).run, category)
                 await ctx.bot.send_message(chat_id, f"✅ {rep.summary()}")
             except Exception as exc:
                 log.exception("monitor failed")
@@ -219,7 +220,7 @@ class Bot:
                                    parse_mode=ParseMode.HTML)
         self._set_status(opp_id, "tailoring")
         try:
-            result = await asyncio.to_thread(tailor, self.llm, self.s, opp, feedback)
+            result = await asyncio.to_thread(tailor, self.write_llm, self.s, opp, feedback)
             folder = await asyncio.to_thread(build_kit, self.s, opp, result)
         except (LLMError, Exception) as exc:  # noqa: BLE001 - report every failure to the user
             log.exception("tailoring failed")

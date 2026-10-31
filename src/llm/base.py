@@ -89,3 +89,21 @@ class LLM(ABC):
             except (ValueError, ValidationError) as exc:
                 last_error = str(exc)[:400]
         raise LLMError(f"model did not return valid JSON after repair: {last_error}")
+
+
+class FallbackLLM(LLM):
+    """Use `primary`; if a call fails (quota, outage), retry the same call on `backup`."""
+
+    def __init__(self, primary: LLM, backup: LLM):
+        self.primary, self.backup = primary, backup
+        self.name = f"{primary.name} (backup: {backup.name})"
+
+    def generate(self, prompt: str, **kw) -> LLMResponse:
+        import logging
+
+        try:
+            return self.primary.generate(prompt, **kw)
+        except LLMError as exc:
+            logging.getLogger(__name__).warning("%s failed (%s); using %s", self.primary.name, str(exc)[:120],
+                                                self.backup.name)
+            return self.backup.generate(prompt, **kw)

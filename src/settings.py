@@ -20,6 +20,8 @@ class Settings:
     claude_code_model_fast: str = "haiku"
     claude_code_model_smart: str = "sonnet"
     claude_code_path: str = ""
+    screen_provider: str = "claude_code"
+    write_provider: str = "claude_code"
     gemini_keys: list[str] = field(default_factory=list)
     gemini_model_fast: str = "gemini-3.8-flash"
     gemini_model_smart: str = "gemini-3.8-flash"
@@ -53,6 +55,8 @@ class Settings:
             claude_code_model_fast=e("CLAUDE_CODE_MODEL_FAST", "haiku"),
             claude_code_model_smart=e("CLAUDE_CODE_MODEL_SMART", "sonnet"),
             claude_code_path=e("CLAUDE_CODE_PATH", ""),
+            screen_provider=(e("SCREEN_PROVIDER") or e("LLM_PROVIDER") or "claude_code").lower(),
+            write_provider=(e("WRITE_PROVIDER") or e("LLM_PROVIDER") or "claude_code").lower(),
             gemini_keys=keys,
             gemini_model_fast=e("GEMINI_MODEL_FAST", cls.gemini_model_fast),
             gemini_model_smart=e("GEMINI_MODEL_SMART", cls.gemini_model_smart),
