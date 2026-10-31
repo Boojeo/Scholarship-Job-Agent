@@ -24,7 +24,8 @@ sources:
   # Arabic / Gulf (added 2026-10-31)
   - {name: "تروسكو منح دراسية (TG)", type: telegram, url: "https://t.me/s/truescho", category: CATEGORY_1_SCHOLARSHIP, region: "Global, Arabic", access: telegram, notes: "91.2K subs, daily"}
   - {name: "Dirasa Abroad (TG)", type: telegram, url: "https://t.me/s/dirasaabroad", category: CATEGORY_1_SCHOLARSHIP, region: "Global, Arabic", access: telegram, notes: "10.8K subs, daily; channel of dirasaabroad.com"}
-  - {name: "GradScholarships", type: html, url: "https://www.gradscholarships.com", category: CATEGORY_1_SCHOLARSHIP, region: Global, access: html, notes: "added at user's request; unreachable from the build server (TLS error / 503) on 2026-10-31, re-check from the user's PC"}
+  - {name: "GrabScholarship (TG)", type: telegram, url: "https://t.me/s/grabscholarship", category: CATEGORY_1_SCHOLARSHIP, region: "Global, Arabic", access: telegram, notes: "273K subs, daily"}
+  - {name: "GrabScholarship منح حول العالم", type: rss, url: "https://grabscholarship.com/feed/", category: CATEGORY_1_SCHOLARSHIP, region: "Global, Arabic", access: rss, notes: "WordPress feed, also posts jobs (category عمل) and short courses"}
   - {name: "ProFellow (fully funded MS/PhD)", type: rss, url: "https://www.profellow.com/feed/", category: CATEGORY_1_SCHOLARSHIP, region: Global, access: rss}
   - {name: "StudyShoot", type: rss, url: "https://studyshoot.com/feed/", category: CATEGORY_1_SCHOLARSHIP, region: "Global, Arabic", access: rss}
 
