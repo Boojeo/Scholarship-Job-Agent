@@ -1,0 +1,66 @@
+# Curated daily sources, checked 2026-10-31 by fetching each one (subscriber counts and "last post" from the
+# public preview / feed on that date). These are monitored every day; web search only suggests new ones.
+# access: rss | json_api | telegram (public t.me/s/ preview, no login) | html | browser_needed (bot wall) | login_required
+# Third-party channels repost other people's listings: the agent always follows the post to the official page.
+sources:
+  # ============ CATEGORY 1: scholarships, MS/PhD positions ============
+  - {name: "Opportunity Desk", type: rss, url: "https://opportunitydesk.org/feed/", category: CATEGORY_1_SCHOLARSHIP, region: Global, access: rss}
+  - {name: "Scholars4Dev", type: rss, url: "https://www.scholars4dev.com/feed/", category: CATEGORY_1_SCHOLARSHIP, region: Global, access: rss}
+  - {name: "Opportunities for Africans", type: rss, url: "https://www.opportunitiesforafricans.com/feed/", category: CATEGORY_1_SCHOLARSHIP, region: Africa/Global, access: rss}
+  - {name: "Opportunities Corners", type: rss, url: "https://opportunitiescorners.com/feed/", category: CATEGORY_1_SCHOLARSHIP, region: Global, access: rss}
+  - {name: "Scholarship Positions", type: rss, url: "https://scholarship-positions.com/feed/", category: CATEGORY_1_SCHOLARSHIP, region: Global, access: rss, notes: "slow server, use long timeout"}
+  - {name: "EURAXESS jobs & funding", type: html, url: "https://euraxess.ec.europa.eu/jobs/search", category: CATEGORY_1_SCHOLARSHIP, region: Europe, access: html}
+  - {name: "Scholarships Corner (TG)", type: telegram, url: "https://t.me/s/ScholarshipsCorner", category: CATEGORY_1_SCHOLARSHIP, region: Global, access: telegram, notes: "175K subs, daily"}
+  - {name: "Scholarships365 (TG)", type: telegram, url: "https://t.me/s/scholarships365", category: CATEGORY_1_SCHOLARSHIP, region: Global, access: telegram, notes: "117K subs, daily"}
+  - {name: "Bright Scholarship (TG)", type: telegram, url: "https://t.me/s/BrightScholarship", category: CATEGORY_1_SCHOLARSHIP, region: Global, access: telegram, notes: "111K subs, daily"}
+  - {name: "Scholarship Term (TG)", type: telegram, url: "https://t.me/s/scholarshipsee", category: CATEGORY_1_SCHOLARSHIP, region: Global, access: telegram, notes: "58.8K subs, daily"}
+  - {name: "International Scholarships (TG)", type: telegram, url: "https://t.me/s/studyportion", category: CATEGORY_1_SCHOLARSHIP, region: Global, access: telegram, notes: "21K subs, daily; posts eligibility + deadline"}
+  - {name: "Scholarships opportunities (TG)", type: telegram, url: "https://t.me/s/freescholarshipsworldwide", category: CATEGORY_1_SCHOLARSHIP, region: Global, access: telegram, notes: "24.5K subs, daily"}
+  - {name: "AzarApply / PhDFinder (TG)", type: telegram, url: "https://t.me/s/AzarApply", category: CATEGORY_1_SCHOLARSHIP, region: Global, access: telegram, notes: "26.1K subs, funded MSc/PhD positions"}
+  - {name: "Academic-jobs (TG)", type: telegram, url: "https://t.me/s/phddream", category: CATEGORY_1_SCHOLARSHIP, region: Global, access: telegram, notes: "18K subs; Persian+English PhD positions"}
+  - {name: "PhDFinder (TG)", type: telegram, url: "https://t.me/s/phdfinder", category: CATEGORY_1_SCHOLARSHIP, region: Global, access: telegram, notes: "2.5K subs, daily"}
+  - {name: "Position Club (TG)", type: telegram, url: "https://t.me/s/PositionClub", category: CATEGORY_1_SCHOLARSHIP, region: Global, access: telegram, notes: "15.4K subs; last post 2026-09-30"}
+
+  # ============ CATEGORY 2: internships, co-op, research internships ============
+  - {name: "SimplifyJobs Summer 2027 internships (JSON)", type: json_api, url: "https://raw.githubusercontent.com/SimplifyJobs/Summer2027-Internships/dev/.github/scripts/listings.json", category: CATEGORY_2_COOP_PARTTIME, region: "US/Canada mostly; has sponsorship field", access: json_api, notes: "17.5K listings, updated daily"}
+  - {name: "IAESTE paid technical internships", type: html, url: "https://iaeste.org/internships", category: CATEGORY_2_COOP_PARTTIME, region: Global, access: html, notes: "applied through national committee"}
+  - {name: "AIESEC Global Talent internships", type: html, url: "https://aiesec.org/global-talent", category: CATEGORY_2_COOP_PARTTIME, region: Global, access: html}
+  - {name: "DAAD RISE worldwide", type: html, url: "https://www.daad.de/rise/en/rise-worldwide/", category: CATEGORY_2_COOP_PARTTIME, region: Germany, access: html, notes: "research internships for undergrads"}
+  - {name: "Mitacs Globalink Research Internship", type: html, url: "https://www.mitacs.ca/our-programs/globalink-research-internship-students/", category: CATEGORY_2_COOP_PARTTIME, region: Canada, access: html, notes: "undergrad research internship; check country eligibility"}
+  - {name: "KAUST Visiting Student Research Program", type: html, url: "https://vsrp.kaust.edu.sa/", category: CATEGORY_2_COOP_PARTTIME, region: KSA, access: html}
+  - {name: "HRDF (Tamheer / co-op programs)", type: html, url: "https://www.hrdf.org.sa", category: CATEGORY_2_COOP_PARTTIME, region: KSA, access: html}
+  - {name: "InternFreak (TG)", type: telegram, url: "https://t.me/s/internfreak", category: CATEGORY_2_COOP_PARTTIME, region: "Global, India-heavy", access: telegram, notes: "57.9K subs, daily"}
+  - {name: "Opportunity Portal (TG)", type: telegram, url: "https://t.me/s/opportunityportalabroad", category: CATEGORY_2_COOP_PARTTIME, region: Global, access: telegram, notes: "33.5K subs, daily; internships + scholarships"}
+  - {name: "StudyQA (TG)", type: telegram, url: "https://t.me/s/studyqacom", category: CATEGORY_2_COOP_PARTTIME, region: Global, access: telegram, notes: "5.5K subs; UN/international internships"}
+  - {name: "TECH HUB (TG)", type: telegram, url: "https://t.me/s/TechHub30", category: CATEGORY_2_COOP_PARTTIME, region: Global, access: telegram, notes: "small, daily; tech internships/hackathons"}
+  - {name: "قناة وظائف | فرص العمل (TG)", type: telegram, url: "https://t.me/s/fu1sa", category: CATEGORY_2_COOP_PARTTIME, region: KSA, access: telegram, notes: "106K subs; jobs + training (تدريب)"}
+
+  # ============ CATEGORY 3: full-time / graduate jobs ============
+  - {name: "SimplifyJobs New Grad positions (JSON)", type: json_api, url: "https://raw.githubusercontent.com/SimplifyJobs/New-Grad-Positions/dev/.github/scripts/listings.json", category: CATEGORY_3_FULLTIME, region: "US mostly; has sponsorship field", access: json_api}
+  - {name: "Himalayas remote jobs", type: rss, url: "https://himalayas.app/jobs/rss", category: CATEGORY_3_FULLTIME, region: Remote, access: rss}
+  - {name: "We Work Remotely: programming", type: rss, url: "https://weworkremotely.com/categories/remote-programming-jobs.rss", category: CATEGORY_3_FULLTIME, region: Remote, access: rss}
+  - {name: "RemoteOK API", type: json_api, url: "https://remoteok.com/api", category: CATEGORY_3_FULLTIME, region: Remote, access: json_api}
+  - {name: "Arbeitnow API", type: json_api, url: "https://www.arbeitnow.com/api/job-board-api", category: CATEGORY_3_FULLTIME, region: "Europe/Remote", access: json_api}
+  - {name: "LinkedIn guest job search", type: html, url: "https://www.linkedin.com/jobs/search?keywords=machine%20learning&f_E=1%2C2", category: CATEGORY_3_FULLTIME, region: Global, access: html, notes: "public guest pages only; no login"}
+  - {name: "Wellfound startup jobs", type: html, url: "https://wellfound.com/jobs", category: CATEGORY_3_FULLTIME, region: Global, access: html}
+  - {name: "Remote AI/ML/Data Science Jobs (TG)", type: telegram, url: "https://t.me/s/remote_ai_jobs", category: CATEGORY_3_FULLTIME, region: Remote, access: telegram, notes: "8.5K subs, daily"}
+  - {name: "Dev Jobs abroad (TG)", type: telegram, url: "https://t.me/s/opento_dev", category: CATEGORY_3_FULLTIME, region: "Global relocation/remote", access: telegram, notes: "10.7K subs, daily; Russian/English"}
+  - {name: "IT Jobs وظائف تقنية (TG)", type: telegram, url: "https://t.me/s/technomajed", category: CATEGORY_3_FULLTIME, region: KSA/GCC, access: telegram, notes: "18.6K subs, daily, IT only"}
+  - {name: "وظيفتك علينا (TG)", type: telegram, url: "https://t.me/s/cd4cd", category: CATEGORY_3_FULLTIME, region: KSA, access: telegram, notes: "796K subs; all fields, filter hard"}
+  - {name: "Jobs in Dubai, UAE (TG)", type: telegram, url: "https://t.me/s/jobs_in_dubai", category: CATEGORY_3_FULLTIME, region: UAE, access: telegram, notes: "95.7K subs"}
+  - {name: "Jobzei remote jobs (TG)", type: telegram, url: "https://t.me/s/remotejbs", category: CATEGORY_3_FULLTIME, region: Remote, access: telegram, notes: "9.2K subs; last post 2026-09-21"}
+
+  # ---- reachable only with a real browser (Cloudflare bot wall); handled by the Playwright phase ----
+  - {name: "Bayt", type: html, url: "https://www.bayt.com", category: CATEGORY_3_FULLTIME, region: GCC, access: browser_needed}
+  - {name: "GulfTalent", type: html, url: "https://www.gulftalent.com", category: CATEGORY_3_FULLTIME, region: GCC, access: browser_needed}
+  - {name: "Naukrigulf", type: html, url: "https://www.naukrigulf.com", category: CATEGORY_3_FULLTIME, region: GCC, access: browser_needed}
+  - {name: "Wuzzuf", type: html, url: "https://wuzzuf.net/jobs", category: CATEGORY_3_FULLTIME, region: "Egypt/MENA", access: browser_needed}
+  - {name: "Jadarat", type: html, url: "https://jadarat.sa", category: CATEGORY_2_COOP_PARTTIME, region: KSA, access: login_required}
+
+# X (Twitter) cannot be checked without logging in, so nothing here is verified. Off by default.
+x_accounts_unverified:
+  - {handle: "opportunitydesk", category: CATEGORY_1_SCHOLARSHIP, evidence: "handle listed on opportunitydesk.org"}
+  - {handle: "FulbrightPrgrm", category: CATEGORY_1_SCHOLARSHIP, evidence: "Fulbright social media guide"}
+  - {handle: "DAAD_Germany", category: CATEGORY_1_SCHOLARSHIP, evidence: "widely cited, not confirmed"}
+  - {handle: "EURAXESS", category: CATEGORY_1_SCHOLARSHIP, evidence: "profile endpoint responded; activity unknown"}
+  - {handle: "PositionClub", category: CATEGORY_1_SCHOLARSHIP, evidence: "its Telegram reposts a #TwitterDigest"}

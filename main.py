@@ -41,7 +41,7 @@ def main(argv: list[str] | None = None) -> int:
             from src.settings import ROOT
 
             with db.session(settings.db_path) as conn:
-                added = load_seed(conn, ROOT / "config" / "sources_seed.yaml")
+                added = sum(load_seed(conn, ROOT / "config" / f) for f in ("sources.yaml", "sources_seed.yaml"))
             print(f"database ready at {settings.db_path} ({added} seed sources added)")
         elif args.cmd == "models":
             llm = build_llm(settings, "gemini")

@@ -26,3 +26,11 @@ def test_seed_loads_and_is_idempotent():
     assert load_seed(conn, ROOT / "config" / "sources_seed.yaml") == 0
     # login-only portals start disabled
     assert db.count(conn, "discovered_sources", "enabled = 0") >= 1
+
+
+def test_curated_sources_load_and_cover_all_categories():
+    conn = db.connect(":memory:")
+    assert load_seed(conn, ROOT / "config" / "sources.yaml") >= 40
+    for cat in ("CATEGORY_1_SCHOLARSHIP", "CATEGORY_2_COOP_PARTTIME", "CATEGORY_3_FULLTIME"):
+        assert db.count(conn, "discovered_sources", "category = ? AND type = 'telegram' AND enabled = 1", (cat,)) >= 5
+    assert db.count(conn, "discovered_sources", "name = 'Bayt' AND enabled = 0") == 1
