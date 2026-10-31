@@ -61,7 +61,8 @@ def main(argv: list[str] | None = None) -> int:
         elif args.cmd == "run":
             from src.bot.telegram_bot import build_app
 
-            print("Bot running. Open Telegram and send /start to your bot. Press Ctrl+C to stop.")
+            logging.getLogger("telegram").setLevel(logging.INFO)  # show connection problems
+            print("Connecting to Telegram... (press Ctrl+C to stop)")
             build_app(settings).run_polling()
         elif args.cmd == "monitor":
             from src.monitor.run import Monitor

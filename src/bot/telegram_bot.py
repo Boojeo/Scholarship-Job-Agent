@@ -44,6 +44,7 @@ class Bot:
     async def _guard(self, update: Update) -> bool:
         owner = self.owner_id()
         uid = update.effective_user.id if update.effective_user else None
+        log.info("message from user id %s (owner %s)", uid, owner)
         if owner is None and uid is not None:
             with db.session(self.s.db_path) as conn:
                 db.set_kv(conn, "telegram_owner_id", str(uid))
@@ -272,8 +273,20 @@ def build_app(settings: Settings) -> Application:
     if not settings.telegram_token:
         raise SystemExit("Set TELEGRAM_BOT_TOKEN in .env (create a bot with @BotFather).")
     bot = Bot(settings)
+    async def on_error(update: object, ctx: ContextTypes.DEFAULT_TYPE) -> None:
+        log.error("bot error: %s", ctx.error, exc_info=ctx.error)
+        if isinstance(update, Update) and update.effective_chat:
+            await ctx.bot.send_message(update.effective_chat.id, f"⚠️ Error: {ctx.error}")
+
+    async def announce(application: Application) -> None:
+        me = await application.bot.get_me()
+        print(f"Connected to Telegram as @{me.username}. Send /start to https://t.me/{me.username}", flush=True)
+        owner = bot.owner_id()
+        print(f"Owner: {owner if owner else 'not set yet (the first person to send /start becomes the owner)'}",
+              flush=True)
+
     # concurrent updates: tailoring one item (a few minutes) must not freeze the other buttons
-    app = Application.builder().token(settings.telegram_token).concurrent_updates(True).build()
+    app = Application.builder().token(settings.telegram_token).concurrent_updates(True).post_init(announce).build()
     app.add_handler(CommandHandler("start", bot.start))
     app.add_handler(CommandHandler("status", bot.status))
     app.add_handler(CommandHandler("vault", bot.vault))
@@ -283,6 +296,7 @@ def build_app(settings: Settings) -> Application:
     app.add_handler(CallbackQueryHandler(bot.on_button))
     app.add_handler(MessageHandler(filters.Document.ALL, bot.save_document))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, bot.on_text))
+    app.add_error_handler(on_error)
     hh, mm = (int(x) for x in settings.digest_time.split(":"))
     app.job_queue.run_daily(bot.daily_job, time=dt.time(hh, mm, tzinfo=ZoneInfo(settings.timezone)),
                             name="daily-digest")
