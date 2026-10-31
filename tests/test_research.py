@@ -143,3 +143,30 @@ def test_gemini_switches_to_suggested_model():
     llm, used, _ = make_gemini({"k1": [_client_error(404, msg), "hello"], "k2": []})
     assert llm.generate("hi").text == "hello"
     assert llm._models["fast"] == "gemini-3.8-flash"
+
+
+# ---- result quality filters ------------------------------------------------------------------
+from src.research.schemas import OpportunityItem  # noqa: E402
+
+
+def _opp(title, org, url, deadline=""):
+    return OpportunityItem(category="CATEGORY_1_SCHOLARSHIP", title=title, organization=org, url=url, deadline=deadline)
+
+
+def test_generic_urls_are_rejected():
+    assert bs.is_generic_url("https://research.ibm.com/")
+    assert bs.is_generic_url("https://openai.com/careers/")
+    assert bs.is_generic_url("https://www.scholarshipsads.com/search/degree/masters")
+    assert not bs.is_generic_url("https://www.imperial.ac.uk/study/fees-and-funding/scholarships-search/sparck-ai.php")
+    assert not bs.is_generic_url("https://scholarpositions.com/mbzuai-scholarship-2027/")
+
+
+def test_aggregator_copies_collapse_and_official_site_wins():
+    org = "Mohamed bin Zayed University of Artificial Intelligence"
+    items = [
+        _opp("MBZUAI Scholarship 2027: Fully Funded", org, "https://blog.example/mbzuai", "December 15, 2026"),
+        _opp("MBZUAI Graduate Funding 2027", org + " (MBZUAI)", "https://mbzuai.ac.ae/study/funding", "December 15, 2026 at 5:00 p.m. GST"),
+        _opp("Spärck AI Scholarship", "Imperial College London", "https://imperial.ac.uk/x/sparck", ""),
+    ]
+    out = bs.dedupe_opportunities(items)
+    assert [o.url for o in out] == ["https://mbzuai.ac.ae/study/funding", "https://imperial.ac.uk/x/sparck"]

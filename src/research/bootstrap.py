@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import Callable
 
 import yaml
+from urllib.parse import urlsplit
 
 from src.database import db
 from src.llm.base import LLM, LLMError
@@ -50,6 +51,11 @@ def _structure_prompt(task: ResearchTask, notes: str) -> str:
             "material does not say; add nothing that is not in the material; drop expired items, pages that are "
             "only generic news, and anything clearly irrelevant to this candidate. If a page lists many "
             "programs, return each as its own item with its own link when one is shown. "
+            "The url must be the specific page of that program or posting, never a site homepage, a search or "
+            "listing page, or a careers landing page. If the page is a blog or aggregator about a program and "
+            "shows a link to the official university/employer page, use the official link as url and mention the "
+            "aggregator in notes. Drop programs that only accept people already enrolled in a PhD, that need a "
+            "university nomination, or that are not open to a candidate with only a Bachelor's degree. "
             "Return [] if nothing qualifies.\n\nMATERIAL:\n" + notes)
 
 
@@ -68,6 +74,65 @@ def _chunks(notes: str, max_chars: int = 45_000) -> list[str]:
     if cur.strip():
         chunks.append(cur)
     return chunks
+
+
+GENERIC_PATHS = {"", "careers", "jobs", "search", "research", "about", "blog", "scholarships", "opportunities",
+                 "en", "home", "index", "en-us", "programs", "admissions"}
+_ORG_STOP = {"university", "institute", "research", "technology", "science", "college", "school", "national"}
+
+
+def is_generic_url(url: str) -> bool:
+    """Site roots, search pages and one-word landing pages are not a specific opportunity."""
+    parts = urlsplit(url)
+    segments = [p for p in parts.path.lower().split("/") if p]
+    if "search" in segments or "search" in parts.query.lower():
+        return True
+    return len(segments) == 0 or (len(segments) == 1 and segments[0] in GENERIC_PATHS) or \
+        (len(segments) == 2 and segments[0] in GENERIC_PATHS and segments[1] in GENERIC_PATHS)
+
+
+def _org_key(org: str) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", re.sub(r"\(.*?\)", "", org.lower())).strip()
+
+
+def _deadline_key(deadline: str) -> str:
+    m = re.search(r"([A-Za-z]{3,9}\.? \d{1,2},? \d{4}|\d{1,2} [A-Za-z]{3,9} \d{4}|\d{4}-\d{2}-\d{2})", deadline or "")
+    return re.sub(r"[^a-z0-9]", "", m.group(1).lower()) if m else ""
+
+
+def _title_tokens(title: str) -> set[str]:
+    return {w for w in re.findall(r"[a-z]{4,}", title.lower())} - {"scholarship", "scholarships", "fully", "funded",
+                                                                  "program", "programme", "master", "masters",
+                                                                  "fellowship", "funding", "with", "from"}
+
+
+def _official_rank(url: str, org: str) -> int:
+    """0 = looks like the organisation's own site, 1 = third party (blog/aggregator)."""
+    host = urlsplit(url).netloc.lower().removeprefix("www.")
+    if host.endswith((".edu", ".gov")) or ".ac." in host or ".edu." in host or ".gov." in host:
+        return 0
+    words = {w for w in re.findall(r"[a-z]{4,}", org.lower()) if w not in _ORG_STOP}
+    return 0 if any(w in host for w in words) else 1
+
+
+def dedupe_opportunities(items: list) -> list:
+    """Collapse aggregator copies of one program: same organisation and (same deadline or similar title)."""
+    kept: list = []
+    for item in items:
+        for i, other in enumerate(kept):
+            same_org = _org_key(item.organization) == _org_key(other.organization) and _org_key(item.organization)
+            if not same_org:
+                continue
+            a, b = _title_tokens(item.title), _title_tokens(other.title)
+            same_deadline = _deadline_key(item.deadline) and _deadline_key(item.deadline) == _deadline_key(other.deadline)
+            similar = a and b and len(a & b) / len(a | b) >= 0.5
+            if same_deadline or similar:
+                if _official_rank(item.url, item.organization) < _official_rank(other.url, other.organization):
+                    kept[i] = item
+                break
+        else:
+            kept.append(item)
+    return kept
 
 
 class ResearchBootstrap:
@@ -161,7 +226,14 @@ class ResearchBootstrap:
 
     # -- step 4: store -----------------------------------------------------------------------------------
     def store(self, opportunities, sources, checks: dict[str, UrlCheck]) -> dict[str, int]:
-        stats = {"opportunities_new": 0, "sources_new": 0, "dropped_dead": 0, "dropped_mismatch": 0}
+        stats = {"opportunities_new": 0, "sources_new": 0, "dropped_dead": 0, "dropped_mismatch": 0,
+                 "dropped_generic": 0, "dropped_duplicate": 0}
+        before = len(opportunities)
+        opportunities = [o for o in opportunities if not is_generic_url(o.url)]
+        stats["dropped_generic"] = before - len(opportunities)
+        before = len(opportunities)
+        opportunities = dedupe_opportunities(opportunities)
+        stats["dropped_duplicate"] = before - len(opportunities)
         kept_sources: list[dict] = []
         with db.session(self.settings.db_path) as conn:
             for o in opportunities:

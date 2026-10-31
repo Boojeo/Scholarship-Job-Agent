@@ -16,6 +16,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("-v", "--verbose", action="store_true")
     sub = parser.add_subparsers(dest="cmd", required=True)
     sub.add_parser("init-db", help="create the SQLite database")
+    sub.add_parser("purge-research", help="delete opportunities and sources that research added (keeps seed sources)")
     sub.add_parser("models", help="list models your Gemini key can use")
     pr = sub.add_parser("probe", help="test which Gemini models really work (plain and with web search)")
     pr.add_argument("names", nargs="*", help="model names; default: your .env models plus common candidates")
@@ -25,6 +26,8 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--grounded", action="store_true",
                    help="use Gemini's built-in Google Search instead of the free web route (needs a paid plan)")
     r.add_argument("--pages", type=int, default=24, help="max pages downloaded per task (default 24)")
+    r.add_argument("--resume", action="store_true",
+                   help="reuse the newest data/research/<run> folder (saved pages) instead of searching again")
     r.add_argument("--dry-run", action="store_true", help="only collect raw answers, store nothing")
     args = parser.parse_args(argv)
     # Only our own messages at INFO; third-party libraries (search engines, HTTP) stay quiet unless they warn.
@@ -43,6 +46,11 @@ def main(argv: list[str] | None = None) -> int:
         elif args.cmd == "models":
             llm = build_llm(settings, "gemini")
             print("\n".join(llm.list_models()))
+        elif args.cmd == "purge-research":
+            with db.session(settings.db_path) as conn:
+                a = conn.execute("DELETE FROM opportunities WHERE source LIKE 'research:%'").rowcount
+                b = conn.execute("DELETE FROM discovered_sources WHERE origin = 'research'").rowcount
+            print(f"removed {a} opportunities and {b} sources added by research")
         elif args.cmd == "probe":
             llm = build_llm(settings, "gemini")
             names = args.names or list(dict.fromkeys([
@@ -57,7 +65,12 @@ def main(argv: list[str] | None = None) -> int:
             from src.research.bootstrap import ResearchBootstrap
 
             only = {k.strip().upper() for k in args.only.split(",")} if args.only else None
-            boot = ResearchBootstrap(build_llm(settings, "gemini"), settings,
+            run_dir = None
+            if args.resume:
+                runs = sorted(p for p in (settings.data_dir / "research").glob("*") if p.is_dir())
+                run_dir = runs[-1] if runs else None
+                print(f"resuming from {run_dir}" if run_dir else "no saved run found; starting fresh")
+            boot = ResearchBootstrap(build_llm(settings, "gemini"), settings, run_dir=run_dir,
                                      mode="grounded" if args.grounded else "web", pages_per_task=args.pages)
             stats = boot.run(only, args.force, args.dry_run)
             print(stats)
