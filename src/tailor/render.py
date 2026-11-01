@@ -30,7 +30,13 @@ def _normalize(md_text: str) -> str:
     return "\n".join(out)
 
 
+# The built-in PDF font (Helvetica) has no glyph for these; Word files keep the originals.
+PDF_SAFE = {"→": "->", "←": "<-", "√": "sqrt", "≈": "~", "≤": "<=", "≥": ">=", "✓": "", "★": "*"}
+
+
 def md_to_pdf(md_text: str, out: Path) -> Path:
+    for bad, good in PDF_SAFE.items():
+        md_text = md_text.replace(bad, good)
     html = f"<html><head><meta charset='utf-8'><style>{CSS}</style></head><body>" \
            f"{markdown.markdown(_normalize(md_text))}</body></html>"
     with open(out, "wb") as fh:
