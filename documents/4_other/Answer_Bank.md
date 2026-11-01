@@ -17,7 +17,7 @@ As Technical Committee Lead of my university's AI Club, I coordinate fifteen stu
 [[CHOOSE a true story. Option A (compute): running 37,800 LLM experiments with about 30 free GPU-hours per account, solved through quantized models, careful scheduling and reproducibility checks. Option B (language): studying a technical degree in English as a Somali student in Saudi Arabia. Option C (data): building an Arabic dialect model with no paid data and no annotators.]]
 
 ## Visa / residency status (40 words)
-I am a Somali national. I live in Saudi Arabia, and I hold a UAE Golden Visa for outstanding students (10-year residency, valid until 2032), awarded for my 97% secondary-school result. I can study or work in the UAE without residence sponsorship.
+I am a Somali national. I live in Saudi Arabia, and I hold a UAE Golden Visa for outstanding students (10-year residency, valid until 2032), awarded for my 97.03% secondary-school result (Abu Dhabi, 2021). I can study or work in the UAE without residence sponsorship.
 
 ## Why should we fund you? (100 words)
 I have already shown that I can turn limited resources into research results: an ICLR-submitted paper, a 37,800-run first-author study on free GPU quotas, and a dialect LLM trained on one GPU. I hold a 4.99/5.00 GPA and was selected among the top 100 of 17,000+ applicants by KAUST Academy. Full funding would let me focus entirely on research, and I intend to give back by mentoring students as I do now through the AI Club and Student Advisory Council.

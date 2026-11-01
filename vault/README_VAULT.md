@@ -17,6 +17,7 @@
 | `ielts` | IELTS result (when you have it) |
 | `writing_sample` | Writing sample (the Periscope arXiv PDF is downloaded automatically by `init-db`) |
 | `certificates` | One combined PDF: KASP completion, competition, Excellence Awards, MiyahThon |
+| `secondary` | UAE secondary school certificate (97.03%) |
 | `honors` or `class_rank` | First Class Honors / class rank letter from the registrar |
 
 You can also send files to the Telegram bot: it saves them here.

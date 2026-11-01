@@ -16,3 +16,4 @@ vault/*.pdf
 vault/*.docx
 vault/*.local.*
 documents/_output/
+*.zip

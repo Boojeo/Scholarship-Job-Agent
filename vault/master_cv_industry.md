@@ -32,4 +32,4 @@ Computer Science student (GPA 4.99/5.00, First Class Honors standing, graduating
 
 ## Leadership and Awards
 - Member, Student Advisory Council (College of CS&IS). Technical Committee Lead, AI Club (15 members, workshops for 100+ students). Built the Programming Club's educational platform.
-- UAE Golden Visa for outstanding students (97% in UAE secondary school). Top 10 Finalist, 6th National Programming Competition (May 2024). Programming Jam 10 (national, Prince Sultan University). MiyahThon finalist (final round Dec 2026).
+- UAE Golden Visa for outstanding students (97.03% in UAE secondary school, Advanced Stream, 2021). Top 10 Finalist, 6th National Programming Competition (May 2024). Programming Jam 10 (national, Prince Sultan University). MiyahThon finalist (final round Dec 2026).

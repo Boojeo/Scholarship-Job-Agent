@@ -9,6 +9,9 @@
 - Programme taught, examined and assessed entirely in English (official Medium-of-Instruction certificate from the Dean).
 - Coursework: Artificial Intelligence, Linear Algebra, Calculus, Probability & Statistics, Data Structures & Algorithms, Discrete Mathematics, Software Engineering.
 
+**Secondary School Certificate, Advanced Stream**, Obadah Bin Al Samet School, Abu Dhabi, UAE, 2021
+- Average **97.03%**: Mathematics 99.4, Physics (calculus-based) 99.7, Chemistry 99.7, English 98.0.
+
 **KAUST Academy, AI Specialization track:** selected among the top 100 of 17,000+ applicants.
 - AI Summer Program (KASP), KAUST, Jun – Aug 2026: 8-week intensive in deep learning, computer vision, NLP, Transformers, diffusion models, reinforcement learning, LLM fine-tuning and RAG (PyTorch).
 - Advanced AI course (computer vision, 40 h), KAUST, Feb 2026, *with Distinction*. Introduction to AI course (40 h), University of Tabuk, Jan 2026, *with Distinction*.

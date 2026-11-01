@@ -19,7 +19,7 @@ VAULT_KINDS = {
     "residence": "Residence_Permit", "recommendation": "Recommendation", "reference": "Recommendation",
     "degree": "Enrollment_or_Degree_Certificate", "enrollment": "Enrollment_or_Degree_Certificate",
     "ielts": "IELTS", "writing_sample": "Writing_Sample_Paper", "certificates": "Certificates",
-    "class_rank": "Class_Rank_or_Honors_Letter", "honors": "Class_Rank_or_Honors_Letter",
+    "class_rank": "Class_Rank_or_Honors_Letter", "secondary": "Secondary_School_Certificate", "honors": "Class_Rank_or_Honors_Letter",
 }
 PAPER_URL = "https://arxiv.org/pdf/2610.04047"
 PAPER_FILE = "writing_sample_periscope_arxiv.pdf"

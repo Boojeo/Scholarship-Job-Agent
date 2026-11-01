@@ -17,6 +17,7 @@
 | BIG O's, KSU (May 2024) | Optional | – |
 | Coursera Supervised ML (Stanford / DeepLearning.AI) | Optional, CV line only | – |
 | IBM cybersecurity ×2, IBM AI Fundamentals, Cisco networking, AWS GenAI, GDSC/AI-club attendance | **No**. They are attendance or short online courses and weaken a strong file. Keep them off the CV for MS/PhD. | – |
+| UAE Secondary School Certificate (Grade 12 Advanced, 97.03%, 2021) | **Yes** when a form asks for secondary education or for the Golden Visa; otherwise optional. It shows your UAE ID and birth date, so upload it only to official portals. | `secondary_certificate.pdf` |
 | High-school maths teacher's letter (2022) | **No**. It is too old and not academic enough for graduate school. | – |
 | Accommodation agreement, exam schedule, lecture slides | No | – |
 

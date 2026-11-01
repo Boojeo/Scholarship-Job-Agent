@@ -28,4 +28,4 @@ Computer Science student seeking an AI / ML / Software co-op or internship
 ## Skills and Awards
 - Python (advanced), Java, PyTorch, TensorFlow/Keras, Git, LLM fine-tuning, data pipelines, statistics.
 - English (full professional), Arabic (native), Somali.
-- UAE Golden Visa for outstanding students (97% in secondary school) · Top 10 Finalist, 6th National Programming Competition (2024) · Programming Jam 10 (national) · MiyahThon finalist (Dec 2026) · NovaAI training program (48 h, three stages).
+- UAE Golden Visa for outstanding students (97.03% in UAE secondary school, 2021) · Top 10 Finalist, 6th National Programming Competition (2024) · Programming Jam 10 (national) · MiyahThon finalist (Dec 2026) · NovaAI training program (48 h, three stages).
