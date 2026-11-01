@@ -49,7 +49,7 @@ python main.py run
 ```
 
 Open your bot in Telegram and send `/start` (the first person to do this becomes the only allowed user).
-Keep the window open; the digest arrives every day at `DIGEST_TIME`. To start it automatically at login:
+By default it searches every time you start it (`SEARCH_ON_START=yes`, skipped if the last search was under 6 hours ago) and whenever you send `/search_now`; there is no daily timer unless you set `DIGEST_TIME=09:00`. To start it automatically at login:
 press `Win+R`, type `shell:startup`, and put a shortcut to `start_agent.bat` there.
 
 ### Telegram commands

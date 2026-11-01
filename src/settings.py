@@ -39,7 +39,9 @@ class Settings:
     research_delay_seconds: float = 8.0
     telegram_token: str = ""
     telegram_owner_id: int | None = None
-    digest_time: str = "09:00"
+    digest_time: str = "off"
+    search_on_start: bool = True
+    search_on_start_min_hours: float = 6.0
     match_threshold: int = 60
     vault_dir: Path = ROOT / "vault"
     kits_dir: Path = ROOT / "ready_to_apply"
@@ -74,6 +76,8 @@ class Settings:
             research_delay_seconds=float(e("RESEARCH_DELAY_SECONDS", "8")),
             telegram_token=e("TELEGRAM_BOT_TOKEN", ""),
             telegram_owner_id=int(e("TELEGRAM_OWNER_ID")) if (e("TELEGRAM_OWNER_ID") or "").strip().isdigit() else None,
-            digest_time=e("DIGEST_TIME", "09:00"),
+            digest_time=(e("DIGEST_TIME") or "off").strip().lower(),
+            search_on_start=(e("SEARCH_ON_START") or "yes").strip().lower() in ("yes", "true", "1", "on"),
+            search_on_start_min_hours=float(e("SEARCH_ON_START_MIN_HOURS") or 6),
             match_threshold=int(e("MATCH_THRESHOLD", "60")),
         )

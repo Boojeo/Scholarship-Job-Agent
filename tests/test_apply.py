@@ -99,3 +99,12 @@ def test_browser_uses_passport_name_parts():
     vals = field_values(Settings(candidate_email="me@x.com"))
     pick = lambda h: next(v for p, v in vals if p.search(h))  # noqa: E731
     assert (pick("middleName"), pick("lastName"), pick("full_name")) == ("Ahmed", "Mohamud", "Abdallah Ahmed Mohamud")
+
+
+def test_bot_schedule_follows_settings():
+    from src.bot.telegram_bot import build_app
+    names = lambda s: sorted(j.name for j in build_app(s).job_queue.jobs())  # noqa: E731
+    base = dict(telegram_token="123456:TEST", gemini_keys=["k"], llm_provider="gemini",
+                screen_provider="gemini", write_provider="gemini")
+    assert names(Settings(**base)) == ["search-on-start"]
+    assert names(Settings(**base, digest_time="09:00", search_on_start=False)) == ["daily-digest"]

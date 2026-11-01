@@ -75,9 +75,11 @@ class Bot:
     async def start(self, update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
         if not await self._guard(update):
             return
+        when = (f"Daily digest at {self.s.digest_time} ({self.s.timezone})." if self.s.digest_time != "off"
+                else "No daily schedule: I search when the bot starts and when you send /search_now.")
         await update.message.reply_text(
             "👋 Career Autopilot is running.\n\n"
-            f"Daily digest at {self.s.digest_time} ({self.s.timezone}).\n"
+            f"{when}\n"
             "/search_now [scholarship|coop|fulltime] – check all sources now\n"
             "/digest – send waiting opportunities\n/status – health and stats\n"
             "/vault – your documents (send a PDF here to add one)")
@@ -165,6 +167,26 @@ class Bot:
                 await ctx.bot.send_message(chat_id, card(o), parse_mode=ParseMode.HTML, reply_markup=kb,
                                            disable_web_page_preview=True)
                 self._set_status(o["id"], "sent")
+
+    def _hours_since_last_run(self) -> float | None:
+        with db.session(self.s.db_path) as conn:
+            last = db.get_kv(conn, "last_monitor_run")
+        if not last:
+            return None
+        return (dt.datetime.now() - dt.datetime.strptime(last, "%Y-%m-%d %H:%M")).total_seconds() / 3600
+
+    async def startup_job(self, ctx: ContextTypes.DEFAULT_TYPE) -> None:
+        owner = self.owner_id()
+        if not owner:
+            return
+        hours = self._hours_since_last_run()
+        if hours is not None and hours < self.s.search_on_start_min_hours:
+            await ctx.bot.send_message(owner, f"👋 Bot started. Last search was {hours:.1f} h ago, so I'm not "
+                                              "searching again. Send /search_now to force it, or /digest.")
+            await self.send_digest(ctx, owner)
+            return
+        await ctx.bot.send_message(owner, "👋 Bot started – searching all sources now…")
+        await self.run_monitor_and_digest(ctx, owner)
 
     async def daily_job(self, ctx: ContextTypes.DEFAULT_TYPE) -> None:
         owner = self.owner_id()
@@ -298,7 +320,10 @@ def build_app(settings: Settings) -> Application:
     app.add_handler(MessageHandler(filters.Document.ALL, bot.save_document))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, bot.on_text))
     app.add_error_handler(on_error)
-    hh, mm = (int(x) for x in settings.digest_time.split(":"))
-    app.job_queue.run_daily(bot.daily_job, time=dt.time(hh, mm, tzinfo=ZoneInfo(settings.timezone)),
-                            name="daily-digest")
+    if settings.search_on_start:
+        app.job_queue.run_once(bot.startup_job, when=5, name="search-on-start")
+    if settings.digest_time not in ("off", "", "no", "none"):
+        hh, mm = (int(x) for x in settings.digest_time.split(":"))
+        app.job_queue.run_daily(bot.daily_job, time=dt.time(hh, mm, tzinfo=ZoneInfo(settings.timezone)),
+                                name="daily-digest")
     return app
