@@ -28,8 +28,8 @@ Computer Science student (GPA 4.99/5.00, First Class Honors standing, graduating
 ## Education
 **B.Sc. Computer Science**, Najran University, Dec 2022 – Jun 2027 (expected). GPA 4.99/5.00 with **A+ in 42 of 44 courses**, First Class Honors standing, Academic Excellence Award three years running. Taught entirely in English. Key courses (A+): Machine Learning, AI, Algorithms, Data Structures, Operating Systems, Databases.
 
-**KAUST Academy AI Specialization**, 2026: Summer Program (8 weeks, PyTorch), Advanced AI course *with Distinction*, Intro to AI course *with Distinction*.
+**KAUST Academy AI Specialization**, 2026: Summer Program (8 weeks, 320 h, PyTorch), Advanced AI course *with Distinction*, Intro to AI course *with Distinction*.
 
 ## Leadership and Awards
 - Member, Student Advisory Council (College of CS&IS). Technical Committee Lead, AI Club (15 members, workshops for 100+ students). Built the Programming Club's educational platform.
-- UAE Golden Visa for outstanding students (97.03% in UAE secondary school, Advanced Stream, 2021). Top 10 Finalist, 6th National Programming Competition (May 2024). Programming Jam 10 (national, Prince Sultan University). MiyahThon finalist (final round Dec 2026).
+- UAE Golden Visa for outstanding students (97.03% in UAE secondary school, Advanced Stream, 2021). Top 10 Finalist, 6th National Programming Competition (May 2024). Programming Jam 10 (national, Prince Sultan University). MiyahThon 3: advanced to the Prototyping Race finals (Dec 2026).

@@ -13,7 +13,7 @@
 - Average **97.03%**: Mathematics 99.4, Physics (calculus-based) 99.7, Chemistry 99.7, English 98.0.
 
 **KAUST Academy, AI Specialization track:** selected among the top 100 of 17,000+ applicants.
-- AI Summer Program (KASP), KAUST, Jun – Aug 2026: 8-week intensive in deep learning, computer vision, NLP, Transformers, diffusion models, reinforcement learning, LLM fine-tuning and RAG (PyTorch).
+- AI Specialization Summer Program (KASP), held at King Khalid University, Abha, 28 Jun – 20 Aug 2026: 8-week, 320-hour intensive in deep learning, computer vision, NLP, Transformers, diffusion models, reinforcement learning, LLM fine-tuning and RAG (PyTorch).
 - Advanced AI course (computer vision, 40 h), KAUST, Feb 2026, *with Distinction*. Introduction to AI course (40 h), University of Tabuk, Jan 2026, *with Distinction*.
 
 ## Publications and Preprints
@@ -51,7 +51,7 @@
 - **UAE Golden Visa for outstanding students** (10-year residency, valid until 2032), awarded for a 97% final grade in UAE secondary school.
 - Top 10 Finalist, 6th National Programming Competition (Imam Abdulrahman Bin Faisal University), May 2024.
 - Programming Jam 10, national programming competition, Prince Sultan University, Apr 2025 (team Code Heroes).
-- MiyahThon water-innovation hackathon (Saudi Water Innovation Center): qualified for the final round of the 3rd edition, Dec 2026; 2nd-edition bootcamp, Jubail, Nov 2025.
+- MiyahThon water-innovation hackathon (Saudi Water Innovation Center): advanced to the Prototyping Race (final stage) of the 3rd edition, finals Dec 2026; 2nd-edition bootcamp, Jubail, Nov 2025.
 - BIG O's competitive programming contest, King Saud University, May 2024.
 
 ## Skills

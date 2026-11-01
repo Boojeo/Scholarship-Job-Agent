@@ -36,13 +36,13 @@ candidate:
     - "Periscope was first called CorpusProbe; OBLIQ-Bench (oblique queries, latency/cost/TFLOPs on IBEX and T4) is part of the same ICLR work"
     - "Lahja graduation project: Gulf Arabic (Emirati, Najdi) dialect LLM, QLoRA on Jais, public demo 300 users, preprint on annotator-free evaluation"
   training:
-    - "KAUST Academy AI Specializations Summer Program (KASP), 28 Jun - 20 Aug 2026"
+    - "KAUST Academy AI Specialization Summer Program (KASP), held at King Khalid University, Abha, 28 Jun - 20 Aug 2026, 320 training hours"
   projects: ["Lahja (Arabic dialect NLP)", "HydroPulse (MiyahThon finalist)",
              "Handwritten digit recognition with custom VGG16", "Linear regression from scratch"]
   leadership: ["Member, Student Advisory Council, College of CS&IS, Najran University (Oct 2026 - present)",
                "AI Club Technical Committee Lead (15 members), Jan 2026 - present",
                "Competitive Programming Lead, 3Cs Hackathon, April 2025"]
-  honors: ["Top 10 Finalist, 6th National Programming Competition", "Finalist, MiyahThon Water Innovation Hackathon"]
+  honors: ["Top 10 Finalist, 6th National Programming Competition", "MiyahThon 3: advanced to the Prototyping Race (final stage), Dec 2026"]
   languages: ["English (degree taught in English, MOI letter)", "Arabic", "Somali"]
   skills: ["Python", "Java", "TensorFlow", "Keras", "Computer Vision", "LLMs and retrieval", "LoRA/QLoRA", "GRPO",
            "NumPy", "Pandas", "Scikit-Learn"]

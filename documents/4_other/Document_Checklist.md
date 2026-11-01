@@ -21,7 +21,7 @@
 | High-school maths teacher's letter (2022) | **No**. It is too old and not academic enough for graduate school. | – |
 | Accommodation agreement, exam schedule, lecture slides | No | – |
 
-**Build `certificates.pdf`** in this order: KAUST Advanced (Distinction) → KAUST Intro (Distinction) → Academic Excellence → Programming Jam 10 → Programming Club ×2 → MiyahThon. Use any free "merge PDF" tool. Keep it under 5 MB.
+**`certificates.pdf` is built** (8 pages, 1.4 MB) in this order: KAUST Academy Summer Program (320 h) → KAUST Advanced (Distinction) → KAUST Intro (Distinction) → Academic Excellence → Programming Jam 10 → Programming Club ×2 → MiyahThon. Use any free "merge PDF" tool. Keep it under 5 MB.
 
 ## University documents (received 1 Nov 2026)
 
@@ -36,7 +36,7 @@
 1. **Name spelling.** Your university records say **"ABDULLA MOHAMUD AHMED"**. Your passport, MOI letter and KAUST certificates say **"ABDALLAH"**. Ask the Deanship of Admission and Registration to correct the English name to match your passport **before your degree certificate is printed**. A mismatch between passport, transcript and degree causes trouble with visas and degree verification.
 2. **The enrollment certificate year:** see the table above.
 3. **A letter confirming First Class Honors standing or class rank**, if the College will issue one. Save as `honors.pdf`.
-4. **Proof for two claims:** a certificate or letter for the **Top 10, 6th National Programming Competition (9 May 2024, IAU)**, and the **MiyahThon** email confirming your team qualified for the December 2026 final.
+4. **Proof for two claims:** a certificate or letter for the **Top 10, 6th National Programming Competition (9 May 2024, IAU)**, The **MiyahThon** proof is the 25 Oct 2026 email from no-reply@miyahthon.com ("qualified for the Prototyping Race"). In Gmail use Print → Save as PDF and keep it as `miyahthon_qualification.pdf`.
 
 ## Still missing for many programmes
 - **3 recommendation letters**: see `3_recommendations/`.

@@ -12,7 +12,7 @@ As [[Head of the Department of Computer Science / former Dean of the College of 
 **Representing the College.** Abdallah has carried the College's name well beyond Najran:
 - he was selected among the top 100 of more than 17,000 applicants for KAUST Academy's AI Specialization track, completing its courses with distinction and its eight-week summer programme in 2026;
 - he co-authored a paper with KAUST researchers that is now under review at ICLR, one of the leading venues in machine learning;
-- he reached the top 10 of the 6th National Programming Competition (2024), competed at Programming Jam 10 at Prince Sultan University, and his team qualified for the final of the MiyahThon water-innovation hackathon.
+- he reached the top 10 of the 6th National Programming Competition (2024), competed at Programming Jam 10 at Prince Sultan University, and his team advanced to the final Prototyping Race stage of the MiyahThon water-innovation hackathon.
 
 [[Optional: "To my knowledge he is the first student in our department to …"]]
 

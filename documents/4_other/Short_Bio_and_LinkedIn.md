@@ -20,5 +20,6 @@ Open to: fully funded MS/PhD positions (Fall 2027), research internships, and AI
 ## Fix on LinkedIn
 - **Name:** keep "Abdallah Mohamud Ahmed", matching your MOI letter and KAUST certificates.
 - **Education end date:** June 2027 is correct; your CVs now match it.
+- **KAUST Academy Summer Program location:** LinkedIn says Thuwal, but your certificate says it was held at **King Khalid University, Abha** (320 hours). Fix it.
 - Add the three new projects, the Student Advisory Council role, and Somali under Languages if you speak it.
 - Ask the Periscope repository owner to change "Abdullah Mahmoud" in the README to "Abdallah Ahmed".
