@@ -47,6 +47,7 @@
 - **Competitive Programming Lead, 3Cs Hackathon**, Najran University, Apr 2025. Designed the contest problems and mentored junior students.
 
 ## Honors and Competitions
+- **Top Participant, Kaggle Competitions Tournament, KAUST Academy Summer School 2026.**
 - Academic Excellence Award, Najran University, three consecutive years.
 - **UAE Golden Visa for outstanding students** (10-year residency, valid until 2032), awarded for a 97% final grade in UAE secondary school.
 - Top 10 Finalist, 6th National Programming Competition (Imam Abdulrahman Bin Faisal University), May 2024.

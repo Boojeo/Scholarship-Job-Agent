@@ -21,7 +21,7 @@
 | High-school maths teacher's letter (2022) | **No**. It is too old and not academic enough for graduate school. | – |
 | Accommodation agreement, exam schedule, lecture slides | No | – |
 
-**`certificates.pdf` is built** (8 pages, 1.4 MB) in this order: KAUST Academy Summer Program (320 h) → KAUST Advanced (Distinction) → KAUST Intro (Distinction) → Academic Excellence → Programming Jam 10 → Programming Club ×2 → MiyahThon. Use any free "merge PDF" tool. Keep it under 5 MB.
+**`certificates.pdf` is built** (9 pages, 1.6 MB) in this order: KAUST Academy Summer Program (320 h) → Kaggle Competitions Tournament top participant → KAUST Advanced (Distinction) → KAUST Intro (Distinction) → Academic Excellence → Programming Jam 10 → Programming Club ×2 → MiyahThon. Use any free "merge PDF" tool. Keep it under 5 MB.
 
 ## University documents (received 1 Nov 2026)
 
