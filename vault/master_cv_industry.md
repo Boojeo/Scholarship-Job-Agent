@@ -26,7 +26,7 @@ Computer Science student (GPA 4.99/5.00, First Class Honors standing, graduating
 - Profiled latency, cost and TFLOPs on the KAUST IBEX cluster and T4 GPUs to keep full-LLM quality at a fraction of the compute.
 
 ## Education
-**B.Sc. Computer Science**, Najran University, Sep 2023 – Jun 2027 (expected). GPA 4.99/5.00, First Class Honors standing, Academic Excellence Award three years running. Taught entirely in English.
+**B.Sc. Computer Science**, Najran University, Dec 2022 – Jun 2027 (expected). GPA 4.99/5.00 with **A+ in 42 of 44 courses**, First Class Honors standing, Academic Excellence Award three years running. Taught entirely in English. Key courses (A+): Machine Learning, AI, Algorithms, Data Structures, Operating Systems, Databases.
 
 **KAUST Academy AI Specialization**, 2026: Summer Program (8 weeks, PyTorch), Advanced AI course *with Distinction*, Intro to AI course *with Distinction*.
 

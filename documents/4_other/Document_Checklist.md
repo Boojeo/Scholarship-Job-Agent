@@ -23,11 +23,20 @@
 
 **Build `certificates.pdf`** in this order: KAUST Advanced (Distinction) → KAUST Intro (Distinction) → Academic Excellence → Programming Jam 10 → Programming Club ×2 → MiyahThon. Use any free "merge PDF" tool. Keep it under 5 MB.
 
-## Ask the university for (this week)
-1. **Official transcript in English**, sealed or stamped, with the grading scale (5.0) printed on it. Save as `transcript.pdf`.
-2. **Enrollment letter stating "expected to graduate in June 2027"**. Save as `enrollment.pdf`.
-3. **Letter confirming First Class Honors standing / class rank**, e.g. "ranked 1st of N" if they will state it. Save as `honors.pdf`.
-4. **Proof for two claims:** ask the College (or IAU's College of Computer Science and IT) for a certificate or letter for the **Top 10, 6th National Programming Competition (9 May 2024, IAU)**, and keep the **MiyahThon** email or letter saying your team qualified for the December 2026 final. Committees and employers sometimes ask.
+## University documents (received 1 Nov 2026)
+
+| Document | Status | Save as |
+|---|---|---|
+| Official academic record in English (transcript), 3 pages | ✅ Valid **2 months from print date**, so reprint in late December for January deadlines | `transcript.pdf` |
+| Statement of expected graduates (end of 2nd semester 1448/1449 H, GPA 4.99/5.00) | ✅ This is your "expected graduation" letter | `expected_graduation.pdf` |
+| Enrollment certificate (level 9, active) | ⚠️ Says "first year **2027/2028**", which looks like a Hijri-to-Gregorian error. Ask the registrar to correct it to 2026/2027 before using it, or committees may think you graduate later. | `enrollment.pdf` |
+| Comprehensive academic statement (Arabic, إفادة أكاديمية شاملة) | ✅ For Saudi programmes and employers that accept Arabic | `academic_statement_ar.pdf` |
+
+## Fix with the registrar before you apply
+1. **Name spelling.** Your university records say **"ABDULLA MOHAMUD AHMED"**. Your passport, MOI letter and KAUST certificates say **"ABDALLAH"**. Ask the Deanship of Admission and Registration to correct the English name to match your passport **before your degree certificate is printed**. A mismatch between passport, transcript and degree causes trouble with visas and degree verification.
+2. **The enrollment certificate year:** see the table above.
+3. **A letter confirming First Class Honors standing or class rank**, if the College will issue one. Save as `honors.pdf`.
+4. **Proof for two claims:** a certificate or letter for the **Top 10, 6th National Programming Competition (9 May 2024, IAU)**, and the **MiyahThon** email confirming your team qualified for the December 2026 final.
 
 ## Still missing for many programmes
 - **3 recommendation letters**: see `3_recommendations/`.

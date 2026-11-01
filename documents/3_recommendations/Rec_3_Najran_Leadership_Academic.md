@@ -7,7 +7,7 @@ To the Selection Committee,
 
 I write to recommend **Mr. Abdallah Mohamud Ahmed**, a Computer Science student at Najran University, whom I have known for [[N years]] as [[his instructor in "…" and]] supervisor of the College's Programming Club.
 
-**Academic excellence.** Abdallah holds a cumulative GPA of 4.99 out of 5.00 with First Class Honors standing, and has received the Academic Excellence Award in each of three consecutive years. Our Computer Science programme is taught and assessed entirely in English. [[If you taught him: one sentence on his performance in your course and his rank in that class.]]
+**Academic excellence.** Abdallah holds a cumulative GPA of 4.99 out of 5.00 with First Class Honors standing, earning A+ in 42 of his 44 courses, and has received the Academic Excellence Award in each of three consecutive years. Our Computer Science programme is taught and assessed entirely in English. [[If you taught him: one sentence on his performance in your course and his rank in that class.]]
 
 **A builder who serves others.** Abdallah does not keep his skills to himself. For the Programming Club he built the club's educational platform, for which the College formally recognised him. He led the competitive-programming track of the 3Cs Hackathon, designing problems and mentoring junior students. As Technical Committee Lead of the AI Club, he coordinates fifteen students and has delivered hands-on machine-learning workshops to more than one hundred of his peers. He was recently appointed to the College's Student Advisory Council. [[Your own example of his leadership or reliability.]]
 

@@ -18,8 +18,12 @@ candidate:
     gpa: "4.99 / 5.00"
     class_standing: "First Class Honors standing (GPA 4.99/5.00). The degree itself is expected June 2027."
     awards: ["Annual Academic Excellence Award, three consecutive years"]
-    coursework: ["Artificial Intelligence", "Linear Algebra", "Calculus", "Probability & Statistics",
-                 "Data Structures and Algorithms", "Discrete Mathematics", "Software Engineering"]
+    enrolled: "Dec 2022 (preparatory year); Computer Science major from Sep 2023"
+    grades: "A+ in 42 of 44 courses (A in Software Engineering and Data Communication & Networks); 119 credit hours"
+    coursework: ["Machine Learning", "Artificial Intelligence", "Algorithm Design and Analysis", "Theory of Computation",
+                 "Data Structures", "Linear Algebra", "Probability and Engineering Statistics", "Numerical Methods",
+                 "Calculus 2-3", "Discrete Mathematics", "Operating Systems", "Computer Graphics",
+                 "Parallel and Distributed Systems (current)", "Simulation and Modelling (current)"]
   research:
     - title: "Periscope: Extending Frozen Language Models Beyond Their Context Window"
       status: "Submitted to ICLR, under review"

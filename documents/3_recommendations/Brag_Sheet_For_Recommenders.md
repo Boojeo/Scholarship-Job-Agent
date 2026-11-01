@@ -4,7 +4,7 @@
 **What I am applying for:** fully funded MS (or direct PhD) in AI / ML / NLP for Fall 2027, plus AI internships.
 **Main deadlines:** [[list: university – programme – deadline – how the letter is submitted (portal link sent by the university / email)]]
 
-**Academic record:** UAE secondary school 97% (earned a UAE Golden Visa for outstanding students) · GPA 4.99/5.00 · First Class Honors standing · Academic Excellence Award in three consecutive years · programme taught entirely in English.
+**Academic record:** UAE secondary school 97% (earned a UAE Golden Visa for outstanding students) · GPA 4.99/5.00 (A+ in 42 of 44 courses; A in Software Engineering and Networks) · First Class Honors standing · Academic Excellence Award in three consecutive years · programme taught entirely in English.
 
 **Research (in one line each):**
 - Periscope, first called CorpusProbe (KAUST, 2026): training-free long-context reading and retrieval, including OBLIQ-Bench for oblique queries. Co-author; arXiv:2610.04047, under review at ICLR. The retriever reached NDCG@10 0.526 on BRIGHT; profiled on IBEX and T4.

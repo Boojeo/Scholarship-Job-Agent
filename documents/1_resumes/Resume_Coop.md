@@ -4,9 +4,9 @@ Computer Science student seeking an AI / ML / Software co-op or internship
 **Availability:** full-time from June 2027, for 3 months or longer · Resident of Saudi Arabia · UAE Golden Visa holder (10-year residency for outstanding students, valid until 2032)
 
 ## Education
-**B.Sc. Computer Science**, Najran University, Saudi Arabia, Sep 2023 – Jun 2027 (expected)
-- GPA **4.99 / 5.00**, First Class Honors standing; Academic Excellence Award, three consecutive years. Taught entirely in English.
-- Coursework: Artificial Intelligence, Data Structures & Algorithms, Software Engineering, Linear Algebra, Probability & Statistics, Discrete Mathematics.
+**B.Sc. Computer Science**, Najran University, Saudi Arabia, Dec 2022 – Jun 2027 (expected)
+- GPA **4.99 / 5.00** with A+ in 42 of 44 courses; First Class Honors standing; Academic Excellence Award, three consecutive years. Taught entirely in English.
+- Coursework (all A+): Machine Learning, Artificial Intelligence, Data Structures, Algorithm Design, Object-Oriented Programming, Operating Systems, Databases, Mobile Application Development, Probability & Statistics.
 
 **KAUST Academy AI Specialization**, 2026: top 100 of 17,000+ applicants. 8-week Summer Program (PyTorch: CV, NLP, Transformers, RL, LLM fine-tuning, RAG). Two 40-hour courses completed *with Distinction*.
 

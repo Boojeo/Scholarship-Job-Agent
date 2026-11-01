@@ -4,10 +4,10 @@
 **Research interests:** efficient and reliable large language models: long-context inference, LLM-based retrieval, verification in multi-agent LLM systems, and evaluation for low-resource Arabic dialects.
 
 ## Education
-**B.Sc. in Computer Science**, Najran University, Saudi Arabia, Sep 2023 – expected Jun 2027
-- GPA **4.99 / 5.00**, First Class Honors standing; Academic Excellence Award in three consecutive years.
+**B.Sc. in Computer Science**, Najran University, Saudi Arabia, Dec 2022 – expected Jun 2027 (preparatory year 2022–23; Computer Science major from Sep 2023)
+- GPA **4.99 / 5.00** (general grade: Excellent), First Class Honors standing. **A+ in 42 of 44 courses** (A in the other two), 119 credit hours completed. Academic Excellence Award in three consecutive years.
 - Programme taught, examined and assessed entirely in English (official Medium-of-Instruction certificate from the Dean).
-- Coursework: Artificial Intelligence, Linear Algebra, Calculus, Probability & Statistics, Data Structures & Algorithms, Discrete Mathematics, Software Engineering.
+- Coursework: Machine Learning, Artificial Intelligence, Algorithm Design and Analysis, Theory of Computation, Data Structures, Linear Algebra, Probability and Engineering Statistics, Numerical Methods, Calculus 2–3, Discrete Mathematics, Operating Systems, Computer Graphics (all A+). Current semester: Parallel and Distributed Systems, Simulation and Modelling.
 
 **Secondary School Certificate, Advanced Stream**, Obadah Bin Al Samet School, Abu Dhabi, UAE, 2021
 - Average **97.03%**: Mathematics 99.4, Physics (calculus-based) 99.7, Chemistry 99.7, English 98.0.
