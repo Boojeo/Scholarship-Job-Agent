@@ -42,7 +42,7 @@ candidate:
   leadership: ["Member, Student Advisory Council, College of CS&IS, Najran University (Oct 2026 - present)",
                "AI Club Technical Committee Lead (15 members), Jan 2026 - present",
                "Competitive Programming Lead, 3Cs Hackathon, April 2025"]
-  honors: ["Top Participant, Kaggle Competitions Tournament, KAUST Academy Summer School 2026", "Top 10 Finalist, 6th National Programming Competition", "MiyahThon 3: advanced to the Prototyping Race (final stage), Dec 2026"]
+  honors: ["Kaggle Competitions Tournament, KAUST Academy Summer School 2026: ranked 8th of 125 (top participant)", "Top 10 Finalist, 6th National Programming Competition", "MiyahThon 3: advanced to the Prototyping Race (final stage), Dec 2026"]
   languages: ["English (degree taught in English, MOI letter)", "Arabic", "Somali"]
   skills: ["Python", "Java", "TensorFlow", "Keras", "Computer Vision", "LLMs and retrieval", "LoRA/QLoRA", "GRPO",
            "NumPy", "Pandas", "Scikit-Learn"]

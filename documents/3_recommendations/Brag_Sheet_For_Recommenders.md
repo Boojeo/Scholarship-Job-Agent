@@ -15,7 +15,7 @@
 
 **Leadership:** Member, Student Advisory Council (since Oct 2026) · AI Club Technical Committee Lead (15 members, workshops for 100+) · built the Programming Club platform · 3Cs Hackathon CP lead.
 
-**Competitions:** Top Participant, Kaggle Competitions Tournament (KAUST Academy Summer School 2026) · Top 10, 6th National Programming Competition (May 2024) · Programming Jam 10 (PSU) · MiyahThon 3: Prototyping Race finalist (Dec 2026) · BIG O's (KSU).
+**Competitions:** Kaggle Competitions Tournament (KAUST Academy Summer School 2026): 8th of 125 · Top 10, 6th National Programming Competition (May 2024) · Programming Jam 10 (PSU) · MiyahThon 3: Prototyping Race finalist (Dec 2026) · BIG O's (KSU).
 
 **Things you saw directly that would help (please use your own words):**
 - [[Prof. Khan: the BRIGHT experiments, the KASP final project, how I handled feedback]]

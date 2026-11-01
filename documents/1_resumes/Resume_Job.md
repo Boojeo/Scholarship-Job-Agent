@@ -3,7 +3,7 @@ AI / Machine Learning Engineer · {{EMAIL}} · {{PHONE}} · Najran, Saudi Arabia
 **Work authorization:** UAE Golden Visa holder (10-year residency for outstanding students, valid until 2032): no residence sponsorship needed in the UAE · Resident of Saudi Arabia
 
 ## Summary
-Computer Science student (GPA 4.99/5.00, First Class Honors standing, graduating Jun 2027) who builds and ships LLM systems on small budgets. I have deployed a fine-tuned Arabic-dialect assistant used by 300 people, built a 37,800-run evaluation pipeline for multi-agent code generation, and co-authored a KAUST paper on long-context LLM inference (under review at ICLR). Selected among the top 100 of 17,000+ applicants for KAUST Academy's AI program.
+Computer Science student (GPA 4.99/5.00, First Class Honors standing, graduating Jun 2027) who builds and ships LLM systems on small budgets. I have deployed a fine-tuned Arabic-dialect assistant used by 300 people, built a 37,800-run evaluation pipeline for multi-agent code generation, and co-authored a KAUST paper on long-context LLM inference (under review at ICLR). Selected among the top 100 of 17,000+ applicants for KAUST Academy's AI program, where I ranked 8th of 125 in its Kaggle competitions tournament.
 
 ## Skills
 - **ML and LLMs:** PyTorch, TensorFlow/Keras, QLoRA/LoRA, DPO, RAG, LLM agents, Whisper ASR, retrieval and evaluation.
@@ -32,4 +32,4 @@ Computer Science student (GPA 4.99/5.00, First Class Honors standing, graduating
 
 ## Leadership and Awards
 - Member, Student Advisory Council (College of CS&IS). Technical Committee Lead, AI Club (15 members, workshops for 100+ students). Built the Programming Club's educational platform.
-- Top Participant, Kaggle Competitions Tournament, KAUST Academy Summer School 2026. UAE Golden Visa for outstanding students (97.03% in UAE secondary school, Advanced Stream, 2021). Top 10 Finalist, 6th National Programming Competition (May 2024). Programming Jam 10 (national, Prince Sultan University). MiyahThon 3: advanced to the Prototyping Race finals (Dec 2026).
+- Kaggle Competitions Tournament, KAUST Academy Summer School 2026: ranked 8th of 125 (top participant). UAE Golden Visa for outstanding students (97.03% in UAE secondary school, Advanced Stream, 2021). Top 10 Finalist, 6th National Programming Competition (May 2024). Programming Jam 10 (national, Prince Sultan University). MiyahThon 3: advanced to the Prototyping Race finals (Dec 2026).

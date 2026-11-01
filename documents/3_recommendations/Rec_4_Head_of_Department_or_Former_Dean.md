@@ -10,7 +10,7 @@ As [[Head of the Department of Computer Science / former Dean of the College of 
 **Standing in the department.** Abdallah holds a cumulative GPA of 4.99 out of 5.00 with First Class Honors standing (A+ in 42 of 44 courses, including Machine Learning, Artificial Intelligence and Theory of Computation), the [[highest / among the highest]] in his cohort of [[N]] Computer Science students. He has received the College's Academic Excellence Award in three consecutive years, continuing a record that began in secondary school, where his 97% final grade earned him the UAE Golden Visa for outstanding students. The programme is taught, examined and assessed entirely in English, and his results reflect full command of technical English.
 
 **Representing the College.** Abdallah has carried the College's name well beyond Najran:
-- he was selected among the top 100 of more than 17,000 applicants for KAUST Academy's AI Specialization track, completing its courses with distinction and its 320-hour summer programme in 2026, where he was named a top participant in the Kaggle Competitions Tournament;
+- he was selected among the top 100 of more than 17,000 applicants for KAUST Academy's AI Specialization track, completing its courses with distinction and its 320-hour summer programme in 2026, where he ranked 8th of 125 in the Kaggle Competitions Tournament;
 - he co-authored a paper with KAUST researchers that is now under review at ICLR, one of the leading venues in machine learning;
 - he reached the top 10 of the 6th National Programming Competition (2024), competed at Programming Jam 10 at Prince Sultan University, and his team advanced to the final Prototyping Race stage of the MiyahThon water-innovation hackathon.
 
