@@ -22,7 +22,9 @@ def profile_brief() -> str:
         f"Candidate: {c['name']}, {c['nationality']} national, resident in {' and '.join(c['residencies'])}. "
         f"{e['degree']} at {e['university']}, GPA {e['gpa']} (First Class Honors standing), graduating {e['expected_graduation']}. "
         "Has an English Medium-of-Instruction letter, no IELTS/TOEFL yet, no GRE/GMAT. "
-        "Co-author of an LLM long-context paper (arXiv 2610.04047, under review at ICLR, published under the name Abdallah Ahmed); KAUST Academy summer program 2026. "
+        "Co-author of an LLM long-context retrieval paper (arXiv 2610.04047, under review at ICLR; published as Abdallah Ahmed); "
+        "first author of a 37,800-run study on error propagation in multi-agent code generation; built Lahja, a Gulf-Arabic "
+        "dialect LLM (graduation project); KAUST Academy AI track (top 100 of 17,000+). Student Council member. "
         "Wants: (1) fully funded MS or direct PhD in AI/ML/CS starting 2027, (2) AI/CS internships, co-op or "
         "part-time roles, (3) entry-level AI/ML/data/software jobs from mid-2027 (or remote/part-time now)."
     )

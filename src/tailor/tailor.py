@@ -21,7 +21,7 @@ RULES = """Hard rules:
   keywords ONLY where the master CV supports them.
 - Keep {{EMAIL}} and {{PHONE}} placeholders exactly as they are.
 - The degree is not finished: the graduation date is "expected July 2027". "First Class Honors standing" may be used as written.
-- Name: Abdallah Ahmed Mohamud (passport name). The paper lists him as "Abdallah Ahmed"; keep the citation as published.
+- Name: Abdallah Mohamud Ahmed (as on official documents). Publications list him as "Abdallah Ahmed"; keep citations as published.
 - English is the language of instruction of the degree (MOI letter available); IELTS has not been taken yet."""
 
 
@@ -52,8 +52,12 @@ class TailorResult:
 
 
 def load_master(settings: Settings, category: str) -> str:
-    name = "master_cv_research.md" if category == "CATEGORY_1_SCHOLARSHIP" else "master_cv_industry.md"
-    return (settings.vault_dir / name).read_text(encoding="utf-8")
+    name = {"CATEGORY_1_SCHOLARSHIP": "master_cv_research.md",
+            "CATEGORY_2_COOP_PARTTIME": "master_cv_coop.md"}.get(category, "master_cv_industry.md")
+    path = settings.vault_dir / name
+    if not path.exists():
+        path = settings.vault_dir / "master_cv_industry.md"
+    return path.read_text(encoding="utf-8")
 
 
 def fetch_posting(url: str, fallback: str) -> str:

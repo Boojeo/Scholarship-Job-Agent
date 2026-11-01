@@ -98,7 +98,7 @@ def test_browser_uses_passport_name_parts():
     from src.applicator.browser import field_values
     vals = field_values(Settings(candidate_email="me@x.com"))
     pick = lambda h: next(v for p, v in vals if p.search(h))  # noqa: E731
-    assert (pick("middleName"), pick("lastName"), pick("full_name")) == ("Ahmed", "Mohamud", "Abdallah Ahmed Mohamud")
+    assert (pick("middleName"), pick("lastName"), pick("full_name")) == ("Mohamud", "Ahmed", "Abdallah Mohamud Ahmed")
 
 
 def test_bot_schedule_follows_settings():
@@ -108,3 +108,10 @@ def test_bot_schedule_follows_settings():
                 screen_provider="gemini", write_provider="gemini")
     assert names(Settings(**base)) == ["search-on-start"]
     assert names(Settings(**base, digest_time="09:00", search_on_start=False)) == ["daily-digest"]
+
+
+def test_list_after_paragraph_renders_as_list():
+    import markdown
+    from src.tailor.render import _normalize
+    html = markdown.markdown(_normalize("**Project.** 2026\n- first\n- second"))
+    assert "<li>first</li>" in html

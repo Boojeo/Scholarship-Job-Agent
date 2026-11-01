@@ -1,10 +1,10 @@
 # Facts below come from the candidate's CVs. The agent must never claim anything that is not here
 # or in vault/master_cv*.md. Contact details live in .env, not in git.
 candidate:
-  name: "Abdallah Ahmed Mohamud"   # passport name; published as "Abdallah Ahmed"
+  name: "Abdallah Mohamud Ahmed"   # as on MOI letter, KAUST certificates, LinkedIn; published as "Abdallah Ahmed"
   given_name: "Abdallah"
-  middle_name: "Ahmed"
-  family_name: "Mohamud"
+  middle_name: "Mohamud"
+  family_name: "Ahmed"
   base_location: "Najran, Saudi Arabia"
   nationality: "Somali"
   residencies: ["Saudi Arabia", "United Arab Emirates"]
@@ -25,11 +25,16 @@ candidate:
       role: "Co-author, listed on arXiv as Abdallah Ahmed (6th of 8 authors)"
       code: "https://github.com/mohammad2012191/Periscope"
       topics: ["long-context LLM inference", "retrieval", "efficient inference"]
+  research_more:
+    - "First author: How Far Does a False Claim Travel? Error propagation and hand-off checks in multi-agent code generation (with M. Sabaa, Dr. A. Khanfor, Najran University)"
+    - "OBLIQ-Bench: LLMs as retrievers for oblique queries (benchmark; latency/cost/TFLOPs on IBEX and T4)"
+    - "Lahja graduation project: Gulf Arabic (Emirati, Najdi) dialect LLM, QLoRA on Jais, public demo 300 users, preprint on annotator-free evaluation"
   training:
     - "KAUST Academy AI Specializations Summer Program (KASP), 28 Jun - 20 Aug 2026"
   projects: ["Lahja (Arabic dialect NLP)", "HydroPulse (MiyahThon finalist)",
              "Handwritten digit recognition with custom VGG16", "Linear regression from scratch"]
-  leadership: ["AI Club Technical Committee Lead (15 members), Jan 2026 - present",
+  leadership: ["Student Council member, Najran University",
+               "AI Club Technical Committee Lead (15 members), Jan 2026 - present",
                "Competitive Programming Lead, 3Cs Hackathon, April 2025"]
   honors: ["Top 10 Finalist, 6th National Programming Competition", "Finalist, MiyahThon Water Innovation Hackathon"]
   languages: ["English (degree taught in English, MOI letter)", "Arabic", "Somali"]

@@ -24,6 +24,7 @@ def main(argv: list[str] | None = None) -> int:
     k = sub.add_parser("kit", help="tailor documents and build the PC kit for one opportunity id")
     k.add_argument("id", type=int)
     sub.add_parser("check-sources", help="test every enabled source and report how many posts each returns")
+    sub.add_parser("render-docs", help="make PDF + Word files of everything in documents/ (fills email/phone from .env)")
     sub.add_parser("purge-research", help="delete opportunities and sources that research added (keeps seed sources)")
     sub.add_parser("models", help="list models your Gemini key can use")
     pr = sub.add_parser("probe", help="test which Gemini models really work (plain and with web search)")
@@ -107,6 +108,19 @@ def main(argv: list[str] | None = None) -> int:
                 sources = load_sources(conn)
             for src, items in zip(sources, asyncio.run(_check(sources))):
                 print(f"{'OK ' if items else 'XX '} {len(items):>3} posts  {src.type:<9} {src.name}")
+        elif args.cmd == "render-docs":
+            from src.settings import ROOT
+            from src.tailor.render import render_both
+            from src.tailor.tailor import fill_contacts
+
+            src_dir, out_dir = ROOT / "documents", ROOT / "documents" / "_output"
+            for md in sorted(src_dir.glob("[1-4]_*/*.md")):
+                if md.name.startswith("README"):
+                    continue
+                pdf, docx = render_both(fill_contacts(md.read_text(encoding="utf-8"), settings),
+                                        out_dir / md.parent.name / md.stem)
+                print(f"{pdf.relative_to(ROOT)}  +  .docx")
+            print(f"done: {out_dir}")
         elif args.cmd == "purge-research":
             with db.session(settings.db_path) as conn:
                 a = conn.execute("DELETE FROM opportunities WHERE source LIKE 'research:%'").rowcount

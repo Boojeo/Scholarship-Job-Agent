@@ -18,9 +18,21 @@ p { margin: 2pt 0; } ul { margin: 1pt 0 3pt 14pt; padding: 0; } li { margin: 0 0
 """
 
 
+def _normalize(md_text: str) -> str:
+    """Python-Markdown needs a blank line before a list; LLM output and hand-written CVs often skip it."""
+    out: list[str] = []
+    for line in md_text.splitlines():
+        is_item = bool(re.match(r"^\s*(?:[-*]|\d+\.) ", line))
+        prev = out[-1] if out else ""
+        if is_item and prev.strip() and not re.match(r"^\s*(?:[-*]|\d+\.) ", prev):
+            out.append("")
+        out.append(line)
+    return "\n".join(out)
+
+
 def md_to_pdf(md_text: str, out: Path) -> Path:
     html = f"<html><head><meta charset='utf-8'><style>{CSS}</style></head><body>" \
-           f"{markdown.markdown(md_text)}</body></html>"
+           f"{markdown.markdown(_normalize(md_text))}</body></html>"
     with open(out, "wb") as fh:
         result = pisa.CreatePDF(html, dest=fh, encoding="utf-8")
     if result.err:

@@ -1,62 +1,61 @@
-# Abdallah Ahmed Mohamud
-{{EMAIL}} | {{PHONE}} | Najran, Saudi Arabia | linkedin.com/in/booje | github.com/Boojeo | arXiv:2610.04047
+# Abdallah Mohamud Ahmed
+{{EMAIL}} · {{PHONE}} · Najran, Saudi Arabia · linkedin.com/in/booje · github.com/Boojeo
 
-## Research Summary
-Computer Science undergraduate (GPA 4.99/5.0) working on long-context language models and retrieval. Co-author of Periscope, a training-free inference method that extends frozen language models beyond their context window, submitted to ICLR. Background in deep learning, computer vision, and competitive programming; selected for the KAUST Academy AI Specializations Summer Program (2026). Seeking an MS/PhD to continue research on efficient, reliable LLM inference.
+**Research interests:** efficient and reliable large language models: long-context inference, LLM-based retrieval, verification in multi-agent LLM systems, and evaluation for low-resource Arabic dialects.
 
 ## Education
-**Najran University, College of Computer Science and Information Systems** — Najran, Saudi Arabia
-B.Sc. in Computer Science, expected July 2027
-- GPA: 4.99/5.0 (First Class Honors standing); Annual Academic Excellence Award, three consecutive years.
-- Coursework: Artificial Intelligence, Linear Algebra, Calculus, Probability & Statistics, Data Structures and Algorithms, Discrete Mathematics, Software Engineering.
+**B.Sc. in Computer Science**, Najran University, Saudi Arabia, Sep 2023 – expected Jun 2027
+- GPA **4.99 / 5.00**, First Class Honors standing; Academic Excellence Award in three consecutive years.
+- Programme taught, examined and assessed entirely in English (official Medium-of-Instruction certificate from the Dean).
+- Coursework: Artificial Intelligence, Linear Algebra, Calculus, Probability & Statistics, Data Structures & Algorithms, Discrete Mathematics, Software Engineering.
 
-## Research & Publications
-**Periscope: Extending Frozen Language Models Beyond Their Context Window** — Submitted to ICLR, under review
-M. Eltahir*, A. Obayd*, R. Rashid, A. Alghamdi, A. Mousa, **A. Ahmed**, T. Hussain, N. Khan. KAUST. *Equal contribution. arXiv:2610.04047 · Code: github.com/mohammad2012191/Periscope
-(Published as Abdallah Ahmed.)
-- Co-developed a training-free inference method that factorizes a long read into small probes: the N chunks of a text are arranged on a K×K grid (K = ⌈√N⌉), and a frozen model answers the same question over K local spans and K strided spans, scoring each answer by its log-odds at a single token.
-- Scoring every chunk by its two spans yields an evidence map at no extra cost; its peak locates the chunk behind the answer.
-- LongBench v2: reading only the 9k tokens of the top-ranked chunks matches the same model's best full-window read across windows from 32k to 1M tokens.
-- InfiniteBench (median context 150k tokens): outperforms the best window read by 5 points.
-- BRIGHT: the evidence map ranks long-document corpora with the best NDCG@10 among six methods.
-- Efficiency: a 27B model reads 4.5M-token contexts on one 80GB GPU, where a single pass would need 296GB of cache.
+**KAUST Academy, AI Specialization track:** selected among the top 100 of 17,000+ applicants.
+- AI Summer Program (KASP), KAUST, Jun – Aug 2026: 8-week intensive in deep learning, computer vision, NLP, Transformers, diffusion models, reinforcement learning, LLM fine-tuning and RAG (PyTorch).
+- Advanced AI course (computer vision, 40 h), KAUST, Feb 2026, *with Distinction*. Introduction to AI course (40 h), University of Tabuk, Jan 2026, *with Distinction*.
 
-## Training
-**KAUST Academy AI Specializations Summer Program (KASP)** — KAUST, Thuwal, Saudi Arabia, 28 Jun – 20 Aug 2026
-- Eight-week intensive: computer vision (CNNs, Transformers, ViT, video), representation learning (SimCLR, I-JEPA/V-JEPA), generative models (VAEs, GANs, diffusion, normalizing flows), reinforcement learning (DQN, PPO, GRPO, SAC, RLHF/RLVR).
-- NLP and LLMs: attention and Transformers, pretraining and scaling laws, fine-tuning (LoRA/QLoRA, RLHF), reasoning models trained with GRPO, quantization and distillation, multimodal NLP, agentic AI.
-- Final project: Periscope (see Research & Publications).
+## Publications and Preprints (published as Abdallah Ahmed)
+1. M. Eltahir\*, A. Obayd\*, R. Rashid, A. Alghamdi, A. Mousa, **A. Ahmed**, T. Hussain, N. Khan. *Periscope: Extending Frozen Language Models Beyond Their Context Window.* Under review at ICLR. arXiv:2610.04047. Code: github.com/mohammad2012191/Periscope
+2. **A. Ahmed**, M. Sabaa, A. Khanfor. *How Far Does a False Claim Travel? Error Propagation and Hand-off Checks in Multi-Agent Code Generation.*
+3. **A. Ahmed** et al. Preprint on annotator-free evaluation of Gulf Arabic dialect generation (submitted, 2026).
 
-## Projects
-**Lahja** — Arabic Dialect NLP, team project
-- Improved performance by 5–10% on four selected Arabic dialects: Saudi, Emirati, Moroccan, and Syrian.
+## Research Experience
+**Error Propagation in Multi-Agent Code Generation.** First author, advised by Dr. A. Khanfor, Najran University, 2026 – 2027
+- Designed a controlled study of how one hallucinated claim (a fake package, a wrong function signature, a deprecated API) spreads through a planner → implementer → reviewer pipeline of LLM agents: 37,800 runs over 7 claim types, 150 tasks (HumanEval + MBPP), 3 seeds and 3 open-weight model families.
+- Showed that unchecked hallucinations reach the final code in up to 67% of runs. A deterministic tool check at the hand-off cut survival of hallucinated packages from 61% to 1.6% and of wrong signatures from 67% to 12%. LLM-based supervision was much weaker at catching signature errors.
+- Confirmed at larger scale: all 9 pre-registered contrasts held on ClassEval (reductions of 34–47 pp, 95% CIs), and the tool check held for all three models on 60 SWE-bench Verified repository-level instances. Models' own hallucinated packages travel ~28 pp further than injected ones, so the headline figures are conservative.
+- Pre-registered hypotheses, task-clustered bootstrap CIs, GEE robustness checks, and a full reproducibility check (2,844 of 2,844 identical re-runs). Built on about 30 free GPU-hours per account with quantized open-weight models.
 
-**Handwritten Digit Recognition (Custom VGG16)** — Python, TensorFlow, Keras
-- Engineered a VGG16 CNN from scratch with a data pipeline that resizes 28x28 inputs into 2x2 mosaics; used mixed precision and global average pooling to fit an RTX 4060; 99.64% validation accuracy, 0.9964 F1 on MNIST.
+**Periscope and CorpusProbe: Training-Free Long-Context Reading and Retrieval.** KAUST Academy, with Prof. Naeemullah Khan, 2026
+- Developed CorpusProbe, a training-free, subquadratic (O(N^1.5)) LLM-based retrieval method that leads the BRIGHT benchmark with NDCG@10 of 0.526 and AUC of 0.967, ahead of BM25, embedding retrievers and full-context reading.
+- Periscope reads only the 9k tokens of the top-ranked chunks yet matches the same model's best full-window read on LongBench v2 (32k – 1M-token windows), beats it by 5 points on InfiniteBench, and lets a 27B model read 4.5M-token contexts on one 80 GB GPU.
 
-**HydroPulse** — MiyahThon Water Innovation Hackathon, Jubail (Finalist)
-- Designed a water-network efficiency solution with a team and presented it to judges.
+**OBLIQ-Bench: LLMs as Retrievers for Oblique Queries.**, 2026 – present
+- Studying a specific failure of text retrieval: "oblique" queries whose relevance to a document is latent and leaves little trace on the surface text.
+- Building the OBLIQ-Bench benchmark, measuring baselines on BRIGHT, and profiling latency, cost and TFLOPs on KAUST's IBEX cluster and T4 GPUs. Diagnosed and fixed run failures along the way.
+- Goal: a lighter, faster, cheaper retriever that keeps quality close to full-LLM retrieval. Results written up as papers, reviews and a poster.
 
-## Leadership & Experience
-**AI Club, Technical Committee Lead** — Najran University, Jan 2026 – Present
-- Lead a 15-member technical committee; built the club website and organized hands-on AI workshops for over 100 attendees.
+**Lahja: Low-Resource Gulf Arabic Dialect LLM.** Graduation project, Najran University, 2026 – 2027
+- Built and deployed a dialect-aware Arabic assistant for Emirati and Najdi by QLoRA fine-tuning of Jais on a single T4 / RTX 4060 budget. It reached +6.5 chrF over an MSA-copy baseline and 82% preference for dialectal forms on held-out real speech, against 55% for few-shot prompting.
+- Designed a data pipeline with no paid corpora and no annotators: Whisper-vs-Cohere ASR consensus filtering of podcast speech (120K clean words kept), back-translation, reverse-instruction Q&A generation, and DPO preference pairs.
+- Built a leakage-free evaluation suite: minimal-pair log-likelihood tests, a dialect classifier (AUC 0.97 vs MSA, 0.88 vs LLM-written fake dialect), meaning-preservation scoring and bootstrap CIs. Ran 18 controlled ablations and kept MCQ accuracy within 2 points of the base model.
+- Released a public web demo (300 users, 2,500 queries) and submitted a preprint on annotator-free dialect evaluation.
 
-**Competitive Programming Lead** — 3Cs Hackathon, University of Najran, April 2025
-- Ran the Competitive Programming Contest track and mentored junior students.
+## Leadership and Service
+- **Student Council member**, Najran University,.
+- **Technical Committee Lead, AI Club**, Najran University, Jan 2026 – present. Lead a 15-member committee, built the club website, and delivered hands-on ML/DL workshops to 100+ students.
+- **Programming Club**, Najran University: built the club's educational platform (certificates of appreciation from the club supervisor and the Dean).
+- **Competitive Programming Lead, 3Cs Hackathon**, Najran University, Apr 2025. Designed the contest problems and mentored junior students.
 
-## Honors & Awards
-- Top 10 Finalist, 6th National Programming Competition (organized by Imam Abdulrahman Bin Faisal University).
-- Finalist, MiyahThon Water Innovation Hackathon, Jubail.
-- Annual Academic Excellence Award, University of Najran, three consecutive years.
+## Honors and Competitions
+- Academic Excellence Award, Najran University, three consecutive years.
+- Top 10 Finalist, 6th National Programming Competition (organised by Imam Abdulrahman Bin Faisal University).
+- Programming Jam 10, national programming competition, Prince Sultan University, Apr 2025 (team Code Heroes).
+- MiyahThon water-innovation hackathon, Saudi Water Innovation Center: Finalist, 2nd edition, Jubail, Nov 2025; 3rd-edition digital bootcamp, Sep 2026.
+- BIG O's competitive programming contest, King Saud University, May 2024.
 
 ## Skills
-- Languages: Python (advanced), Java (competitive programming). English (degree taught entirely in English), Arabic, Somali.
-- LLMs & Retrieval: long-context inference, document and passage retrieval, Arabic dialect NLP, benchmark evaluation (LongBench v2, InfiniteBench, BRIGHT; NDCG@10), LoRA/QLoRA fine-tuning, GRPO.
-- Deep Learning: TensorFlow, Keras, CNNs, computer vision, YOLO.
-- Data Science: NumPy, Pandas, Scikit-Learn, data preprocessing, feature engineering, Matplotlib.
-
-## Certifications
-- Machine Learning Specialization, DeepLearning.AI / Stanford
-- Introduction to Data Science in Python, University of Michigan
-- Advanced Artificial Intelligence (Stage 3), KAUST Academy
-- Introducing Generative AI with AWS, Amazon Web Services
+- **Programming:** Python (advanced), Java.
+- **ML and LLMs:** PyTorch, TensorFlow/Keras, QLoRA/LoRA fine-tuning, DPO, RAG, LLM agents, Whisper ASR, long-context inference and retrieval evaluation (BRIGHT, LongBench v2, InfiniteBench, HumanEval, MBPP, SWE-bench).
+- **Research methods:** controlled ablations, pre-registration, bootstrap confidence intervals, GEE, reproducibility checks.
+- **Compute:** KAUST IBEX cluster, T4 and RTX 4060 GPUs, quantized open-weight models.
+- **Languages:** English (full professional; degree taught in English), Arabic (native), Somali.
