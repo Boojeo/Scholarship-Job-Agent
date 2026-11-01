@@ -45,6 +45,7 @@
 
 ## Honors and Competitions
 - Academic Excellence Award, Najran University, three consecutive years.
+- **UAE Golden Visa for outstanding students** (10-year residency, valid until 2032), awarded for a 97% final grade in UAE secondary school. [[CONFIRM: school name and year]]
 - Top 10 Finalist, 6th National Programming Competition (Imam Abdulrahman Bin Faisal University), May 2024.
 - Programming Jam 10, national programming competition, Prince Sultan University, Apr 2025 (team Code Heroes).
 - MiyahThon water-innovation hackathon (Saudi Water Innovation Center): qualified for the final round of the 3rd edition, Dec 2026; 2nd-edition bootcamp, Jubail, Nov 2025.

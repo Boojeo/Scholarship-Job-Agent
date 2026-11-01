@@ -1,5 +1,6 @@
 # Abdallah Mohamud Ahmed
 AI / Machine Learning Engineer · {{EMAIL}} · {{PHONE}} · Najran, Saudi Arabia · linkedin.com/in/booje · github.com/Boojeo
+**Work authorization:** UAE Golden Visa holder (10-year residency for outstanding students, valid until 2032): no residence sponsorship needed in the UAE · Resident of Saudi Arabia
 
 ## Summary
 Computer Science student (GPA 4.99/5.00, First Class Honors standing, graduating Jun 2027) who builds and ships LLM systems on small budgets. I have deployed a fine-tuned Arabic-dialect assistant used by 300 people, built a 37,800-run evaluation pipeline for multi-agent code generation, and co-authored a KAUST paper on long-context LLM inference (under review at ICLR). Selected among the top 100 of 17,000+ applicants for KAUST Academy's AI program.
@@ -31,4 +32,4 @@ Computer Science student (GPA 4.99/5.00, First Class Honors standing, graduating
 
 ## Leadership and Awards
 - Member, Student Advisory Council (College of CS&IS). Technical Committee Lead, AI Club (15 members, workshops for 100+ students). Built the Programming Club's educational platform.
-- Top 10 Finalist, 6th National Programming Competition (May 2024). Programming Jam 10 (national, Prince Sultan University). MiyahThon finalist (final round Dec 2026).
+- UAE Golden Visa for outstanding students (97% in UAE secondary school). Top 10 Finalist, 6th National Programming Competition (May 2024). Programming Jam 10 (national, Prince Sultan University). MiyahThon finalist (final round Dec 2026).

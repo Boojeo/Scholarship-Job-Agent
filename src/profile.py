@@ -21,6 +21,7 @@ def profile_brief() -> str:
     return (
         f"Candidate: {c['name']}, {c['nationality']} national, resident in {' and '.join(c['residencies'])}. "
         f"{e['degree']} at {e['university']}, GPA {e['gpa']} (First Class Honors standing), graduating {e['expected_graduation']}. "
+        "Holds a UAE Golden Visa valid until 2032 (can work in the UAE without residence sponsorship; 97% in UAE secondary school). "
         "Has an English Medium-of-Instruction letter, no IELTS/TOEFL yet, no GRE/GMAT. "
         "Co-author of an LLM long-context retrieval paper (arXiv 2610.04047, under review at ICLR; published as Abdallah Ahmed); "
         "first author of a 37,800-run study on error propagation in multi-agent code generation; built Lahja, a Gulf-Arabic "

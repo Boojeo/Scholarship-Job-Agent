@@ -8,6 +8,8 @@ candidate:
   base_location: "Najran, Saudi Arabia"
   nationality: "Somali"
   residencies: ["Saudi Arabia", "United Arab Emirates"]
+  uae_golden_visa: "10-year UAE Golden Visa for outstanding students, valid until 2032 (97% in UAE secondary school); no UAE residence sponsorship needed"
+  secondary_school: "UAE, final grade 97%"
   timezone: "Asia/Riyadh"
   education:
     degree: "B.Sc. in Computer Science"

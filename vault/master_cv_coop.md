@@ -1,7 +1,7 @@
 # Abdallah Mohamud Ahmed
 Computer Science student seeking an AI / ML / Software co-op or internship
 {{EMAIL}} · {{PHONE}} · Najran, Saudi Arabia · linkedin.com/in/booje · github.com/Boojeo
-**Availability:** full-time from June 2027, for 3 months or longer · Resident of Saudi Arabia and the UAE
+**Availability:** full-time from June 2027, for 3 months or longer · Resident of Saudi Arabia · UAE Golden Visa holder (10-year residency for outstanding students, valid until 2032)
 
 ## Education
 **B.Sc. Computer Science**, Najran University, Saudi Arabia, Sep 2023 – Jun 2027 (expected)
@@ -28,4 +28,4 @@ Computer Science student seeking an AI / ML / Software co-op or internship
 ## Skills and Awards
 - Python (advanced), Java, PyTorch, TensorFlow/Keras, Git, LLM fine-tuning, data pipelines, statistics.
 - English (full professional), Arabic (native), Somali.
-- Top 10 Finalist, 6th National Programming Competition (2024) · Programming Jam 10 (national) · MiyahThon finalist (Dec 2026) · NovaAI training program (48 h, three stages).
+- UAE Golden Visa for outstanding students (97% in secondary school) · Top 10 Finalist, 6th National Programming Competition (2024) · Programming Jam 10 (national) · MiyahThon finalist (Dec 2026) · NovaAI training program (48 h, three stages).

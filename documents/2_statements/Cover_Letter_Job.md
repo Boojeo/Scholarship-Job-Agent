@@ -17,7 +17,7 @@ Three recent projects show how I work:
 
 [[TAILOR: 2–3 sentences linking the posting's main requirements (e.g. "RAG in production", "PyTorch", "Arabic NLP", "MLOps") to the evidence above, using the posting's own words.]]
 
-I graduate with a B.Sc. in Computer Science from Najran University in June 2027 (GPA 4.99/5.00, First Class Honors standing). The degree is taught entirely in English, and I also speak Arabic natively. I live in Saudi Arabia and hold UAE residency. [[If relevant: "I am available to start in MONTH 2027" / "I would need visa sponsorship for COUNTRY".]]
+I graduate with a B.Sc. in Computer Science from Najran University in June 2027 (GPA 4.99/5.00, First Class Honors standing). The degree is taught entirely in English, and I also speak Arabic natively. I live in Saudi Arabia and hold a UAE Golden Visa (10-year residency, valid until 2032), so I can work in the UAE without residence sponsorship. [[If relevant: "I am available to start in MONTH 2027" / "I would need visa sponsorship for COUNTRY".]]
 
 Thank you for your time. I would welcome the chance to discuss how I can contribute to [[COMPANY]].
 
