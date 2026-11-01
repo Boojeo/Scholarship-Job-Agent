@@ -114,7 +114,7 @@ def main(argv: list[str] | None = None) -> int:
             from src.tailor.tailor import fill_contacts
 
             src_dir, out_dir = ROOT / "documents", ROOT / "documents" / "_output"
-            for md in sorted(src_dir.glob("[1-4]_*/*.md")):
+            for md in sorted(src_dir.glob("[0-4]_*/*.md")):
                 if md.name.startswith("README"):
                     continue
                 pdf, docx = render_both(fill_contacts(md.read_text(encoding="utf-8"), settings),

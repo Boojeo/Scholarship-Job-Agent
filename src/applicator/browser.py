@@ -30,7 +30,7 @@ def field_values(settings: Settings) -> list[tuple[re.Pattern, str]]:
         (r"university|school|institution", "Najran University"),
         (r"gpa|grade", "4.99 / 5.00"),
         (r"degree|major|field.?of.?study", "B.Sc. Computer Science"),
-        (r"graduation", "July 2027"),
+        (r"graduation", "June 2027"),
         (r"nationality|citizenship", c["nationality"]),
         (r"city|location", "Najran, Saudi Arabia"),
         (r"country", "Saudi Arabia"),

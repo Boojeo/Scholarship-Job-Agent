@@ -28,7 +28,7 @@ from src.settings import ROOT, Settings
 
 log = logging.getLogger(__name__)
 PROFILE_BRIEF = ("Candidate: Somali national resident in Saudi Arabia and the UAE, B.Sc. Computer Science "
-                 "(GPA 4.99/5.0, graduating July 2027), has an English Medium-of-Instruction letter, no IELTS yet, "
+                 "(GPA 4.99/5.0, graduating June 2027), has an English Medium-of-Instruction letter, no IELTS yet, "
                  "no GRE; wants fully funded MS/PhD in AI from 2027, AI/CS internships/co-op, and entry-level AI/CS jobs.")
 SYSTEM = ("You are a careful research analyst. Use web search. Only report pages you actually opened. "
           "Mark anything you could not verify as UNVERIFIED. Never invent URLs, deadlines or programs.")

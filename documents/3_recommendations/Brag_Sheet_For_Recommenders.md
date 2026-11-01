@@ -7,16 +7,15 @@
 **Academic record:** GPA 4.99/5.00 · First Class Honors standing · Academic Excellence Award in three consecutive years · programme taught entirely in English.
 
 **Research (in one line each):**
-- Periscope / CorpusProbe (KAUST, 2026): training-free long-context reading and retrieval. Co-author; arXiv:2610.04047, under review at ICLR. My retriever reached NDCG@10 0.526 on BRIGHT.
+- Periscope, first called CorpusProbe (KAUST, 2026): training-free long-context reading and retrieval, including OBLIQ-Bench for oblique queries. Co-author; arXiv:2610.04047, under review at ICLR. The retriever reached NDCG@10 0.526 on BRIGHT; profiled on IBEX and T4.
 - How Far Does a False Claim Travel? (Najran, first author): 37,800 runs; a tool check at agent hand-offs cut fake packages from 61% to 1.6%; fully reproducible.
-- OBLIQ-Bench (2026 – present): cost-efficient LLM retrieval for oblique queries; profiling on IBEX and T4.
 - Lahja (graduation project): Emirati and Najdi dialect LLM, 82% vs 55% dialect preference; public demo used by 300 people; preprint submitted.
 
 **Selection and training:** KAUST Academy AI track, top 100 of 17,000+; two courses with distinction; 8-week KAUST Summer Program 2026.
 
-**Leadership:** Student Council member · AI Club Technical Committee Lead (15 members, workshops for 100+) · built the Programming Club platform · 3Cs Hackathon CP lead.
+**Leadership:** Member, Student Advisory Council (since Oct 2026) · AI Club Technical Committee Lead (15 members, workshops for 100+) · built the Programming Club platform · 3Cs Hackathon CP lead.
 
-**Competitions:** Top 10, 6th National Programming Competition · Programming Jam 10 (PSU) · MiyahThon finalist · BIG O's (KSU).
+**Competitions:** Top 10, 6th National Programming Competition (May 2024) · Programming Jam 10 (PSU) · MiyahThon finalist (final Dec 2026) · BIG O's (KSU).
 
 **Things you saw directly that would help (please use your own words):**
 - [[Prof. Khan: the BRIGHT experiments, the KASP final project, how I handled feedback]]

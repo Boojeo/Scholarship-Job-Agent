@@ -31,7 +31,7 @@ def _normalize(md_text: str) -> str:
 
 
 # The built-in PDF font (Helvetica) has no glyph for these; Word files keep the originals.
-PDF_SAFE = {"→": "->", "←": "<-", "√": "sqrt", "≈": "~", "≤": "<=", "≥": ">=", "✓": "", "★": "*"}
+PDF_SAFE = {"→": "->", "←": "<-", "√": "sqrt", "≈": "~", "≤": "<=", "≥": ">=", "✓": "", "★": "*", "✅": "Yes", "❌": "No", "⚠️": "!"}
 
 
 def md_to_pdf(md_text: str, out: Path) -> Path:

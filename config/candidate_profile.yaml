@@ -12,9 +12,9 @@ candidate:
   education:
     degree: "B.Sc. in Computer Science"
     university: "Najran University, College of Computer Science and Information Systems"
-    expected_graduation: "2027-07"
+    expected_graduation: "2027-06"
     gpa: "4.99 / 5.00"
-    class_standing: "First Class Honors standing (GPA 4.99/5.00). The degree itself is expected July 2027."
+    class_standing: "First Class Honors standing (GPA 4.99/5.00). The degree itself is expected June 2027."
     awards: ["Annual Academic Excellence Award, three consecutive years"]
     coursework: ["Artificial Intelligence", "Linear Algebra", "Calculus", "Probability & Statistics",
                  "Data Structures and Algorithms", "Discrete Mathematics", "Software Engineering"]
@@ -26,14 +26,14 @@ candidate:
       code: "https://github.com/mohammad2012191/Periscope"
       topics: ["long-context LLM inference", "retrieval", "efficient inference"]
   research_more:
-    - "First author: How Far Does a False Claim Travel? Error propagation and hand-off checks in multi-agent code generation (with M. Sabaa, Dr. A. Khanfor, Najran University)"
-    - "OBLIQ-Bench: LLMs as retrievers for oblique queries (benchmark; latency/cost/TFLOPs on IBEX and T4)"
+    - "First author (published as Abdallah Mohamud): How Far Does a False Claim Travel? A Controlled Study of Error Propagation and Hand-off Checks in Multi-Agent Code Generation (with M. Sabaa, Dr. Abdullah Khanfor, Najran University; manuscript for a Springer Nature journal)"
+    - "Periscope was first called CorpusProbe; OBLIQ-Bench (oblique queries, latency/cost/TFLOPs on IBEX and T4) is part of the same ICLR work"
     - "Lahja graduation project: Gulf Arabic (Emirati, Najdi) dialect LLM, QLoRA on Jais, public demo 300 users, preprint on annotator-free evaluation"
   training:
     - "KAUST Academy AI Specializations Summer Program (KASP), 28 Jun - 20 Aug 2026"
   projects: ["Lahja (Arabic dialect NLP)", "HydroPulse (MiyahThon finalist)",
              "Handwritten digit recognition with custom VGG16", "Linear regression from scratch"]
-  leadership: ["Student Council member, Najran University",
+  leadership: ["Member, Student Advisory Council, College of CS&IS, Najran University (Oct 2026 - present)",
                "AI Club Technical Committee Lead (15 members), Jan 2026 - present",
                "Competitive Programming Lead, 3Cs Hackathon, April 2025"]
   honors: ["Top 10 Finalist, 6th National Programming Competition", "Finalist, MiyahThon Water Innovation Hackathon"]

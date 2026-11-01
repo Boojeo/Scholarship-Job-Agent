@@ -24,9 +24,9 @@
 
 ## Ask the university for (this week)
 1. **Official transcript in English**, sealed or stamped, with the grading scale (5.0) printed on it. Save as `transcript.pdf`.
-2. **Enrollment letter stating "expected to graduate in June/July 2027"**. Save as `enrollment.pdf`.
+2. **Enrollment letter stating "expected to graduate in June 2027"**. Save as `enrollment.pdf`.
 3. **Letter confirming First Class Honors standing / class rank**, e.g. "ranked 1st of N" if they will state it. Save as `honors.pdf`.
-4. **Proof for "Top 10, 6th National Programming Competition"** and **"MiyahThon finalist"**. Your zip has no certificate for either, and committees sometimes ask. [[CONFIRM: do you have them?]]
+4. **Proof for two claims:** ask the College (or IAU's College of Computer Science and IT) for a certificate or letter for the **Top 10, 6th National Programming Competition (9 May 2024, IAU)**, and keep the **MiyahThon** email or letter saying your team qualified for the December 2026 final. Committees and employers sometimes ask.
 
 ## Still missing for many programmes
 - **3 recommendation letters**: see `3_recommendations/`.

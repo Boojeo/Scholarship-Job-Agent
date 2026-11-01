@@ -11,6 +11,7 @@ The output goes to `documents/_output/` (not uploaded to GitHub).
 
 | Folder | What | When to use |
 |---|---|---|
+| `0_guides/Guide_SOP_Recommendations_Documents.md` | What a strong SOP and recommendation letter contain, questions to think with, and which documents each application type needs | **Read first** |
 | `1_resumes/CV_Masters_PhD.md` | 2-page academic CV | Master's, PhD and scholarship applications |
 | `1_resumes/Resume_Job.md` | 1-page industry resume | Full-time AI/ML/software jobs |
 | `1_resumes/Resume_Coop.md` | 1-page student resume | Co-op, internships, training programs |
@@ -18,7 +19,7 @@ The output goes to `documents/_output/` (not uploaded to GitHub).
 | `2_statements/Research_Statement_PhD.md` | Research statement | PhD / direct PhD / research-heavy MS (MBZUAI, KAUST) |
 | `2_statements/Cover_Letter_Job.md` | Cover letter | Jobs |
 | `2_statements/Cover_Letter_Coop.md` | Cover letter | Co-op / internships |
-| `3_recommendations/` | 3 different letter drafts, brag sheet, request email, how-to | Give to recommenders |
+| `3_recommendations/` | 4 different letter drafts, brag sheet, request email, how-to | Give to recommenders |
 | `4_other/Cold_Email_To_Professor.md` | Email to professors | 1–3 months before deadlines |
 | `4_other/Answer_Bank.md` | Ready answers to common form questions | Portals |
 | `4_other/Personal_History_Statement.md` | Optional background statement | US/Canada programmes that ask for it |

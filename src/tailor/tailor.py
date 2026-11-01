@@ -20,7 +20,7 @@ RULES = """Hard rules:
   awards that are not in it. You may reorder, shorten, rephrase, choose what to emphasise, and reuse the posting's
   keywords ONLY where the master CV supports them.
 - Keep {{EMAIL}} and {{PHONE}} placeholders exactly as they are.
-- The degree is not finished: the graduation date is "expected July 2027". "First Class Honors standing" may be used as written.
+- The degree is not finished: the graduation date is "expected June 2027". "First Class Honors standing" may be used as written.
 - Name: Abdallah Mohamud Ahmed (as on official documents). Publications list him as "Abdallah Ahmed"; keep citations as published.
 - English is the language of instruction of the degree (MOI letter available); IELTS has not been taken yet."""
 

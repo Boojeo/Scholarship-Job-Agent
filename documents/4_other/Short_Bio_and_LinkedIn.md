@@ -13,12 +13,12 @@ I build language-model systems that are cheaper to run and easier to trust.
 - First author of a 37,800-run study showing that a simple tool check between LLM agents cuts hallucinated packages from 61% to 1.6%.
 - Builder of Lahja, a Gulf-Arabic dialect LLM trained on one GPU and used by 300 people.
 
-Computer Science at Najran University (GPA 4.99/5.00, Academic Excellence Award three years running). Selected among the top 100 of 17,000+ applicants for KAUST Academy's AI track. Technical Committee Lead of the AI Club and Student Council member.
+Computer Science at Najran University (GPA 4.99/5.00, Academic Excellence Award three years running). Selected among the top 100 of 17,000+ applicants for KAUST Academy's AI track. Technical Committee Lead of the AI Club and member of the college's Student Advisory Council.
 
 Open to: fully funded MS/PhD positions (Fall 2027), research internships, and AI engineering roles.
 
 ## Fix on LinkedIn
 - **Name:** keep "Abdallah Mohamud Ahmed", matching your MOI letter and KAUST certificates.
-- **Education end date** says June 2027. Make it match your CV. [[CONFIRM: June or July]]
-- Add the three new projects, the Student Council role, and Somali under Languages if you speak it.
+- **Education end date:** June 2027 is correct; your CVs now match it.
+- Add the three new projects, the Student Advisory Council role, and Somali under Languages if you speak it.
 - Ask the Periscope repository owner to change "Abdullah Mahmoud" in the README to "Abdallah Ahmed".
